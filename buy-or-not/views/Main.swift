@@ -10,7 +10,27 @@ import SwiftUI
 
 struct Main: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Text("메인 테스트 화면")
+                .navigationBarItems(
+                    leading: NavigationLink(
+                        destination: Search() // 프로필 뷰로 연결(임시로 검색화면)
+                    ){
+                        Image("sampleMan").font(.largeTitle)
+                    }
+                    , trailing: NavigationLink(
+                        destination: Search() // 검색 뷰로 연결
+                    ){
+                        Image(systemName: "magnifyingglass").font(.title)
+                    }
+                )
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Image("mainLogo")
+                    }
+                }
+        }
     }
 }
 
