@@ -11,7 +11,27 @@ import SwiftUI
 struct Main: View {
     var body: some View {
         NavigationView {
-            Text("메인 테스트 화면")
+            ZStack {
+                VStack {
+                    // 카테고리 코드 영역
+                    Text("카테고리 자리")
+                    //
+                    ScrollView {
+                        ForEach (1..<100) { idx in
+                            Text("test \(idx)")
+                        }
+                    }
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        NavigationLink(
+                            destination: Search() // 질문 남기기 뷰로 연결(임시로 검색화면)
+                        ){
+                            Image("questionButton")
+                        }
+                    }
+                }
+            }.padding()
                 .navigationBarItems(
                     leading: NavigationLink(
                         destination: Search() // 프로필 뷰로 연결(임시로 검색화면)
