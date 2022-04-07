@@ -27,8 +27,9 @@ struct Search: View {
                                 
                                 // TextField does not come up with Keyboard
                                 TextField("검색", text: $searchText)
-                                    .frame(width: 290)
+                                    .frame(width: 290, height: 25)
                                     .background(Color(hex: "e9e9ea"))
+                                    .foregroundColor(Color(hex: "#000000"))
                                 
                                 if (searchText != "") {
                                     Image(systemName: "xmark.circle.fill")
@@ -61,7 +62,10 @@ struct Search: View {
                 
                 // Picker will show different views based on its constant
                 if (selectedPageIndex == 0) {
-                    QuestionOnGoing()
+                    QuestionOnGoing(
+                        searchText: searchText,
+                        data: data
+                    )
                 } else if (selectedPageIndex == 1) {
                     ScrollView {
                         ForEach (data.json) {feed in
@@ -84,7 +88,6 @@ struct Search: View {
             .edgesIgnoringSafeArea(.horizontal)
         }
 }
-
 
 struct Search_Previews: PreviewProvider {
     static var previews: some View {
