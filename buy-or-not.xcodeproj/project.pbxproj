@@ -21,6 +21,7 @@
 		A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBF27FEA55100BCA838 /* SecureInputView.swift */; };
 		A3571EC227FEA65C00BCA838 /* LoadingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EC127FEA65C00BCA838 /* LoadingPage.swift */; };
 		A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3D027FEB64E007A1054 /* buy_or_notApp.swift */; };
+		8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786FD3E27FEB0CB0010C4CA /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		A3571EBF27FEA55100BCA838 /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		A3571EC127FEA65C00BCA838 /* LoadingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPage.swift; sourceTree = "<group>"; };
 		A35EB3D027FEB64E007A1054 /* buy_or_notApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buy_or_notApp.swift; sourceTree = "<group>"; };
+		8786FD3E27FEB0CB0010C4CA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */,
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
 				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
+				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */,
 				379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */,
 				7A15082127FDE7BC0053C092 /* Feed.swift in Sources */,
+				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
 				7A4284B127FD82C600E9B88E /* ContentView.swift in Sources */,
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
 				7A4284CB27FD8D7600E9B88E /* Search.swift in Sources */,
