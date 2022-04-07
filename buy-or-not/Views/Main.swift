@@ -119,23 +119,40 @@ struct questionItem: View {
       VStack {
           Spacer()
           HStack {
-              Image(systemName: "p.square.fill").resizable().frame(width: 116, height: 116).foregroundColor(.gray)
+              Image(systemName: "p.square.fill")
+                  .resizable()
+                  .frame(width: 116, height: 116).foregroundColor(.gray)
+              
               Spacer()
+              
               VStack {
                   HStack {
-                      Text("어디어디 제품이고\n가격이 얼마인데 살지 말지 고민이 되네요..").font(.title3)
+                      Text("어디어디 제품이고\n가격이 얼마인데 살지 말지 고민이 되네요..")
+                          .font(.title3)
                       Spacer()
                   }
+
                   Spacer()
+
                   HStack {
-                      Text("bethev").font(.caption).foregroundColor(.gray)
+                      Text("bethev")
+                          .font(.caption)
+                          .foregroundColor(.gray)
+                      
                       Spacer()
-                      Text("\(Image(systemName: "checkmark.square"))16 \(Image(systemName: "text.bubble"))21").font(.caption).foregroundColor(.gray)
+                      
+                      Text (
+                        "\(Image(systemName: "checkmark.square"))16 \(Image(systemName: "text.bubble"))21"
+                      )
+                          .font(.caption)
+                          .foregroundColor(.gray)
                   }
               }
           }
           Spacer()
+          
           RoundedRectangle(cornerRadius: 10).foregroundColor(.blue).frame(height: 42)
+          
           Spacer()
       }
       .frame(height: 177.5)

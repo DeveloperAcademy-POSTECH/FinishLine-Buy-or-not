@@ -12,6 +12,8 @@ struct Search: View {
     @State var searchText: String = ""
     @State var selectedPageIndex = 1
     
+    var data = QuestionItemManager()
+    
     var body: some View {
             VStack {
                 // SearchBar and Picker Container
@@ -22,6 +24,8 @@ struct Search: View {
                             HStack {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(.gray)
+                                
+                                // TextField does not come up with Keyboard
                                 TextField("검색", text: $searchText)
                                     .frame(width: 290)
                                     .background(Color(hex: "e9e9ea"))
@@ -57,14 +61,23 @@ struct Search: View {
                 
                 // Picker will show different views based on its constant
                 if (selectedPageIndex == 0) {
-                    Feed()
+                    QuestionOnGoing()
                 } else if (selectedPageIndex == 1) {
-                    VStack {
-                        Feed()
-                        Feed2()
+//                    AllPosts()
+                    ScrollView {
+                        ForEach (data.json) {feed in
+                            Feed(
+                                selectedPageIndex: 1,
+                                title: feed.title,
+                                author: feed.author,
+                                votes: feed.votes,
+                                comments: feed.comments,
+                                imageURL: feed.imageURL
+                            )
+                        }
                     }
                 } else if (selectedPageIndex == 2) {
-                    Feed2()
+                    QuestionClosed()
                 }
             }
             .navigationBarTitle("검색")

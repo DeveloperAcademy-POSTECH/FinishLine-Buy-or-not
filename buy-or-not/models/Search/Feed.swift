@@ -11,12 +11,17 @@ struct Feed: View {
     
     @State var selectedPageIndex = 1
     
+    var title: String
+    var author: String
+    var votes: Int
+    var comments: Int
+    var imageURL: String
+    
     var body: some View {
         VStack {
             VStack {
                 HStack {
-                    Image("sampleMan")
-                        .resizable()
+                    AsyncImage(url: URL(string: imageURL))
                         .frame(width: 110, height: 110)
                         .cornerRadius(20)
                         .padding(.leading, 10)
@@ -25,7 +30,7 @@ struct Feed: View {
                     
                     VStack (alignment: .leading) {
                         
-                        Text("어디어디 제품이고 가격이 얼마인데 살지 말지 고민이 되네요...")
+                        Text(title)
                             .font(.system(size: 20))
                             .fontWeight(.bold)
                             .padding(.top, 10)
@@ -34,7 +39,7 @@ struct Feed: View {
                         
                         HStack {
                             
-                            Text("songcool")
+                            Text(author)
                                 .font(.system(size: 9))
                             
                             Spacer()
@@ -45,7 +50,7 @@ struct Feed: View {
                                         .resizable()
                                         .frame(width: 9, height: 9)
                                         .foregroundColor(.gray)
-                                    Text("16")
+                                    Text("\(votes)")
                                         .font(.system(size: 9))
                                         .foregroundColor(.gray)
                                 }
@@ -55,7 +60,7 @@ struct Feed: View {
                                         .resizable()
                                         .frame(width: 9, height: 9)
                                         .foregroundColor(.gray)
-                                    Text("21")
+                                    Text("\(comments)")
                                         .font(.system(size: 9))
                                         .foregroundColor(.gray)
                                 }
@@ -73,7 +78,7 @@ struct Feed: View {
                     Text("그거").tag(2)
                 })
                 .pickerStyle(SegmentedPickerStyle()) // <1>
-                .padding(.horizontal, 15)
+                .padding(.horizontal, 30)
             }
                 
             Divider()
@@ -87,6 +92,13 @@ struct Feed: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed()
+        Feed(
+            selectedPageIndex: 1,
+            title: "Hello",
+            author: "Lorem",
+            votes: 10,
+            comments: 100,
+            imageURL: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F13%2F2015%2F04%2F05%2Ffeatured.jpg"
+        )
     }
 }
