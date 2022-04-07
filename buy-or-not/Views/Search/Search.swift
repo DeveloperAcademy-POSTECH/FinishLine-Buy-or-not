@@ -67,19 +67,8 @@ struct Search: View {
                         data: data
                     )
                 } else if (selectedPageIndex == 1) {
-                    ScrollView {
-                        ForEach (data.json) {feed in
-                            Feed(
-                                title: feed.title,
-                                author: feed.author,
-                                votes: feed.votes,
-                                comments: feed.comments,
-                                imageURL: feed.imageURL,
-                                options: feed.options
-                            )
-                                .frame(width: 410, alignment: .center)
-                        }
-                    }
+                    AllPosts(data: data)
+                    
                 } else if (selectedPageIndex == 2) {
                     QuestionClosed()
                 }
