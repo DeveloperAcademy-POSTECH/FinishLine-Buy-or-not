@@ -11,7 +11,7 @@ import SwiftUI
 struct buy_or_notApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LogInPage()
         }
     }
 }
