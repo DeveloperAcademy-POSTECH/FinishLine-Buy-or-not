@@ -17,6 +17,7 @@
 		7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4284B527FD82C800E9B88E /* Preview Assets.xcassets */; };
 		7A4284C927FD8D4B00E9B88E /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4284C827FD8D4B00E9B88E /* Title.swift */; };
 		7A4284CB27FD8D7600E9B88E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4284CA27FD8D7600E9B88E /* Search.swift */; };
+		8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786FD3E27FEB0CB0010C4CA /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		7A4284B527FD82C800E9B88E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7A4284C827FD8D4B00E9B88E /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		7A4284CA27FD8D7600E9B88E /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		8786FD3E27FEB0CB0010C4CA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				7A4284B027FD82C600E9B88E /* ContentView.swift */,
 				7A4284CA27FD8D7600E9B88E /* Search.swift */,
 				379DAB6D27FD95CF00DC2BDD /* Main.swift */,
+				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */,
 				379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */,
 				7A15082127FDE7BC0053C092 /* Feed.swift in Sources */,
+				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
 				7A4284B127FD82C600E9B88E /* ContentView.swift in Sources */,
 				7A4284CB27FD8D7600E9B88E /* Search.swift in Sources */,
 				7A15082527FDE8100053C092 /* Color.swift in Sources */,
