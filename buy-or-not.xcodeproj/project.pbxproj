@@ -17,6 +17,7 @@
 		7A17D5BC27FECDF400FB8D72 /* AllPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17D5BB27FECDF400FB8D72 /* AllPosts.swift */; };
 		7A17D5BE27FECE0100FB8D72 /* QuestionClosed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17D5BD27FECE0100FB8D72 /* QuestionClosed.swift */; };
 		7A17D5C327FF0BB700FB8D72 /* SampleJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 7A17D5C227FF0BB700FB8D72 /* SampleJSON.json */; };
+		7A17D5C527FF1B8A00FB8D72 /* VoteButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17D5C427FF1B8A00FB8D72 /* VoteButtons.swift */; };
 		7A4284B127FD82C600E9B88E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4284B027FD82C600E9B88E /* ContentView.swift */; };
 		7A4284B327FD82C800E9B88E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4284B227FD82C800E9B88E /* Assets.xcassets */; };
 		7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4284B527FD82C800E9B88E /* Preview Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		7A17D5BB27FECDF400FB8D72 /* AllPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPosts.swift; sourceTree = "<group>"; };
 		7A17D5BD27FECE0100FB8D72 /* QuestionClosed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionClosed.swift; sourceTree = "<group>"; };
 		7A17D5C227FF0BB700FB8D72 /* SampleJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleJSON.json; sourceTree = "<group>"; };
+		7A17D5C427FF1B8A00FB8D72 /* VoteButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtons.swift; sourceTree = "<group>"; };
 		7A4284AB27FD82C600E9B88E /* buy-or-not.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "buy-or-not.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A4284B027FD82C600E9B88E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7A4284B227FD82C800E9B88E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				7A17D5B627FEC15400FB8D72 /* QuestionItemManager.swift */,
 				7A15082027FDE7BC0053C092 /* Feed.swift */,
 				7A15082227FDE7CB0053C092 /* Feed2.swift */,
+				7A17D5C427FF1B8A00FB8D72 /* VoteButtons.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				7A17D5BE27FECE0100FB8D72 /* QuestionClosed.swift in Sources */,
 				7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */,
 				A3571EC227FEA65C00BCA838 /* LoadingPage.swift in Sources */,
+				7A17D5C527FF1B8A00FB8D72 /* VoteButtons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

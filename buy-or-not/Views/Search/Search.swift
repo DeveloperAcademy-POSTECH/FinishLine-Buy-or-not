@@ -63,17 +63,17 @@ struct Search: View {
                 if (selectedPageIndex == 0) {
                     QuestionOnGoing()
                 } else if (selectedPageIndex == 1) {
-//                    AllPosts()
                     ScrollView {
                         ForEach (data.json) {feed in
                             Feed(
-                                selectedPageIndex: 1,
                                 title: feed.title,
                                 author: feed.author,
                                 votes: feed.votes,
                                 comments: feed.comments,
-                                imageURL: feed.imageURL
+                                imageURL: feed.imageURL,
+                                options: feed.options
                             )
+                                .frame(width: 410, alignment: .center)
                         }
                     }
                 } else if (selectedPageIndex == 2) {
@@ -81,6 +81,7 @@ struct Search: View {
                 }
             }
             .navigationBarTitle("검색")
+            .edgesIgnoringSafeArea(.horizontal)
         }
 }
 
