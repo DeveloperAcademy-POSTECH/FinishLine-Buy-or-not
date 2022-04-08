@@ -69,7 +69,6 @@ struct Question: View {
     
     
     var body: some View {
-        NavigationView {
             VStack{
                 Form{
                     TextField("글 제목", text: $qTitle)
@@ -119,10 +118,7 @@ struct Question: View {
                     .background(.blue)
                     .cornerRadius(5)
                     .padding(.vertical, 24.0)
-            }
-            
-        }.navigationBarTitle("질문하기")
-        
+            }.navigationBarTitle("질문하기")
     }
 
 }
