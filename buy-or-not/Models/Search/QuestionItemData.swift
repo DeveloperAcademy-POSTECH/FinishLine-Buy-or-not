@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct QuestionItemData: Codable, Identifiable {
     enum CodingKeys: CodingKey {

@@ -97,7 +97,6 @@
 				7A17D5B927FECD1E00FB8D72 /* QuestionOnGoing.swift */,
 				7A17D5BB27FECDF400FB8D72 /* AllPosts.swift */,
 				7A17D5BD27FECE0100FB8D72 /* QuestionClosed.swift */,
-				7A1DF30828006CEE00EA542C /* UserView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 				2D7B358B27FEC10300AF9C6E /* PostPage.swift */,
+				7A1DF30828006CEE00EA542C /* UserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
