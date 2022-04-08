@@ -9,8 +9,10 @@ import SwiftUI
 
 struct Search: View {
     
-    @State var searchText: String = ""
-    @State var selectedPageIndex = 1
+    @State var searchTextInProgress: String = ""
+    @State var searchTextInAll: String = ""
+    @State var searchTextInClosed: String = ""
+    @State var selectedPageIndex: Int = 1
     
     var data = QuestionItemManager()
     
@@ -26,16 +28,24 @@ struct Search: View {
                                     .foregroundColor(.gray)
                                 
                                 // TextField does not come up with Keyboard
-                                TextField("검색", text: $searchText)
+                                TextField("검색", text:
+                                            selectedPageIndex == 0 ? $searchTextInProgress
+                                          : selectedPageIndex == 1 ? $searchTextInAll
+                                          : $searchTextInClosed
+                                )
                                     .frame(width: 290, height: 25)
                                     .background(Color(hex: "e9e9ea"))
                                     .foregroundColor(Color(hex: "#000000"))
                                 
-                                if (searchText != "") {
+                                
+                                
+                                if (searchTextInProgress != "" || searchTextInAll != "" || searchTextInClosed != "") {
                                     Image(systemName: "xmark.circle.fill")
                                         .foregroundColor(.gray)
                                         .onTapGesture {
-                                            searchText = ""
+                                            searchTextInProgress = ""
+                                            searchTextInAll = ""
+                                            searchTextInClosed = ""
                                         }
                                     }
                                     
@@ -59,6 +69,23 @@ struct Search: View {
                     })
                     .pickerStyle(SegmentedPickerStyle()) // <1>
                     .padding(.horizontal, 15)
+                    .onChange(of: selectedPageIndex) { index in
+                        switch (index) {
+                        case 0:
+                            searchTextInAll = ""
+                            searchTextInClosed = ""
+                        case 1:
+                            searchTextInProgress = ""
+                            searchTextInClosed = ""
+                            case 2:
+                            searchTextInAll = ""
+                            searchTextInClosed = ""
+                        default:
+                            searchTextInProgress = ""
+                            searchTextInAll = ""
+                            searchTextInClosed = ""
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -66,7 +93,7 @@ struct Search: View {
                 // Picker will show different views based on its constant
                 if (selectedPageIndex == 0) {
                     QuestionOnGoing(
-                        searchText: searchText,
+                        searchText: searchTextInProgress,
                         data: data
                     )
                 } else if (selectedPageIndex == 1) {

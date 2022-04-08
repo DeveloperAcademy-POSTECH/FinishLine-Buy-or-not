@@ -57,6 +57,7 @@ import SwiftUI
      }//선택지와 관련된 내용.
  }
  */
+
 var itemCount: Int = 3
 var commentCounts: Int = 3
 

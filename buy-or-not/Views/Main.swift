@@ -42,7 +42,7 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
+                            destination: PostPage() // 질문 남기기 뷰로 연결 (임시로 검색화면)
                         ){
                             Image("questionButton").font(.largeTitle)
                         }

@@ -104,7 +104,6 @@
 				7A17D5B927FECD1E00FB8D72 /* QuestionOnGoing.swift */,
 				7A17D5BB27FECDF400FB8D72 /* AllPosts.swift */,
 				7A17D5BD27FECE0100FB8D72 /* QuestionClosed.swift */,
-				7A1DF30828006CEE00EA542C /* UserView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -173,6 +172,7 @@
 				7A4284CA27FD8D7600E9B88E /* Search.swift */,
 				2D2500D427FE74E700FB6CA0 /* FeedView.swift */,
 				2D7B358B27FEC10300AF9C6E /* PostPage.swift */,
+				7A1DF30828006CEE00EA542C /* UserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
