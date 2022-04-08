@@ -20,10 +20,10 @@ struct QuestionItemData: Codable, Identifiable {
 
     var id = UUID()
     let author: String
-    let title: String
-    let votes: Int
-    let comments: Int
-    let imageURL: String
+    var title: String
+    var votes: Int
+    var comments: Int
+    var imageURL: String
     var options: [Options]
 }
 
@@ -35,12 +35,3 @@ struct Options: Codable, Hashable {
         pressed = !pressed
     }
 }
-
-//struct ButtonPressed: Codable, Identifiable {
-//    enum CodingKeys: CodingKey {
-//        case pressed
-//    }
-//
-//    var id = UUID()
-//    var pressed: Bool
-//}
