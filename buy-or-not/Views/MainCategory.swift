@@ -8,13 +8,15 @@
 
 import SwiftUI
 
-struct Main: View {
+struct MainCategory: View {
     @State private var maxNumber: Int = 9
     
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
+                    
+                    
                     Spacer()
                     // 카테고리 코드 영역
                     
@@ -76,7 +78,7 @@ struct Main: View {
     }
 }
 
-struct PullToRefresh: View {
+struct PullToRefresh2: View {
     
     var coordinateSpaceName: String
     var onRefresh: ()->Void
@@ -112,7 +114,7 @@ struct PullToRefresh: View {
     }
 }
 
-struct questionItem: View {
+struct questionItem2: View {
     let number: Int
 
     var body: some View {
@@ -143,8 +145,8 @@ struct questionItem: View {
     }
   }
 
-struct Main_Previews: PreviewProvider {
+struct MainCategory_Previews: PreviewProvider {
     static var previews: some View {
-        Main()
+        MainCategory()
     }
 }
