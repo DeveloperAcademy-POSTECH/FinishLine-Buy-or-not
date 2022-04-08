@@ -12,6 +12,8 @@ struct MainCategorys: View{
     let mainCategorys: [String] = [
         "모두보기", "for you", "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품", "취미/여가", "기타"]
     @State private var scrollers: Bool = true
+    @State private var choiced: String = ""
+    
     private var moreOrLess = "􀆈"
     var body: some View{
         ZStack{
@@ -21,10 +23,10 @@ struct MainCategorys: View{
                         HStack{
                             ForEach(mainCategorys, id: \.self){ c in
                                 Button(c) {
-                                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                                    choiced = c
                                 }.foregroundColor(.white)
                                     .frame( height: 30, alignment: .center)
-                                    .background(.gray)
+                                    .background(self.choiced == c ? Color.blue : Color.gray)
                                     .cornerRadius(20)
                                     .padding(.vertical, 24.0)
                                     .buttonStyle(.bordered)
@@ -40,17 +42,19 @@ struct MainCategorys: View{
                     
                     LazyVGrid(columns: gridItems){
                         ForEach(mainCategorys, id: \.self){ c in Button(c) {
-                            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                            choiced = c
                         }.foregroundColor(.white)
                                 .frame(width:100, height: 30, alignment: .center)
-                                .background(.gray)
+                                .background(self.choiced == c ? Color.blue : Color.gray)
                                 .cornerRadius(20)
                         }
                     }
                 }
                 
                 Spacer()
-                Button("􀆈") {
+                //Text("􀆇").onTapGesture{scrollers.toggle()}
+                
+                Button("􀆇") {
                     scrollers.toggle()
                 }.foregroundColor(.white)
                     .frame( height: 30, alignment: .center)

@@ -17,8 +17,8 @@ struct Main: View {
                 VStack {
                     Spacer()
                     // 카테고리 코드 영역
-                    
-                    Text("카테고리 자리")
+                    MainCategorys()
+                    //Text("카테고리 자리")
                     
                     //
                     // 피드 영역
