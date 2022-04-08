@@ -1,18 +1,16 @@
 //
-//  ContentView.swift
+//  UserView.swift
 //  buy-or-not
 //
-//  Created by Noah's Ark on 2022/04/06.
+//  Created by Noah's Ark on 2022/04/08.
 //
-//  test
 
 import SwiftUI
 
-struct ContentView: View {
+struct UserView: View {
     
     var userData = UserManager()
-    
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -64,9 +62,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
+//struct UserView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserView()
+//    }
+//}
