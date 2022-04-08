@@ -82,7 +82,6 @@ struct LogInPage: View {
             .padding(.bottom, 12.0)
             
             Button("계정이 없으신가요?") {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
             }
             .padding(.vertical, 12.0)
 
