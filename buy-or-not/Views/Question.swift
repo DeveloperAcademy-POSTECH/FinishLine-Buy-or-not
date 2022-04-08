@@ -12,7 +12,7 @@ private let categorys: [String] = [
 
 struct Contents: View{
     let number: Int
-    @State private var topExpand: Bool = false
+    @State private var topExpand: [Bool] = [true, false, false]
     @State private var name: String = ""
     @State private var price: String = ""
     @State private var link: String = ""
@@ -21,22 +21,29 @@ struct Contents: View{
     @State private var selectedImage: UIImage?
     @State private var profileImage: Image?
     
+    @State private var image = UIImage()
+    @State private var showSheet = false
+    
+    
     var body: some View{
-        DisclosureGroup("고민항목 \(number)", isExpanded: $topExpand) {
+        DisclosureGroup("고민항목 \(number + 1)", isExpanded: $topExpand[number]) {
             TextField("고민항목 이름", text: $name)
             TextField("(선택) 가격을 입력해주세요", text: $price)
             TextField("(선택) 링크 추가", text: $link)
-            Button("이미지 추가") {
-                imagePickerPresented.toggle()
-                
-            }
+            Image(uiImage: self.image)
+                .resizable()
+                .frame(width: 100, height: 100)
+                .background(Color.black.opacity(0.2))
+                .aspectRatio(contentMode: .fill).onTapGesture {
+                    showSheet = true
+                }
+            
+                .sheet(isPresented: $showSheet) {
+                    // Pick an image from the photo library:
+                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                }
         }
     }
-    
-    func nextItem() -> Bool{
-        return !name.isEmpty
-    }
-    
     
 }
 
@@ -57,6 +64,8 @@ struct Question: View {
     
     @State private var imagePickerPresented = [false, false, false]
     
+    @State private var image = UIImage()
+    @State private var showSheet = false
     
     
     var body: some View {
@@ -79,18 +88,7 @@ struct Question: View {
                     // 고민항목
                     ForEach(0..<3){num in
                         if addItem[num]{
-                            DisclosureGroup("고민항목 \(num+1)", isExpanded: $topExpand[num]){
-                                TextField("고민항목 이름", text: $name[num]).onTapGesture{
-                                    addItem[num+1] = Bools[0]
-                                }
-                                TextField("(선택) 가격을 입력해주세요", text: $price[num])
-                                TextField("(선택) 링크 추가", text: $link[num])
-                                
-                                Button("이미지 추가") {
-                                    imagePickerPresented[num].toggle()
-                                    
-                                }
-                            }
+                            Contents(number: num).onTapGesture{addItem[num+1] = Bools[0]}
                         }
                     }
                     
@@ -124,6 +122,52 @@ struct Question: View {
             }
             
         }.navigationBarTitle("질문하기")
+        
+    }
+
+}
+
+//IMAGE PICKER
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) private var presentationMode
+    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @Binding var selectedImage: UIImage
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+        
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        var parent: ImagePicker
+        
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+            
+            parent.presentationMode.wrappedValue.dismiss()
+        }
+        
     }
 }
 
