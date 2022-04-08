@@ -49,10 +49,13 @@ struct Search: View {
                     .cornerRadius(10)
             
                     // Tap bars in the upper section
-                    Picker("Favorite Color", selection: $selectedPageIndex, content: {
-                        Text("답변 진행 중").tag(0)
-                        Text("모두 보기").tag(1)
-                        Text("답변 완료").tag(2)
+                    Picker(
+                        "Favorite Color",
+                        selection: $selectedPageIndex,
+                        content: {
+                            Text("답변 진행 중").tag(0)
+                            Text("모두 보기").tag(1)
+                            Text("답변 완료").tag(2)
                     })
                     .pickerStyle(SegmentedPickerStyle()) // <1>
                     .padding(.horizontal, 15)
@@ -70,11 +73,10 @@ struct Search: View {
                     AllPosts(data: data)
                     
                 } else if (selectedPageIndex == 2) {
-                    QuestionClosed()
+                    QuestionClosed(data: data)
                 }
             }
             .navigationBarTitle("검색")
-            .edgesIgnoringSafeArea(.horizontal)
         }
 }
 
