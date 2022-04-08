@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D7B358C27FEC10300AF9C6E /* PostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B358B27FEC10300AF9C6E /* PostPage.swift */; };
 		379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379DAB6D27FD95CF00DC2BDD /* Main.swift */; };
 		7A15082127FDE7BC0053C092 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A15082027FDE7BC0053C092 /* Feed.swift */; };
 		7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A15082227FDE7CB0053C092 /* Feed2.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D7B358B27FEC10300AF9C6E /* PostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostPage.swift; path = "buy-or-not/views/PostPage.swift"; sourceTree = SOURCE_ROOT; };
 		379DAB6D27FD95CF00DC2BDD /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		7A15082027FDE7BC0053C092 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7A15082227FDE7CB0053C092 /* Feed2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed2.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
 				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
+				2D7B358B27FEC10300AF9C6E /* PostPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 7A4284A227FD82C600E9B88E;
 			productRefGroup = 7A4284AC27FD82C600E9B88E /* Products */;
@@ -255,6 +259,7 @@
 			files = (
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
 				7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */,
+				2D7B358C27FEC10300AF9C6E /* PostPage.swift in Sources */,
 				379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */,
 				7A15082127FDE7BC0053C092 /* Feed.swift in Sources */,
 				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
