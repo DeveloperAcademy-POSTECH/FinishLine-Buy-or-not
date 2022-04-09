@@ -13,6 +13,7 @@ struct Main: View {
     @State var data = QuestionItemManager()
     
     var body: some View {
+        NavigationView  {
             ZStack {
                 VStack {
                     Spacer()
@@ -41,31 +42,33 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결 (임시로 검색화면)
+                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
                     }
                 }
-            }.padding(.horizontal)
-                .navigationBarItems(
-                    leading: NavigationLink(
-                        destination: Text("프로필뷰")  // 프로필 뷰로 연결 (임시로 검색화면)
-                    ){
-                        Image("sampleMan").font(.largeTitle)
-                    }
-                    , trailing: NavigationLink(
-                        destination: Text("검색뷰")  // 검색 뷰로 연결
-                    ){
-                        Image(systemName: "magnifyingglass").font(.title)
-                    }
-                )
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Image("mainLogo")
-                    }
+            }
+            .padding(.horizontal)
+            .navigationBarItems(
+                leading: NavigationLink(
+                    destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
+                ){
+                    Image("sampleMan").font(.largeTitle)
                 }
+                , trailing: NavigationLink(
+                    destination: Search() // 검색 뷰로 연결
+                ){
+                    Image(systemName: "magnifyingglass").font(.title)
+                }
+            )
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("mainLogo")
+                }
+            }
+        }
     }
 }
 
