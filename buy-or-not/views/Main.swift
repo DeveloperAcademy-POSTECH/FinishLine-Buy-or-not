@@ -195,26 +195,29 @@ struct voteButtons: View {
                     }
                 }
             case 2:
-                Button(action: {
-                    if buttonState[0] {withAnimation{voteDone = true}} else {buttonState[0].toggle()}
-                    if buttonState[1] {buttonState[1].toggle()}
-                }) {
-                    ZStack {
-                        Rectangle().foregroundColor(buttonState[0] ? .blue : .clear).cornerRadius(10)
-                        Text(buttonState[0] ? "한번 더 누르시면\n투표가 반영됩니다." : "1번").foregroundColor(.black)
-                            .font(buttonState[0] ? .caption : .body)
+                HStack {
+                    Button(action: {
+                        if buttonState[0] {withAnimation{voteDone = true}} else {buttonState[0].toggle()}
+                        if buttonState[1] {buttonState[1].toggle()}
+                    }) {
+                        ZStack {
+                            Rectangle().foregroundColor(buttonState[0] ? .blue : .clear).cornerRadius(10)
+                            Text(buttonState[0] ? "한번 더 누르시면\n투표가 반영됩니다." : "1번").foregroundColor(.black)
+                                .font(buttonState[0] ? .caption : .body)
+                        }
+                    }
+                    Button(action: {
+                        if buttonState[1] {withAnimation{voteDone = true}} else {buttonState[1].toggle()}
+                        if buttonState[0] {buttonState[0].toggle()}
+                    }) {
+                        ZStack {
+                            Rectangle().foregroundColor(buttonState[1] ? .blue : .clear).cornerRadius(10)
+                            Text(buttonState[1] ? "한번 더 누르시면\n투표가 반영됩니다." : "2번").foregroundColor(.black)
+                                .font(buttonState[1] ? .caption : .body)
+                        }
                     }
                 }
-                Button(action: {
-                    if buttonState[1] {withAnimation{voteDone = true}} else {buttonState[1].toggle()}
-                    if buttonState[0] {buttonState[0].toggle()}
-                }) {
-                    ZStack {
-                        Rectangle().foregroundColor(buttonState[1] ? .blue : .clear).cornerRadius(10)
-                        Text(buttonState[1] ? "한번 더 누르시면\n투표가 반영됩니다." : "2번").foregroundColor(.black)
-                            .font(buttonState[1] ? .caption : .body)
-                    }
-                }
+                
             case 3:
                 Button(action: {
                     if buttonState[0] {withAnimation{voteDone = true}} else {buttonState[0].toggle()}
