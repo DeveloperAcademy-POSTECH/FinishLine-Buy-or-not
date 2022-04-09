@@ -14,11 +14,7 @@ struct buy_or_notApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if login == true {
-                Main()
-            } else {
-                LogInPage()
-            }
+            Main()
         }
     }
 }

@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct Main: View {
-    @State private var maxNumber: Int = 9
+    
+    @State var data = QuestionItemManager()
     
     var body: some View {
-        NavigationView {
             ZStack {
                 VStack {
                     Spacer()
@@ -28,51 +28,44 @@ struct Main: View {
                         }
                         // 피드 컨텐츠 영역
                         LazyVStack {
-                            ForEach(0...maxNumber, id: \.self) { num in
-                                    questionItem(number: num) // 컨텐츠표시
-                                    .onAppear {
-                                      if num % 10 == 9 {
-                                        maxNumber += 10 // 추가로딩
-                                    }
-                                }
+                            ForEach(data.json) { feed in
+                                questionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options)
                             }
                         }
-                        //
-                    }.coordinateSpace(name: "pullToRefresh")
+                    }// 여기서 리로딩 콜백코드 구현해야함
                     //
-                }
+                }.coordinateSpace(name: "pullToRefresh")
+                //
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Search() // 질문 남기기 뷰로 연결 (임시로 검색화면)
+                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결 (임시로 검색화면)
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
-                        
                     }
                 }
             }.padding(.horizontal)
-                .navigationBarItems(
-                    leading: NavigationLink(
-                        destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
-                    ){
-                        Image("sampleMan").font(.largeTitle)
-                    }
-                    , trailing: NavigationLink(
-                        destination: Search() // 검색 뷰로 연결
-                    ){
-                        Image(systemName: "magnifyingglass").font(.title)
-                    }
-                )
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Image("mainLogo")
-                    }
+            .navigationBarItems(
+                leading: NavigationLink(
+                    destination: Text("프로필뷰")  // 프로필 뷰로 연결 (임시로 검색화면)
+                ){
+                    Image("sampleMan").font(.largeTitle)
                 }
-        }
+                , trailing: NavigationLink(
+                    destination: Text("검색뷰")  // 검색 뷰로 연결
+                ){
+                    Image(systemName: "magnifyingglass").font(.title)
+                }
+            )
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("mainLogo")
+                }
+            }
     }
 }
 
@@ -113,55 +106,62 @@ struct PullToRefresh: View {
 }
 
 struct questionItem: View {
-    let number: Int
+    
+    var title: String
+    var author: String
+    var votes: Int
+    var comments: Int
+    var imageURL: String
+    var options: [Options]
     
     var body: some View {
-      VStack {
-          Spacer()
-          HStack {
-              Image(systemName: "p.square.fill")
-                  .resizable()
-                  .frame(width: 116, height: 116).foregroundColor(.gray)
-              
-              Spacer()
-              
-              VStack {
-                  HStack {
-                      Text("어디어디 제품이고\n가격이 얼마인데 살지 말지 고민이 되네요..")
-                          .font(.title3)
-                      Spacer()
-                  }
-
-                  Spacer()
-
-                  HStack {
-                      Text("bethev")
-                          .font(.caption)
-                          .foregroundColor(.gray)
-                      
-                      Spacer()
-                      
-                      Text (
-                        "\(Image(systemName: "checkmark.square"))16 \(Image(systemName: "text.bubble"))21"
-                      )
-                          .font(.caption)
-                          .foregroundColor(.gray)
-                  }
-              }
-          }
-
-          ZStack {
-              RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-              HStack {
-                  voteButtons()
-              }
-          }.frame(height: 40)
-          Spacer()
-      }
-      .frame(height: 177.5)
+        VStack {
+            Spacer()
+            HStack {
+                AsyncImage(url: URL(string: imageURL))
+                    .frame(width: 116, height: 116)
+                    .cornerRadius(20)
+                    .padding(.leading, 10)
+                
+                Spacer()
+                
+                VStack {
+                    HStack {
+                        Text("상세문구 테스트입니다.")
+                            .font(.title3)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text(author)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        
+                        Spacer()
+                        
+                        Text (
+                            "\(Image(systemName: "checkmark.square"))\(votes) \(Image(systemName: "text.bubble"))\(comments)"
+                        )
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    }
+                }
+            }
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                HStack {
+                    voteButtons()
+                }
+            }.frame(height: 40)
+            Spacer()
+        }
+        .frame(height: 177.5)
         Divider()
     }
-  }
+}
 
 // 다중 버튼을 하기위해서 스테이트 변수를 컨트롤할 수 있는 다른 구조를 만들어야함
 struct voteButtons: View {
