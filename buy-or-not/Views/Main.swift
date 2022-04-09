@@ -172,6 +172,7 @@ struct voteButtons: View {
     @State var options: [Options]
     
     @State var voteDone: Bool = false
+    @State var buttonState: [Bool] = [false, false, false, false]
     
     var body: some View {
         if voteDone {
@@ -182,7 +183,14 @@ struct voteButtons: View {
                 // 투표 현황 텍스트 추가되어야함
             }
         } else {
-            // 갯수에 맞게 그리고 한 라인 단위로 연결되게 구현해야함
+            switch options.count {
+            case 1:
+                Button (action: {
+                    if
+                }) {
+                    
+                }
+            }
         }
     }
 }
