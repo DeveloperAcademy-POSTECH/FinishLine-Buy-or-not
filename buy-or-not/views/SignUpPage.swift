@@ -18,7 +18,7 @@ struct SignUpPage: View {
     //이름 및 닉네임 입력
     @State var nameInput: String = ""
     @State var nickNameInput: String = ""
-
+    
     //관심분야 체크박스
     @State var interestCheckFashion: Bool = false
     @State var interestCheckInterior: Bool = false
@@ -26,10 +26,9 @@ struct SignUpPage: View {
     @State var interestCheckDigital: Bool = false
     @State var interestCheckHobby: Bool = false
     @State var interestCheckEtc: Bool = false
-
+    
     
     var body: some View {
-        NavigationView {
             ScrollView {
                 VStack() {
                     //회원가입 텍스트
@@ -46,7 +45,7 @@ struct SignUpPage: View {
                             .frame(width: 192, height: 48)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 0.5))
+                                    .stroke(Color.gray, lineWidth: 0.5))
                         Button("중복확인") {
                             /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*///
                         }
@@ -57,7 +56,7 @@ struct SignUpPage: View {
                         
                     }
                     .padding(.vertical, 6.0)
-                   
+                    
                     //비밀번호 입력
                     ZStack() {
                         SecureInputView("비밀번호", text: $signUpPasswordInput)
@@ -65,7 +64,7 @@ struct SignUpPage: View {
                             .frame(width: 300, height: 48)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 0.5)
+                                    .stroke(Color.gray, lineWidth: 0.5)
                             )
                             .padding(.vertical, 6.0)
                     }
@@ -77,7 +76,7 @@ struct SignUpPage: View {
                             .frame(width: 300, height: 48)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 0.5)
+                                    .stroke(Color.gray, lineWidth: 0.5)
                             )
                             .padding(.vertical, 6.0)
                     }
@@ -96,7 +95,7 @@ struct SignUpPage: View {
                             .foregroundColor(.red)
                             .padding(.vertical, 6.0)
                     }
-                        
+                    
                     Group {
                         //이름 입력
                         TextField("이름", text: $nameInput)
@@ -104,9 +103,9 @@ struct SignUpPage: View {
                             .frame(width: 300, height: 48)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 0.5))
+                                    .stroke(Color.gray, lineWidth: 0.5))
                             .padding(.vertical, 6.0)
-
+                        
                         
                         //닉네임 입력 및 중복확인
                         HStack() {
@@ -115,7 +114,7 @@ struct SignUpPage: View {
                                 .frame(width: 192, height: 48)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray, lineWidth: 0.5))
+                                        .stroke(Color.gray, lineWidth: 0.5))
                             Button("중복확인") {
                                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
                             }
@@ -153,7 +152,7 @@ struct SignUpPage: View {
                     
                     
                     //가입완료 버튼
-                    Button("가입완료") {
+                    Button("가입하기") {
                         /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
                     }
                     .foregroundColor(.white)
@@ -161,16 +160,15 @@ struct SignUpPage: View {
                     .background(.blue)
                     .cornerRadius(5)
                     .padding(.vertical, 24.0)
-            }
+                }
                 .frame(width: 390, alignment: .center)
-
-        }
+                
+            }
     }
-}
-
-struct SignUpPage_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpPage()
+    
+    struct SignUpPage_Previews: PreviewProvider {
+        static var previews: some View {
+            SignUpPage()
         }
     }
 }

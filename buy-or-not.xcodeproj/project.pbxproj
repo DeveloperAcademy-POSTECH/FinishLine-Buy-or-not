@@ -24,6 +24,7 @@
 		A35EB3D727FEBE8A007A1054 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A35EB3D927FEBE8A007A1054 /* Localizable.strings */; };
 		A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3DB27FEC003007A1054 /* SignUpPage.swift */; };
 		A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3E227FF247F007A1054 /* interestSellect.swift */; };
+		A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A35EB3DA27FEBE8D007A1054 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A35EB3DB27FEC003007A1054 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpPage.swift; path = "buy-or-not/views/SignUpPage.swift"; sourceTree = SOURCE_ROOT; };
 		A35EB3E227FF247F007A1054 /* interestSellect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = interestSellect.swift; path = "buy-or-not/models/SignUp/interestSellect.swift"; sourceTree = SOURCE_ROOT; };
+		A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindMemberInfoPage.swift; path = "buy-or-not/views/FindMemberInfoPage.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				A3571EC127FEA65C00BCA838 /* LoadingPage.swift */,
 				A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */,
 				A35EB3DB27FEC003007A1054 /* SignUpPage.swift */,
+				A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */,
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
 				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 			);
@@ -237,6 +240,7 @@
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
 				7A4284CB27FD8D7600E9B88E /* Search.swift in Sources */,
 				7A15082527FDE8100053C092 /* Color.swift in Sources */,
+				A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */,
 				A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */,
 				7A4284C927FD8D4B00E9B88E /* Title.swift in Sources */,
 				A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */,

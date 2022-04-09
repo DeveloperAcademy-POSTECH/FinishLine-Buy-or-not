@@ -82,17 +82,16 @@ struct LogInPage: View {
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
-                
                 NavigationLink(destination: SignUpPage()) {
                     Text("계정이 없으신가요?")
                 }
             }
         }
-}
-
-struct LogInPage_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInPage()
     }
-}
+    
+    struct LogInPage_Previews: PreviewProvider {
+        static var previews: some View {
+            LogInPage()
+        }
+    }
 }
