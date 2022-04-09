@@ -155,7 +155,7 @@ struct questionItem: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-                VoteButtonView(option:options)
+                VoteButtonView(data: options)
             }.frame(height: 40)
             Spacer()
         }
@@ -167,7 +167,7 @@ struct questionItem: View {
 
 struct VoteButtonView: View {
     
-    @State var option: [Options]
+    var data: [Options]
     // 옵션 최대 갯수 4개
     @State var buttonState: [Bool] = [false, false, false, false]
     @State var voteDone: Bool = false
@@ -198,22 +198,19 @@ struct VoteButtonView: View {
             }
         } else {
             HStack {
-                ForEach(0..<option.count) { index in
+                ForEach (0..<data.count, id: \.self) { idx in
                     Button {
                         withAnimation {
-                            buttonTab(index: index)
+                            buttonTab(index: idx)
                         }
                     } label: {
                         ZStack {
-                            Rectangle().foregroundColor(buttonState[index] ? .blue : .clear).cornerRadius(10)
-                            Text(buttonState[index] ? "한번 더 누르시면\n투표가 반영됩니다." : "\(index + 1)번").foregroundColor(.black)
-                                .font(buttonState[index] ? .caption : .body)
+                            Rectangle().foregroundColor(buttonState[idx] ? .blue : .clear).cornerRadius(10)
+                            Text(buttonState[idx] ? "한번 더 누르시면\n투표가 반영됩니다." : "\(idx + 1)번").foregroundColor(.black)
+                                .font(buttonState[idx] ? .caption : .body)
                         }
                     }
-
-
                 }
-                
             }
         }
     }
