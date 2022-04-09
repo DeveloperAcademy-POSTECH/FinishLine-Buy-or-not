@@ -156,7 +156,7 @@ struct questionItem: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
                 HStack {
-                    voteButtons()
+                    voteButtons(options: options)
                 }
             }.frame(height: 40)
             Spacer()
@@ -168,9 +168,8 @@ struct questionItem: View {
 
 // 다중 버튼을 하기위해서 스테이트 변수를 컨트롤할 수 있는 다른 구조를 만들어야함
 struct voteButtons: View {
-    @State private var buttonIsPressed1: Bool = false
-    @State private var buttonIsPressed2: Bool = false
-    @State private var buttonIsPressed3: Bool = false
+    
+    @State var options: [Options]
     
     @State var voteDone: Bool = false
     
@@ -183,39 +182,7 @@ struct voteButtons: View {
                 // 투표 현황 텍스트 추가되어야함
             }
         } else {
-            Button(action: {
-                if buttonIsPressed1 {withAnimation{voteDone = true}} else {buttonIsPressed1.toggle()}
-                if buttonIsPressed2 {buttonIsPressed2.toggle()}
-                if buttonIsPressed3 {buttonIsPressed3.toggle()}
-            }) {
-                ZStack {
-                    Rectangle().foregroundColor(buttonIsPressed1 ? .blue : .clear).cornerRadius(10)
-                    Text(buttonIsPressed1 ? "한번 더 누르시면\n투표가 반영됩니다." : "1번").foregroundColor(.black)
-                        .font(buttonIsPressed1 ? .caption : .body)
-                }
-            }
-            Button(action: {
-                if buttonIsPressed2 {withAnimation{voteDone = true}} else {buttonIsPressed2.toggle()}
-                if buttonIsPressed1 {buttonIsPressed1.toggle()}
-                if buttonIsPressed3 {buttonIsPressed3.toggle()}
-            }) {
-                ZStack {
-                    Rectangle().foregroundColor(buttonIsPressed2 ? .blue : .clear).cornerRadius(10)
-                    Text(buttonIsPressed2 ? "한번 더 누르시면\n투표가 반영됩니다." : "2번").foregroundColor(.black)
-                        .font(buttonIsPressed2 ? .caption : .body)
-                }
-            }
-            Button(action: {
-                if buttonIsPressed3 {withAnimation{voteDone = true}} else {buttonIsPressed3.toggle()}
-                if buttonIsPressed2 {buttonIsPressed2.toggle()}
-                if buttonIsPressed1 {buttonIsPressed1.toggle()}
-            }) {
-                ZStack {
-                    Rectangle().foregroundColor(buttonIsPressed3 ? .blue : .clear).cornerRadius(10)
-                    Text(buttonIsPressed3 ? "한번 더 누르시면\n투표가 반영됩니다." : "3번").foregroundColor(.black)
-                        .font(buttonIsPressed3 ? .caption : .body)
-                }
-            }
+            // 갯수에 맞게 그리고 한 라인 단위로 연결되게 구현해야함
         }
     }
 }
