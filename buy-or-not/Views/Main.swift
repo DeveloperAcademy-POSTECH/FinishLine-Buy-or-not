@@ -30,7 +30,7 @@ struct Main: View {
                         // 피드 컨텐츠 영역
                         LazyVStack {
                             ForEach(data.json) { feed in
-                                questionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options)
+                                QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options)
                             }
                         }
                     }// 여기서 리로딩 콜백코드 구현해야함
@@ -108,7 +108,7 @@ struct PullToRefresh: View {
     }
 }
 
-struct questionItem: View {
+struct QuestionItem: View {
     
     var title: String
     var author: String
@@ -173,12 +173,14 @@ struct VoteButtonView: View {
     @State var voteDone: Bool = false
 
 
-    func buttonTab(index: Int) {
+    func buttonTab(index: Int, dataCount: Int) {
+        
+        //MARK: - 문제없음
         if buttonState[index] == true  {
             self.voteDone = true
         } else {
             // 토글
-            for i in 0..<self.buttonState.count {
+            for i in 0..<dataCount {
                 if (i == index) {
                     self.buttonState[i] = true
                 } else {
@@ -201,7 +203,7 @@ struct VoteButtonView: View {
                 ForEach (0..<data.count, id: \.self) { idx in
                     Button {
                         withAnimation {
-                            buttonTab(index: idx)
+                            buttonTab(index: idx, dataCount: data.count)
                         }
                     } label: {
                         ZStack {
