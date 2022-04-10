@@ -17,12 +17,9 @@ struct Profile: View {
         NavigationView{
             VStack{
                 HStack{
-                    NavigationLink(destination: Text("POP화면")){
-                        Text("<")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                    }
-                    Spacer().frame(width:115.0)
+
+                    Spacer()
+
                     Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
                     Spacer()
                 }

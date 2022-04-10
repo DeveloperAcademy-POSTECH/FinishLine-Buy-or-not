@@ -16,9 +16,8 @@ struct Main: View {
             ZStack {
                 VStack {
                     Spacer()
-                    // 카테고리 코드 영역
+
                     MainCategorys()
-                    Text("카테고리 자리")
                     
                     //
                     // 피드 영역
@@ -51,7 +50,7 @@ struct Main: View {
             .padding(.horizontal)
             .navigationBarItems(
                 leading: NavigationLink(
-                    destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
+                    destination: Profile() // 프로필 뷰로 연결 (임시로 검색화면)
                 ){
                     Image("sampleMan").font(.largeTitle)
                 }
