@@ -49,7 +49,7 @@ struct Main: View {
             .padding(.horizontal)
             .navigationBarItems(
                 leading: NavigationLink(
-                    destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
+                    destination: Profile() // 프로필 뷰로 연결 (임시로 검색화면)
                 ){
                     Image("sampleMan").font(.largeTitle)
                 }
