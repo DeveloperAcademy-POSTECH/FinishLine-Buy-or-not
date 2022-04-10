@@ -1,10 +1,9 @@
 //
-//  Main.swift
+//  MainCategory.swift
 //  buy-or-not
 //
-//  Created by leejunmo on 2022/04/06.
+//  Created by 이지원 on 2022/04/07.
 //
-// 메인페이지입니다.
 
 import SwiftUI
 
@@ -14,7 +13,7 @@ struct MainCategorys: View{
     private var moreOrLess = ["chevron.down", "chevron.up"]
     
     @State private var scrollers: Bool = true
-    @State public var choiced: String = ""
+    @State public var choiced: String = "모두보기"
     @State private var index = 0
     
     
@@ -82,7 +81,6 @@ struct MainCategorys: View{
                 Image(systemName: moreOrLess[index]).onTapGesture{
                     scrollers.toggle()
                     index = (index + 1) % 2
-                    print(index)
                 }
             }
         }
