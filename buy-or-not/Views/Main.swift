@@ -17,7 +17,7 @@ struct Main: View {
                 VStack {
                     Spacer()
                     // 카테고리 코드 영역
-                    
+                    MainCategorys()
                     Text("카테고리 자리")
                     
                     //
@@ -41,7 +41,7 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
+                            destination: Question() // 질문 남기기 뷰로 연결
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
