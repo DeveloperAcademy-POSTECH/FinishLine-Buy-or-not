@@ -26,20 +26,22 @@ struct Contents: View{
             TextField("고민항목 이름", text: $name)
             TextField("(선택) 가격을 입력해주세요", text: $price).keyboardType(.numberPad)
             TextField("(선택) 링크 추가", text: $link)
-            Image(systemName: "camera.fill")
+            
+            Image(uiImage: self.image)
+                .resizable()
                 .frame(width: 100, height: 100)
                 .background(Color.black.opacity(0.2))
+                .background(
+                    Image(systemName: "camera.fill"))
                 .aspectRatio(contentMode: .fill).onTapGesture {
                     showSheet = true
                 }
-            
                 .sheet(isPresented: $showSheet) {
                     // Pick an image from the photo library:
                     ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
                 }
         }
     }
-    
 }
 
 struct Question: View {
@@ -63,7 +65,9 @@ struct Question: View {
                             Text(category).onTapGesture {
                                 qCategory = category
                                 categoryExpand = Bools[1]
-                            }.listRowBackground(self.qCategory == category ? Color.gray : Color(UIColor.white))
+                            }.listRowBackground(
+                                self.qCategory == category ?
+                                Color.gray : Color(UIColor.white))
                         }
                     }
                 }
@@ -71,7 +75,10 @@ struct Question: View {
                 // 고민항목
                 ForEach(0..<3){num in
                     if addItem[num]{
-                        Contents(number: num).onTapGesture{addItem[num+1] = Bools[0]}
+                        Contents(number: num)
+                            .onTapGesture{
+                                addItem[num+1] = Bools[0]
+                            }
                     }
                 }
                 
@@ -104,7 +111,6 @@ struct Question: View {
                 .padding(.vertical, 24.0)
         }.navigationBarTitle("질문하기")
     }
-    
 }
 
 //IMAGE PICKER
