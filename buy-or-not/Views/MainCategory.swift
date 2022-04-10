@@ -14,7 +14,7 @@ struct MainCategorys: View{
     private var moreOrLess = ["chevron.down", "chevron.up"]
     
     @State private var scrollers: Bool = true
-    @State public var choiced: String = ""
+    @State public var choiced: String = "모두보기"
     @State private var index = 0
     
     

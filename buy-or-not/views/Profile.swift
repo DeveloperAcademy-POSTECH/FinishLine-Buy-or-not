@@ -17,7 +17,9 @@ struct Profile: View {
         NavigationView{
             VStack{
                 HStack{
+
                     Spacer()
+
                     Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
                     Spacer()
                 }
