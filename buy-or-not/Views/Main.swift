@@ -16,9 +16,7 @@ struct Main: View {
             ZStack {
                 VStack {
                     Spacer()
-                    // 카테고리 코드 영역
-                    
-                    Text("카테고리 자리")
+                    MainCategorys()
                     
                     //
                     // 피드 영역
