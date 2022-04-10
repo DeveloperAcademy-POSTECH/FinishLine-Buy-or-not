@@ -14,7 +14,7 @@ struct MainCategorys: View{
     private var moreOrLess = ["chevron.down", "chevron.up"]
     
     @State private var scrollers: Bool = true
-    @State private var choiced: String = ""
+    @State public var choiced: String = ""
     @State private var index = 0
     
     
@@ -36,6 +36,29 @@ struct MainCategorys: View{
                             }
                         }
                     }
+                    .mask(
+                        HStack(spacing: 0) {
+
+                            // Left gradient
+                            LinearGradient(gradient:
+                               Gradient(
+                                   colors: [Color.black.opacity(0), Color.black]),
+                                   startPoint: .leading, endPoint: .trailing
+                               )
+                               .frame(width: 15)
+
+                            // Middle
+                            Rectangle().fill(Color.black)
+
+                            // Right gradient
+                            LinearGradient(gradient:
+                               Gradient(
+                                   colors: [Color.black, Color.black.opacity(0)]),
+                                   startPoint: .leading, endPoint: .trailing
+                               )
+                               .frame(width: 10)
+                        }
+                     )
                 }
                 
                 else{
@@ -56,16 +79,6 @@ struct MainCategorys: View{
                 
                 Spacer()
                 
-                //                Button(String(index)) {
-                //                    scrollers.toggle()
-                //                    index = (index+1)%1
-                //                }.foregroundColor(.white)
-                //                    .frame( height: 30, alignment: .center)
-                //                    .background(.gray)
-                //                    .cornerRadius(20)
-                //                    .padding(.vertical, 24.0)
-                //                    .buttonStyle(.bordered)
-                
                 Image(systemName: moreOrLess[index]).onTapGesture{
                     scrollers.toggle()
                     index = (index + 1) % 2
@@ -74,5 +87,4 @@ struct MainCategorys: View{
             }
         }
     }
-    
 }
