@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 @main
 struct buy_or_notApp: App {
     
