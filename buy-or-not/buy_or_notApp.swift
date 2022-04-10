@@ -17,7 +17,8 @@ struct buy_or_notApp: App {
             if login == true {
 //                ContentView()
 //                Main()
-                UserView()
+//                UserView()
+                PostPage()
             } else {
                 LogInPage()
             }
