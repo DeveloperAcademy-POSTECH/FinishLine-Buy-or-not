@@ -31,6 +31,7 @@
 		7AEC19E928025E7600C48428 /* PostJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 7AEC19E828025E7600C48428 /* PostJSON.json */; };
 		7AEC19EB28025FA500C48428 /* PostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EA28025FA500C48428 /* PostPage.swift */; };
 		7AEC19ED280262E400C48428 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EC280262E400C48428 /* Search.swift */; };
+		7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EE28026CEF00C48428 /* DateCalculator.swift */; };
 		8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786FD3E27FEB0CB0010C4CA /* Question.swift */; };
 		A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */; };
 		A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */; };
@@ -64,6 +65,7 @@
 		7AEC19E828025E7600C48428 /* PostJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PostJSON.json; sourceTree = "<group>"; };
 		7AEC19EA28025FA500C48428 /* PostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPage.swift; sourceTree = "<group>"; };
 		7AEC19EC280262E400C48428 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		7AEC19EE28026CEF00C48428 /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
 		8786FD3E27FEB0CB0010C4CA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				7A15082427FDE8100053C092 /* Color.swift */,
+				7AEC19EE28026CEF00C48428 /* DateCalculator.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
 				7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */,
 				379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */,
+				7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */,
 				7A15082127FDE7BC0053C092 /* Feed.swift in Sources */,
 				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
 				7A4284B127FD82C600E9B88E /* ContentView.swift in Sources */,

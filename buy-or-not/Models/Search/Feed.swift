@@ -17,7 +17,6 @@ struct Feed: View {
     var comments: Int
     var imageURL: String
     var options: [Options]
-
     
     var body: some View {
         VStack {
@@ -74,11 +73,12 @@ struct Feed: View {
                 }
                 .frame(width: 360, height: 120)
                 
-                VoteButtons(
-                    options: options
-                )
-                    .padding(.all, 10)
-
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 40)
+                        .foregroundColor(Color(hex: "F2F2F7"))
+                    VoteButtons(data: options)
+                }.frame(height: 40)
 
                 Spacer()
                 

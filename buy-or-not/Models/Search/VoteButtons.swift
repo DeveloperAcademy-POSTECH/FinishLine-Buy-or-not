@@ -10,52 +10,58 @@ import SwiftUI
 
 // Vote Buttons Sample on the basis of Bethev's form
 struct VoteButtons: View {
-//    @State private var buttonIsPressed1: Bool = false
-//    @State private var buttonIsPressed2: Bool = false
-//    @State private var buttonIsPressed3: Bool = false
     
-    @State var sampleBoolean: Bool = false
+    var data: [Options]
+    // 옵션 최대 갯수 4개
+    @State var buttonState: [Bool] = [false, false, false, false]
     @State var voteDone: Bool = false
     
-    var options: [Options]
+
+    func buttonTab(index: Int, dataCount: Int) {
         
+        //MARK: - 문제없음
+        if buttonState[index] == true  {
+            self.voteDone = true
+        } else {
+            // 토글
+            for i in 0..<dataCount {
+                if (i == index) {
+                    self.buttonState[i] = true
+                } else {
+                    self.buttonState[i] = false
+                }
+            }
+        }
+    }
+    
     var body: some View {
-        VStack {
-            ForEach (options, id: \.self) { option in
-                
-                let data = option
-                var pressed = data.pressed
-                let name = data.name
-                let t = type(of: data.pressed)
-                let str = ["#00a8ff", "#9c88ff", "#f5f6fa", "#40739e", "#dcdde1", "#E6BA95", "#E4E9BE", "#A2B38B"]
-                let indexRandom = Int.random(in: 0..<str.count)
-                
-                
-                // 버튼 터치 잘 안됨.. 아래쪽 부분을 터치하면 인식 XXX
-                Button(action: {
-                    print("🐶 \(name): '\(pressed)' with typeof \(t)")
-                    print("🐯 Original JSON Data: \(data)")
-                    
-                    // 버튼을 누르면 변경된 Bool 데이터를 백엔드로 전송
-                    // 기존 Bool 데이터를 변동한다
-                    
-                    if pressed {
-                        withAnimation{ voteDone = true }
-                    } else {
-                        pressed = !pressed
+        if voteDone {
+            ZStack (alignment:.leading) {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 300, height: 40).foregroundColor(Color.init(hex: "C7C7CC"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 250, height: 40).foregroundColor(Color.init(hex: "007AFF"))
+                // 투표 현황 텍스트 추가되어야함
+            }
+        } else {
+            HStack {
+                ForEach (0..<data.count, id: \.self) { idx in
+                    Button {
+                        withAnimation {
+                            buttonTab(index: idx, dataCount: data.count)
+                            let fmt = ISO8601DateFormatter()
+                            let date1 = fmt.date(from: "2017-08-06T19:20:42+0000")!
+                            let date2 = fmt.date(from: "2020-08-06T19:20:46+0000")!
+                            print(Calendar.current.dateComponents([.day], from: date1, to: date2).day!)
+                            print(type(of: Calendar.current.dateComponents([.day], from: date1, to: date2).day))
+
+                        }
+                    } label: {
+                        ZStack {
+                            Rectangle().foregroundColor(buttonState[idx] ? .blue : .clear).cornerRadius(10)
+                            Text(buttonState[idx] ? "한번 더 누르시면\n투표가 반영됩니다." : "\(data[idx].name)").foregroundColor(.black)
+                                .font(buttonState[idx] ? .caption : .body)
+                        }
                     }
-                    
-                }) {
-                    Text(
-                        pressed
-                            ? "한번 더 누르시면\n투표가 반영됩니다."
-                            : "\(name)"
-                        )
-                            .foregroundColor(.black)
-                            .font(pressed ? .caption : .body)
-                            .frame(width: 300, height: 50, alignment: .center)
-                            .background(Color(hex: "\(str[indexRandom])"))
-                            .cornerRadius(10)
                 }
             }
         }
