@@ -16,6 +16,7 @@ struct Main: View {
             ZStack {
                 VStack {
                     Spacer()
+
                     MainCategorys()
                     
                     //
@@ -39,7 +40,7 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
+                            destination: Question() // 질문 남기기 뷰로 연결
                         ){
                             Image("questionButton").font(.largeTitle)
                         }

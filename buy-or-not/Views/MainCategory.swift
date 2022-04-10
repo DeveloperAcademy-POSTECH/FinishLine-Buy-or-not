@@ -32,6 +32,8 @@ struct MainCategorys: View{
                                     .background(self.choiced == c ? Color.blue : Color.gray)
                                     .cornerRadius(20)
                                     .padding(.vertical, 24.0)
+                                    .padding(.leading, c == "모두보기" ? 10 : 0)
+                                    .padding(.trailing, c == "기타" ? 10 : 0)
                                     .buttonStyle(.bordered)
                             }
                         }
@@ -45,7 +47,7 @@ struct MainCategorys: View{
                                    colors: [Color.black.opacity(0), Color.black]),
                                    startPoint: .leading, endPoint: .trailing
                                )
-                               .frame(width: 15)
+                               .frame(width: 10)
 
                             // Middle
                             Rectangle().fill(Color.black)
