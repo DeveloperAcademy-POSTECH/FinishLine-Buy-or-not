@@ -38,6 +38,10 @@
 		A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBF27FEA55100BCA838 /* SecureInputView.swift */; };
 		A3571EC227FEA65C00BCA838 /* LoadingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EC127FEA65C00BCA838 /* LoadingPage.swift */; };
 		A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3D027FEB64E007A1054 /* buy_or_notApp.swift */; };
+		A35EB3D727FEBE8A007A1054 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A35EB3D927FEBE8A007A1054 /* Localizable.strings */; };
+		A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3DB27FEC003007A1054 /* SignUpPage.swift */; };
+		A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3E227FF247F007A1054 /* interestSellect.swift */; };
+		A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,11 @@
 		A3571EBF27FEA55100BCA838 /* SecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputView.swift; sourceTree = "<group>"; };
 		A3571EC127FEA65C00BCA838 /* LoadingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPage.swift; sourceTree = "<group>"; };
 		A35EB3D027FEB64E007A1054 /* buy_or_notApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buy_or_notApp.swift; sourceTree = "<group>"; };
+		A35EB3D827FEBE8A007A1054 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A35EB3DA27FEBE8D007A1054 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A35EB3DB27FEC003007A1054 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpPage.swift; path = "buy-or-not/views/SignUpPage.swift"; sourceTree = SOURCE_ROOT; };
+		A35EB3E227FF247F007A1054 /* interestSellect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = interestSellect.swift; path = "buy-or-not/models/SignUp/interestSellect.swift"; sourceTree = SOURCE_ROOT; };
+		A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindMemberInfoPage.swift; path = "buy-or-not/views/FindMemberInfoPage.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +145,7 @@
 		7A4284AD27FD82C600E9B88E /* buy-or-not */ = {
 			isa = PBXGroup;
 			children = (
+				A35EB3D427FEBE39007A1054 /* Strings */,
 				7A4284C727FD8CCB00E9B88E /* Controllers */,
 				7A4284C627FD8CC600E9B88E /* Models */,
 				7A4284C527FD8CBF00E9B88E /* Views */,
@@ -165,6 +175,8 @@
 				7A4284B027FD82C600E9B88E /* ContentView.swift */,
 				A3571EC127FEA65C00BCA838 /* LoadingPage.swift */,
 				A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */,
+				A35EB3DB27FEC003007A1054 /* SignUpPage.swift */,
+				A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */,
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
 				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
@@ -179,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				7A1DF3012800100300EA542C /* UserSample(Theo) */,
+				A35EB3E127FF23DB007A1054 /* SignUp */,
 				7A15081F27FDE7A60053C092 /* Search */,
 				7A4284C827FD8D4B00E9B88E /* Title.swift */,
 			);
@@ -192,6 +205,22 @@
 				7AEC19EE28026CEF00C48428 /* DateCalculator.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A35EB3D427FEBE39007A1054 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A35EB3D927FEBE8A007A1054 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		A35EB3E127FF23DB007A1054 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				A35EB3E227FF247F007A1054 /* interestSellect.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +285,7 @@
 				7A17D5C327FF0BB700FB8D72 /* SampleJSON.json in Resources */,
 				7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */,
 				7A1DF30028000FEE00EA542C /* UserJSON.json in Resources */,
+				A35EB3D727FEBE8A007A1054 /* Localizable.strings in Resources */,
 				7A4284B327FD82C800E9B88E /* Assets.xcassets in Resources */,
 				7AEC19E928025E7600C48428 /* PostJSON.json in Resources */,
 			);
@@ -268,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */,
+				A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */,
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
 				7A15082327FDE7CB0053C092 /* Feed2.swift in Sources */,
 				379DAB6E27FD95CF00DC2BDD /* Main.swift in Sources */,
@@ -282,6 +314,7 @@
 				7A1DF30928006CEE00EA542C /* UserView.swift in Sources */,
 				7A17D5BA27FECD1E00FB8D72 /* QuestionOnGoing.swift in Sources */,
 				7AEC19ED280262E400C48428 /* Search.swift in Sources */,
+				A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */,
 				A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */,
 				7A17D5B527FEBC7100FB8D72 /* QuestionItemData.swift in Sources */,
 				7A4284C927FD8D4B00E9B88E /* Title.swift in Sources */,
@@ -298,6 +331,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A35EB3D927FEBE8A007A1054 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A35EB3D827FEBE8A007A1054 /* en */,
+				A35EB3DA27FEBE8D007A1054 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7A4284B727FD82C800E9B88E /* Debug */ = {
