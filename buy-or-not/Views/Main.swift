@@ -16,9 +16,8 @@ struct Main: View {
             ZStack {
                 VStack {
                     Spacer()
-                    // 카테고리 코드 영역
-                    
-                    Text("카테고리 자리")
+
+                    MainCategorys()
                     
                     //
                     // 피드 영역
@@ -41,7 +40,7 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
+                            destination: Question() // 질문 남기기 뷰로 연결
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
@@ -51,7 +50,7 @@ struct Main: View {
             .padding(.horizontal)
             .navigationBarItems(
                 leading: NavigationLink(
-                    destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
+                    destination: Profile() // 프로필 뷰로 연결 (임시로 검색화면)
                 ){
                     Image("sampleMan").font(.largeTitle)
                 }
