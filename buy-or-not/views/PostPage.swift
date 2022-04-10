@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-/*
- >> 할 일
- - 이미지 띄우기?!
- - 총 투표 수 종합
- - 총 댓글 수 종합
- - 투표 선택기능
- - 네비게이션 바 만들기
- -
- 
- >>
- */
-
 var itemCount: Int = 3
 var commentCounts: Int = 3
 
@@ -58,31 +46,11 @@ struct PostPage: View {
                 .padding(.bottom, 30.0)
                 .background(Color(hex: "#E9E9EA"))
                 .frame(minWidth:0, maxWidth: .infinity)
-                
-                //댓글영역 시작
-                VStack{
-                    Spacer()
-                        .frame(height: 30.0)
-                    HStack{
-                        Text("댓글 "+String(commentCounts))
-                            .font(.system(size: 21, weight: .bold))
-                            
-
-                        Spacer()
-                    }
-                    commentView()
-    
-
-                }
-                .padding(.bottom, 30.0)
-                .padding(.horizontal, 17.0)
-
             }
         }// scroll view
         .frame(maxWidth: .infinity)
         .navigationTitle("질문보기")
-//        .background(Color.brown)
-        //테스트용 bg
+
         
     }
 }
@@ -97,8 +65,36 @@ extension Color {
 
 
 
-// 투표아이템
+//질문작성
+struct questionContents: View{
+    var body: some View {
+        
+        VStack(alignment:.leading){
+            //글 제목 영역
+                Text("제목이 작성됩니다.")
+                    .font(.title)
+                    .multilineTextAlignment(.leading)
+            
+            HStack {
+                Text("Theo")
+                Text("2022.04.07")
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .font(.system(size: 12, weight: .regular))
+            // 질문내용 본문영역
+            Text("본문의 질문들이 작성됩니다.")
+                .font(.system(size: 16, weight: .regular))
+                .multilineTextAlignment(.leading)
+                .padding(.top, 10.0)
+        }
+        .padding(.horizontal, 17.0)
+        Spacer()
+            .frame(height: 24)
+    }
+}
 
+// 투표아이템
 struct selectionItem: View {
     //몇개인지 확인한다.
     
@@ -147,7 +143,9 @@ struct selectionItem: View {
                             Text(itemCost)
                                 .foregroundColor(.gray)
                             Spacer()
-                            LinkURL( url: itemURL)
+                            if !isLast {
+                                LinkURL( url: itemURL)
+                            }
                         }
                         .frame(width: 187)
                     }
@@ -177,96 +175,6 @@ struct selectionItem: View {
     }
 }
 
-
-
-
-
-
-// 댓글 서브뷰
-struct commentView: View{
-    var body: some View {
-        HStack{
-            VStack{
-                //프로필 이미지 넣기
-                ZStack {
-                    Circle()
-                        .fill( Color.blue)
-                        .onTapGesture {
-                            //사람을 선택하는부분
-                        }
-                    Circle()
-                        .strokeBorder(lineWidth: 1)
-                }
-                .frame(width: 36, height: 36)
-                Spacer()
-            }
-            //댓글화면 구성
-            VStack{
-                HStack{
-//                    Image(systemName: "\( ).circle.fill")
-                    Text("dnrur124")
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 16, weight: .bold))
-                    Spacer()
-                }
-                
-                Text("이거가 저거보다 훨 나아요. 저거는 품질이 좀 구려서 몇번 못써요.")
-                    .multilineTextAlignment(.leading)
-                HStack{
-                    Text("2시간")
-                        .multilineTextAlignment(.leading)
-                        .font(.system(size: 12, weight: .regular))
-
-                    Text("좋아요 \(12)개")
-                        .multilineTextAlignment(.leading)
-                    Text("답글달기")
-                        .multilineTextAlignment(.leading)
-                    Spacer()
-                }
-                .font(.system(size: 12, weight: .medium))
-            }
-            //좋아요 버튼
-            Button("♥") {
-                print("get Heart")
-            }
-            .padding(.horizontal, 2.0)
-//            .onTapGesture {
-//                if let url = URL(string: "https://developer.apple.com/documentation/swiftui/openurlaction") {
-//                    openURL(url)=
-//                }
-        }
-        .padding(.bottom, 30.0)
-
-    }
-}
-
-
-//질문작성
-struct questionContents: View{
-    var body: some View {
-        
-        VStack(alignment:.leading){
-            //글 제목 영역
-                Text("제목이 작성됩니다.")
-                    .font(.title)
-                    .multilineTextAlignment(.leading)
-            
-            HStack {
-                Text("Theo")
-                Text("2022.04.07")
-                    .foregroundColor(.gray)
-                Spacer()
-            }
-            .font(.system(size: 12, weight: .regular))
-            // 질문내용 본문영역
-            Text("본문의 질문들이 작성됩니다.")
-                .font(.system(size: 16, weight: .regular))
-                .multilineTextAlignment(.leading)
-                .padding(.top, 10.0)
-        }
-        .padding(.horizontal, 17.0)
-    }
-}
 
 
 

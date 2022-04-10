@@ -116,49 +116,103 @@ struct QuestionItem: View {
     var imageURL: String
     var options: [Options]
     
+    @State private var mode: Int = 1
+    
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                AsyncImage(url: URL(string: imageURL))
-                    .frame(width: 116, height: 116)
-                    .cornerRadius(20)
-                    .padding(.leading, 10)
-                
+        if (mode==0) {
+            VStack {
                 Spacer()
-                
-                VStack {
-                    HStack {
-                        Text("상세문구 테스트입니다.")
-                            .font(.title3)
-                        Spacer()
-                    }
+                HStack {
+                    AsyncImage(url: URL(string: imageURL))
+                        .frame(width: 116, height: 116)
+                        .cornerRadius(20)
+                        .padding(.leading, 10)
                     
                     Spacer()
                     
-                    HStack {
-                        Text(author)
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                    VStack {
+                        HStack {
+                            Text("상세문구 테스트입니다.")
+                                .font(.title3)
+                            Spacer()
+                        }
                         
                         Spacer()
                         
-                        Text (
-                            "\(Image(systemName: "checkmark.square"))\(votes) \(Image(systemName: "text.bubble"))\(comments)"
-                        )
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                        HStack {
+                            Text(author)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                            
+                            Spacer()
+                            
+                            Text (
+                                "\(Image(systemName: "checkmark.square"))\(votes)"
+                            )
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        }
                     }
                 }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                    VoteButtonView(data: options)
+                }.frame(height: 40)
+                Spacer()
             }
+            .frame(height: 177.5)
             
-            ZStack {
-                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-                VoteButtonView(data: options)
-            }.frame(height: 40)
-            Spacer()
+        } else{
+            VStack {
+                Spacer()
+                HStack {
+                    AsyncImage(url: URL(string: imageURL))
+                        .frame(width: 116, height: 116)
+                        .cornerRadius(20)
+                        .padding(.leading, 10)
+                    
+                    Spacer()
+                    
+                    VStack {
+                        HStack {
+                            Text(options[mode-1].name)
+                                .font(.title3)
+                            Spacer()
+                        }
+                        
+                        Spacer()
+                        
+                        HStack {
+                            if( Float.random(in: 0...1) < 0.5 ){
+                            Text("(options[mode-1].cost)")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                            } else {
+                                Text("18,000")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            Spacer()
+                            
+                            Text (
+                                "\(Image(systemName: "link"))"
+                            )
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        }
+                    }
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                    VoteButtonView(data: options)
+                }.frame(height: 40)
+                Spacer()
+            }
+            .frame(height: 177.5)
         }
-        .frame(height: 177.5)
         Divider()
     }
 }
@@ -170,18 +224,21 @@ struct VoteButtonView: View {
     // 옵션 최대 갯수 4개
     @State var buttonState: [Bool] = [false, false, false, false]
     @State var voteDone: Bool = false
-
-
+    
+    
     func buttonTab(index: Int, dataCount: Int) {
         
         //MARK: - 문제없음
         if buttonState[index] == true  {
             self.voteDone = true
+            //데이터 전송
+            //질문화면으로 돌아가기
         } else {
             // 토글
             for i in 0..<dataCount {
                 if (i == index) {
                     self.buttonState[i] = true
+                    //i가 눌림,
                 } else {
                     self.buttonState[i] = false
                 }
@@ -207,8 +264,9 @@ struct VoteButtonView: View {
                     } label: {
                         ZStack {
                             Rectangle().foregroundColor(buttonState[idx] ? .blue : .clear).cornerRadius(10)
-                            Text(buttonState[idx] ? "한번 더 누르시면\n투표가 반영됩니다." : "\(idx + 1)번").foregroundColor(.black)
-                                .font(buttonState[idx] ? .caption : .body)
+                            Text(buttonState[idx] ? "투표하기" : data[idx].name)
+                                .foregroundColor(.black)
+                                .font(.body)
                         }
                     }
                 }
