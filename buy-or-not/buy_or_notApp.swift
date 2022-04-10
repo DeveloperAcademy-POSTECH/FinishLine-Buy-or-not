@@ -16,7 +16,8 @@ struct buy_or_notApp: App {
         WindowGroup {
             if login == true {
 //                Main()
-                UserView()
+//                UserView()
+                PostPage()
             } else {
                 LogInPage()
             }
