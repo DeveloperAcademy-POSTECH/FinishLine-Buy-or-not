@@ -97,6 +97,6 @@ struct Feed2: View {
 
 struct Feed2_Previews: PreviewProvider {
     static var previews: some View {
-        Feed()
+        Feed2()
     }
 }

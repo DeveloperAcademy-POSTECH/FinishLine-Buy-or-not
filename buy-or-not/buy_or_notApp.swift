@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
-
 @main
 struct buy_or_notApp: App {
+    
+    var login: Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            Main()
+            if login == true {
+                Main()
+//                UserView()
+//                PostPage()
+            } else {
+                LogInPage()
+            }
         }
     }
 }

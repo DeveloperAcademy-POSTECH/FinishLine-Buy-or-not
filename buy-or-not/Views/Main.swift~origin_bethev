@@ -17,8 +17,8 @@ struct Main: View {
                 VStack {
                     Spacer()
                     // 카테고리 코드 영역
-                    
-                    Text("카테고리 자리")
+                    MainCategorys()
+                    //Text("카테고리 자리")
                     
                     //
                     // 피드 영역
@@ -46,7 +46,7 @@ struct Main: View {
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Search() // 질문 남기기 뷰로 연결 (임시로 검색화면)
+                            destination: Question() // 질문 남기기 뷰로 연결 (임시로 검색화면)
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
@@ -114,7 +114,7 @@ struct PullToRefresh: View {
 
 struct questionItem: View {
     let number: Int
-
+    
     var body: some View {
       VStack {
           Spacer()
@@ -134,14 +134,72 @@ struct questionItem: View {
                   }
               }
           }
-          Spacer()
-          RoundedRectangle(cornerRadius: 10).foregroundColor(.blue).frame(height: 42)
+          ZStack {
+              RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+              HStack {
+                  voteButtons()
+              }
+          }.frame(height: 40)
           Spacer()
       }
       .frame(height: 177.5)
         Divider()
     }
   }
+
+// 다중 버튼을 하기위해서 스테이트 변수를 컨트롤할 수 있는 다른 구조를 만들어야함
+struct voteButtons: View {
+    @State private var buttonIsPressed1: Bool = false
+    @State private var buttonIsPressed2: Bool = false
+    @State private var buttonIsPressed3: Bool = false
+    
+    @State var voteDone: Bool = false
+    
+    var body: some View {
+        if voteDone {
+            ZStack (alignment:.leading) {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 300, height: 40).foregroundColor(Color.init(hex: "C7C7CC"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 250, height: 40).foregroundColor(Color.init(hex: "007AFF"))
+                // 투표 현황 텍스트 추가되어야함
+            }
+        } else {
+            Button(action: {
+                if buttonIsPressed1 {withAnimation{voteDone = true}} else {buttonIsPressed1.toggle()}
+                if buttonIsPressed2 {buttonIsPressed2.toggle()}
+                if buttonIsPressed3 {buttonIsPressed3.toggle()}
+            }) {
+                ZStack {
+                    Rectangle().foregroundColor(buttonIsPressed1 ? .blue : .clear).cornerRadius(10)
+                    Text(buttonIsPressed1 ? "한번 더 누르시면\n투표가 반영됩니다." : "1번").foregroundColor(.black)
+                        .font(buttonIsPressed1 ? .caption : .body)
+                }
+            }
+            Button(action: {
+                if buttonIsPressed2 {withAnimation{voteDone = true}} else {buttonIsPressed2.toggle()}
+                if buttonIsPressed1 {buttonIsPressed1.toggle()}
+                if buttonIsPressed3 {buttonIsPressed3.toggle()}
+            }) {
+                ZStack {
+                    Rectangle().foregroundColor(buttonIsPressed2 ? .blue : .clear).cornerRadius(10)
+                    Text(buttonIsPressed2 ? "한번 더 누르시면\n투표가 반영됩니다." : "2번").foregroundColor(.black)
+                        .font(buttonIsPressed2 ? .caption : .body)
+                }
+            }
+            Button(action: {
+                if buttonIsPressed3 {withAnimation{voteDone = true}} else {buttonIsPressed3.toggle()}
+                if buttonIsPressed2 {buttonIsPressed2.toggle()}
+                if buttonIsPressed1 {buttonIsPressed1.toggle()}
+            }) {
+                ZStack {
+                    Rectangle().foregroundColor(buttonIsPressed3 ? .blue : .clear).cornerRadius(10)
+                    Text(buttonIsPressed3 ? "한번 더 누르시면\n투표가 반영됩니다." : "3번").foregroundColor(.black)
+                        .font(buttonIsPressed3 ? .caption : .body)
+                }
+            }
+        }
+    }
+}
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {

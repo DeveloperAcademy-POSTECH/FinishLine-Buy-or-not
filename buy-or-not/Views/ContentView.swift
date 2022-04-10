@@ -1,3 +1,4 @@
+
 //
 //  ContentView.swift
 //  buy-or-not
@@ -5,7 +6,6 @@
 //  Created by Noah's Ark on 2022/04/06.
 //
 //  test
-
 import SwiftUI
 
 struct ContentView: View {
@@ -28,4 +28,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

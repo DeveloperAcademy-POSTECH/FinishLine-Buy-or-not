@@ -11,12 +11,18 @@ struct Feed: View {
     
     @State var selectedPageIndex = 1
     
+    var title: String
+    var author: String
+    var votes: Int
+    var comments: Int
+    var imageURL: String
+    var options: [Options]
+    
     var body: some View {
         VStack {
             VStack {
                 HStack {
-                    Image("sampleMan")
-                        .resizable()
+                    AsyncImage(url: URL(string: imageURL))
                         .frame(width: 110, height: 110)
                         .cornerRadius(20)
                         .padding(.leading, 10)
@@ -25,7 +31,7 @@ struct Feed: View {
                     
                     VStack (alignment: .leading) {
                         
-                        Text("어디어디 제품이고 가격이 얼마인데 살지 말지 고민이 되네요...")
+                        Text(title)
                             .font(.system(size: 20))
                             .fontWeight(.bold)
                             .padding(.top, 10)
@@ -34,8 +40,8 @@ struct Feed: View {
                         
                         HStack {
                             
-                            Text("songcool")
-                                .font(.system(size: 9))
+                            Text(author)
+                                .font(.system(size: 11))
                             
                             Spacer()
                             
@@ -43,20 +49,20 @@ struct Feed: View {
                                 HStack {
                                     Image(systemName: "checkmark.square")
                                         .resizable()
-                                        .frame(width: 9, height: 9)
+                                        .frame(width: 11, height: 11)
                                         .foregroundColor(.gray)
-                                    Text("16")
-                                        .font(.system(size: 9))
+                                    Text("\(votes)")
+                                        .font(.system(size: 11))
                                         .foregroundColor(.gray)
                                 }
                                 
                                 HStack {
                                     Image(systemName: "text.bubble")
                                         .resizable()
-                                        .frame(width: 9, height: 9)
+                                        .frame(width: 11, height: 11)
                                         .foregroundColor(.gray)
-                                    Text("21")
-                                        .font(.system(size: 9))
+                                    Text("\(comments)")
+                                        .font(.system(size: 11))
                                         .foregroundColor(.gray)
                                 }
                             }
@@ -66,27 +72,21 @@ struct Feed: View {
                     .frame(width: 220, height: 120 ,alignment: .leading)
                 }
                 .frame(width: 360, height: 120)
-             
-                Picker("Favorite Color", selection: $selectedPageIndex, content: {
-                    Text("이거").tag(0)
-                    Text("저거").tag(1)
-                    Text("그거").tag(2)
-                })
-                .pickerStyle(SegmentedPickerStyle()) // <1>
-                .padding(.horizontal, 15)
-            }
                 
-            Divider()
-                .frame(width: 360, height: 1.2)
-                .background(Color(hex: "#EEE"))
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(height: 40)
+                        .foregroundColor(Color(hex: "F2F2F7"))
+                    VoteButtons(data: options)
+                }.frame(height: 40)
 
-            Spacer()
+                Spacer()
+                
+                Divider()
+                    .frame(width: 360, height: 1.2)
+                    .background(Color(hex: "#EEE"))
+
+            }
         }
-    }
-}
-
-struct Feed_Previews: PreviewProvider {
-    static var previews: some View {
-        Feed()
     }
 }

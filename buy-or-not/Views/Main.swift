@@ -5,14 +5,14 @@
 //  Created by leejunmo on 2022/04/06.
 //
 // 메인페이지입니다.
-
 import SwiftUI
 
 struct Main: View {
-    @State private var maxNumber: Int = 9
+    
+    @State var data = QuestionItemManager()
     
     var body: some View {
-        NavigationView {
+        NavigationView  {
             ZStack {
                 VStack {
                     Spacer()
@@ -28,50 +28,45 @@ struct Main: View {
                         }
                         // 피드 컨텐츠 영역
                         LazyVStack {
-                            ForEach(0...maxNumber, id: \.self) { num in
-                                    questionItem(number: num) // 컨텐츠표시
-                                    .onAppear {
-                                      if num % 10 == 9 {
-                                        maxNumber += 10 // 추가로딩
-                                    }
-                                }
+                            ForEach(data.json) { feed in
+                                QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options)
                             }
                         }
-                        //
-                    }.coordinateSpace(name: "pullToRefresh")
+                    }// 여기서 리로딩 콜백코드 구현해야함
                     //
-                }
+                }.coordinateSpace(name: "pullToRefresh")
+                //
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
                         NavigationLink(
-                            destination: Search() // 질문 남기기 뷰로 연결 (임시로 검색화면)
+                            destination: Text("질문뷰") // 질문 남기기 뷰로 연결
                         ){
                             Image("questionButton").font(.largeTitle)
                         }
-                        
                     }
                 }
-            }.padding(.horizontal)
-                .navigationBarItems(
-                    leading: NavigationLink(
-                        destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
-                    ){
-                        Image("sampleMan").font(.largeTitle)
-                    }
-                    , trailing: NavigationLink(
-                        destination: Search() // 검색 뷰로 연결
-                    ){
-                        Image(systemName: "magnifyingglass").font(.title)
-                    }
-                )
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Image("mainLogo")
-                    }
+            }
+            .padding(.horizontal)
+            .navigationBarItems(
+                leading: NavigationLink(
+                    destination: Search() // 프로필 뷰로 연결 (임시로 검색화면)
+                ){
+                    Image("sampleMan").font(.largeTitle)
                 }
+                , trailing: NavigationLink(
+                    destination: Search() // 검색 뷰로 연결
+                ){
+                    Image(systemName: "magnifyingglass").font(.title)
+                }
+            )
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("mainLogo")
+                }
+            }
         }
     }
 }
@@ -112,36 +107,115 @@ struct PullToRefresh: View {
     }
 }
 
-struct questionItem: View {
-    let number: Int
-
+struct QuestionItem: View {
+    
+    var title: String
+    var author: String
+    var votes: Int
+    var comments: Int
+    var imageURL: String
+    var options: [Options]
+    
     var body: some View {
-      VStack {
-          Spacer()
-          HStack {
-              Image(systemName: "p.square.fill").resizable().frame(width: 116, height: 116).foregroundColor(.gray)
-              Spacer()
-              VStack {
-                  HStack {
-                      Text("어디어디 제품이고\n가격이 얼마인데 살지 말지 고민이 되네요..").font(.title3)
-                      Spacer()
-                  }
-                  Spacer()
-                  HStack {
-                      Text("bethev").font(.caption).foregroundColor(.gray)
-                      Spacer()
-                      Text("\(Image(systemName: "checkmark.square"))16 \(Image(systemName: "text.bubble"))21").font(.caption).foregroundColor(.gray)
-                  }
-              }
-          }
-          Spacer()
-          RoundedRectangle(cornerRadius: 10).foregroundColor(.blue).frame(height: 42)
-          Spacer()
-      }
-      .frame(height: 177.5)
+        VStack {
+            Spacer()
+            HStack {
+                AsyncImage(url: URL(string: imageURL))
+                    .frame(width: 116, height: 116)
+                    .cornerRadius(20)
+                    .padding(.leading, 10)
+                
+                Spacer()
+                
+                VStack {
+                    HStack {
+                        Text("상세문구 테스트입니다.")
+                            .font(.title3)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text(author)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        
+                        Spacer()
+                        
+                        Text (
+                            "\(Image(systemName: "checkmark.square"))\(votes) \(Image(systemName: "text.bubble"))\(comments)"
+                        )
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    }
+                }
+            }
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                VoteButtonView(data: options)
+            }.frame(height: 40)
+            Spacer()
+        }
+        .frame(height: 177.5)
         Divider()
     }
-  }
+}
+
+
+struct VoteButtonView: View {
+    
+    var data: [Options]
+    // 옵션 최대 갯수 4개
+    @State var buttonState: [Bool] = [false, false, false, false]
+    @State var voteDone: Bool = false
+
+
+    func buttonTab(index: Int, dataCount: Int) {
+        
+        //MARK: - 문제없음
+        if buttonState[index] == true  {
+            self.voteDone = true
+        } else {
+            // 토글
+            for i in 0..<dataCount {
+                if (i == index) {
+                    self.buttonState[i] = true
+                } else {
+                    self.buttonState[i] = false
+                }
+            }
+        }
+    }
+    
+    var body: some View {
+        if voteDone {
+            ZStack (alignment:.leading) {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 300, height: 40).foregroundColor(Color.init(hex: "C7C7CC"))
+                RoundedRectangle(cornerRadius: 10).frame(width: 250, height: 40).foregroundColor(Color.init(hex: "007AFF"))
+                // 투표 현황 텍스트 추가되어야함
+            }
+        } else {
+            HStack {
+                ForEach (0..<data.count, id: \.self) { idx in
+                    Button {
+                        withAnimation {
+                            buttonTab(index: idx, dataCount: data.count)
+                        }
+                    } label: {
+                        ZStack {
+                            Rectangle().foregroundColor(buttonState[idx] ? .blue : .clear).cornerRadius(10)
+                            Text(buttonState[idx] ? "한번 더 누르시면\n투표가 반영됩니다." : "\(idx + 1)번").foregroundColor(.black)
+                                .font(buttonState[idx] ? .caption : .body)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
