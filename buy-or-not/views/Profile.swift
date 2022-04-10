@@ -17,6 +17,9 @@ struct Profile: View {
         NavigationView{
             VStack{
                 HStack{
+                    Text("충돌연습")
+                    Text("충돌연습")
+                    Text("충돌연습")
                     NavigationLink(destination: Text("POP화면")){
                         Text("<")
                             .font(.largeTitle)
