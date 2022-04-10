@@ -15,9 +15,9 @@ struct buy_or_notApp: App {
     var body: some Scene {
         WindowGroup {
             if login == true {
-//                Main()
+                Main()
 //                UserView()
-                PostPage()
+//                PostPage()
             } else {
                 LogInPage()
             }
