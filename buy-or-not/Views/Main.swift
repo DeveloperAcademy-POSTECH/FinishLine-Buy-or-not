@@ -10,60 +10,89 @@ import SwiftUI
 struct Main: View {
     
     @State var data = QuestionItemManager()
+    @State var previewImg: String = "defalt"
+    @State var previewState: Bool = false
     
     var body: some View {
-        NavigationView  {
+        if previewState {
             ZStack {
-                VStack {
-                    Spacer()
-
-                    MainCategorys()
-                    
-                    //
-                    // 피드 영역
-                    ScrollView {
-                        PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                            // 리프레쉬 코드 입력 공간 (서버 재연결)
-                        }
-                        // 피드 컨텐츠 영역
-                        LazyVStack {
-                            ForEach(data.json) { feed in
-                                QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options)
-                            }
-                        }
-                    }// 여기서 리로딩 콜백코드 구현해야함
-                    //
-                }.coordinateSpace(name: "pullToRefresh")
-                //
-                VStack {
-                    Spacer()
-                    HStack {
+                Rectangle().fill(Color.black)
+                    .frame(width: .infinity, height: .infinity)
+                AsyncImage(url: URL(string: previewImg)) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image.resizable()
+                                         .aspectRatio(contentMode: .fit)
+                                         .frame(maxWidth: .infinity)
+                                case .failure:
+                                    Image(systemName: "photo")
+                                default:
+                                    Text("오류")
+                                }
+                }.background(Color.white)
+            }
+            .background(Color.white)
+            .cornerRadius(5)
+            .shadow(radius: 5)
+            .onTapGesture {
+                previewState.toggle()
+            }
+        } else {
+            NavigationView  {
+                ZStack {
+                    VStack {
                         Spacer()
-                        NavigationLink(
-                            destination: Question() // 질문 남기기 뷰로 연결
-                        ){
-                            Image("questionButton").font(.largeTitle)
+
+                        MainCategorys()
+                        
+                        //
+                        // 피드 영역
+                        ScrollView {
+                            PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+                                // 리프레쉬 코드 입력 공간 (서버 재연결)
+                            }
+                            // 피드 컨텐츠 영역
+                            LazyVStack {
+                                ForEach(data.json) { feed in
+                                    QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
+                                }
+                            }
+                        }// 여기서 리로딩 콜백코드 구현해야함
+                        //
+                    }.coordinateSpace(name: "pullToRefresh")
+                    //
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            NavigationLink(
+                                destination: Question() // 질문 남기기 뷰로 연결
+                            ){
+                                Image("questionButton").font(.largeTitle)
+                            }
                         }
                     }
                 }
-            }
-            .padding(.horizontal)
-            .navigationBarItems(
-                leading: NavigationLink(
-                    destination: Profile() // 프로필 뷰로 연결 (임시로 검색화면)
-                ){
-                    Image("sampleMan").font(.largeTitle)
-                }
-                , trailing: NavigationLink(
-                    destination: Search() // 검색 뷰로 연결
-                ){
-                    Image(systemName: "magnifyingglass").font(.title)
-                }
-            )
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image("mainLogo")
+                .padding(.horizontal)
+                .navigationBarItems(
+                    leading: NavigationLink(
+                        destination: Profile() // 프로필 뷰로 연결 (임시로 검색화면)
+                    ){
+                        Image("sampleMan").font(.largeTitle)
+                    }
+                    , trailing: NavigationLink(
+                        destination: Search() // 검색 뷰로 연결
+                    ){
+                        Image(systemName: "magnifyingglass").font(.title)
+                    }
+                )
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Image("mainLogo")
+                    }
                 }
             }
         }
@@ -115,11 +144,23 @@ struct QuestionItem: View {
     var imageURL: String
     var options: [Options]
     
-    @State private var mode: Int = 1
+
+    @Binding var previewImg: String
+    @Binding var previewState: Bool
     
     var body: some View {
-        if (mode==0) {
-            VStack {
+        VStack {
+            Spacer()
+            HStack {
+                AsyncImage(url: URL(string: imageURL))
+                    .frame(width: 116, height: 116)
+                    .cornerRadius(20)
+                    .padding(.leading, 10)
+                    .onTapGesture {
+                        previewImg = imageURL
+                        previewState.toggle()
+                    }
+
                 Spacer()
                 HStack {
                     AsyncImage(url: URL(string: imageURL))
