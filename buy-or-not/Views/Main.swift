@@ -16,95 +16,117 @@ struct Main: View {  // 아울렛 변수
     @State var previewState: Bool = false
     
     var body: some View {
-        GeometryReader () {geometryReader in
-            ZStack {
-                NavigationView  {
-                    ZStack {
-                        VStack {
-                            Spacer()
-                            
-                            MainCategory(choose: $choose)
-                            
-                            //
-                            // 피드 영역
-                            ScrollView {
-                                PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+        GeometryReader { geometryReader in
+          if previewState {
+              ZStack {
+                  Rectangle().fill(Color.black)
+                      .frame(width: .infinity, height: .infinity)
+                  AsyncImage(url: URL(string: previewImg)) { phase in
+                                  switch phase {
+                                  case .empty:
+                                      ProgressView()
+                                  case .success(let image):
+                                      image.resizable()
+                                           .aspectRatio(contentMode: .fit)
+                                           .frame(maxWidth: .infinity)
+                                  case .failure:
+                                      Image(systemName: "photo")
+                                  default:
+                                      Text("오류")
+                                  }
+                  }.background(Color.white)
+              }
+              .background(Color.white)
+              .cornerRadius(5)
+              .shadow(radius: 5)
+              .onTapGesture {
+                  previewState.toggle()
+              }
+          } else {
+
+              NavigationView  {
+                  ZStack {
+                      VStack {
+                          Spacer()
+                                                     MainCategory(choose: $choose)
+
+
+
+
+                          //
+                          // 피드 영역
+                          ScrollView {
+                              PullToRefresh(coordinateSpaceName: "pullToRefresh") {
                                     data.load() // 새로고침
-                                }
-                                // 피드 컨텐츠 영역
-                                LazyVStack {
-                                    ForEach(0..<data.json.count, id: \.self) { num in
-                                        let feed = data.json[num]
-                                        QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
-                                            .onAppear{
-                                                if feed.votes == 50 {
-                                                    data.reLoad() // 데이터 추가 로드
-                                                }
-                                            }
-                                    }
-                                }
-                            }
-                        }.coordinateSpace(name: "pullToRefresh")
-                        //
-                        NavigationLink(destination: Question() // 질문 남기기 뷰로 연결
-                        ) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 64.0)
-                                    .foregroundColor(Color(hex: "8A67E8"))
-                                Image(systemName: "square.and.pencil")
-                                    .foregroundColor(Color.white)
-                                    .font(.system(size: 24.0, weight: .regular))
-                            }
-                            .frame(width: 64.0, height: 64.0)
-                        }
-                        .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
-                        
-                    }
-                    .padding(.horizontal)
-                    .navigationBarItems(
-                        leading: NavigationLink(
-                            destination: Profile() // 프로필 뷰로 연결
-                        ){
-                            Image("sampleMan").font(.largeTitle)
-                        }
-                        , trailing: NavigationLink(
-                            destination: Search() // 검색 뷰로 연결
-                        ){
-                            Image(systemName: "magnifyingglass").font(.title)
-                        }
-                    )
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Image("mainLogo")
-                        }
-                    }
-                }
-                if previewState {
-                    ZStack {
-                        Rectangle().fill(Color.black).opacity(0.8)
-                        AsyncImage(url: URL(string: previewImg)) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image.resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(maxWidth: .infinity)
-                            case .failure:
-                                Image(systemName: "photo")
-                            default:
-                                Text("오류")
-                            }
-                        }.background(Color.white)
-                    }.onTapGesture {
-                        previewState.toggle()
-                    }.edgesIgnoringSafeArea(.all)
-                }
-            }
-        }
-    }
+                              }
+
+
+                              // 피드 컨텐츠 영역
+                              LazyVStack {
+                                  ForEach(data.json) { feed in
+                                      QuestionItem(
+                                        title: feed.title, 
+                                        author: feed.author, 
+                                        votes: feed.votes, 
+                                        comments: feed.comments, 
+                                        imageURL: feed.imageURL, 
+                                        options: feed.options, 
+                                        previewImg: $previewImg, 
+                                        previewState: $previewState
+                                      )
+                                          .onAppear()//여기서 리로딩 콜백
+                                  }
+                              }
+                          }
+
+                      }.coordinateSpace(name: "pullToRefresh")
+                      //
+                      VStack {
+                          Spacer()
+                          HStack {
+                              Spacer()
+                              NavigationLink(
+                                  destination: Question() // 질문 남기기 뷰로 연결
+                              ){
+                                  Image("questionButton").font(.largeTitle)
+                              }
+                          }
+                      }
+                      .frame(width: 64.0, height: 64.0)
+                  }
+                      .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
+
+                      //MARK: -네비게이션바 부분
+
+                  }
+                  .padding(.horizontal)
+                  .navigationBarItems(
+                      leading: NavigationLink(
+                          destination: Profile() // 프로필 뷰로 연결
+                      ){
+                          Image("sampleMan")
+                              .frame(width: 30, height: 30)
+                      }
+                      , trailing: NavigationLink(
+                          destination: Search() // 검색 뷰로 연결
+                      ){
+
+                          Image(systemName: "magnifyingglass")
+                              .font(.system(size: 20.0, weight: .regular))
+                              .foregroundColor(Color(hex: "8A67E8"))
+
+                      }
+                  )
+                  .navigationBarTitleDisplayMode(.inline)
+                  .toolbar {
+                      ToolbarItem(placement: .principal) {
+                          Image("mainLogo")
+                      }
+                  }
+              }
+          }
+      }
+  }
 }
 
 struct PullToRefresh: View {
@@ -238,7 +260,7 @@ struct QuestionItem: View {
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .onTapGesture {
-                            previewImg = imageURL //이부분을 수정해야함.
+                            previewImg = "https://picsum.photos/200" //이부분을 수정해야함.
                             previewState.toggle()
                         }
                     }
