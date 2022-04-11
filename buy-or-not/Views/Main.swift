@@ -24,7 +24,8 @@ struct Main: View {  // 아울렛 변수
                             Spacer()
                             
                             MainCategory(choose: $choose)
-                            
+                                .padding(.leading, 7.0)
+                                .padding(.trailing, 17.0)
                             //
                             // 피드 영역
                             ScrollView {
@@ -43,7 +44,7 @@ struct Main: View {  // 아울렛 변수
                                             }
                                     }
                                 }
-                            }
+                            }.padding(.horizontal, 17.0)
                         }.coordinateSpace(name: "pullToRefresh")
                         //
                         NavigationLink(destination: Question() // 질문 남기기 뷰로 연결
@@ -61,17 +62,17 @@ struct Main: View {  // 아울렛 변수
                         .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
                         
                     }
-                    .padding(.horizontal)
                     .navigationBarItems(
                         leading: NavigationLink(
                             destination: Profile() // 프로필 뷰로 연결
                         ){
-                            Image("sampleMan").font(.largeTitle)
+                            Image("sampleMan").frame(width: 30, height: 30)
                         }
                         , trailing: NavigationLink(
                             destination: Search() // 검색 뷰로 연결
                         ){
-                            Image(systemName: "magnifyingglass").font(.title)
+                            Image(systemName: "magnifyingglass")
+                                .font(.system(size: 24.0, weight: .regular))
                         }
                     )
                     .navigationBarTitleDisplayMode(.inline)
@@ -207,8 +208,8 @@ struct QuestionItem: View {
                         }
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(.gray)
-
-
+                        
+                        
                     }
                 }
             } else{
@@ -221,7 +222,8 @@ struct QuestionItem: View {
                             .frame(width: 116, height: 116)
                         
                         // 이미지 크기 보정 적용
-                        AsyncImage(url: URL(string: imageURL)) { phase in
+                        AsyncImage(url: URL(string: "https://picsum.photos/200"))
+                        { phase in
                             switch phase {
                             case .empty:
                                 Text("이미지 없음")
@@ -300,7 +302,7 @@ struct VoteButtonView: View {
     // 옵션 최대 갯수 4개
     @State var buttonState: [Bool] = [false, false, false, false]
     @State var voteDone: Bool = false
-
+    
     @Binding var mode_:Int
     
     func buttonTab(index: Int, dataCount: Int) {
@@ -344,7 +346,7 @@ struct VoteButtonView: View {
                             Text(buttonState[idx] ? "투표하기" : data[idx].name)
                                 .foregroundColor(buttonState[idx] ? Color.white :Color.black)
                                 .font(.body)
-
+                            
                         }
                     }
                 }
@@ -355,16 +357,16 @@ struct VoteButtonView: View {
 
 struct LinkURL: View {
     @Environment(\.openURL) private var openURL
-
+    
     let url: String
-
+    
     var body: some View {
         Image(systemName: "link")
             .onTapGesture {
-            if let url = URL(string: url) {
-                openURL(url)
+                if let url = URL(string: url) {
+                    openURL(url)
+                }
             }
-        }
     }
 }
 
