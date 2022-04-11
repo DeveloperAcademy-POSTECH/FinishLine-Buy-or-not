@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Main: View {  // 아울렛 변수
+    // 사용자가 선택한 카테고리 값이 choose에 저장됨.
     @State private var choose = "모두보기"
     
     @State var data = QuestionItemManager()

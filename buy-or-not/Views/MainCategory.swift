@@ -17,7 +17,7 @@ struct MainCategory: View{
     @State var scrollers: Bool = true
     @State var index = 0
     
-    // 사용자가 선택한 카테고리
+    // 사용자가 선택한 카테고리 -> Main에서도 볼 수 있도록 Binding
     @Binding var choose: String
    
     
