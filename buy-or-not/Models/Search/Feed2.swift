@@ -76,12 +76,15 @@ struct Feed2: View {
                     Text("저거 33%")
                         .padding(.trailing, 10)
                         .frame(width: 240, height: 50, alignment: .trailing)
-                        .background(Color(hex: "#AAAAAA"))
+                        .foregroundColor(.black)
+                        .background(Color(hex: "#DCA3FF"))
                         .cornerRadius(10)
                     Text("그거 33%")
+                        .fontWeight(.bold)
                         .padding(.trailing, 10)
                         .frame(width: 120, height: 50, alignment: .trailing)
-                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .background(Color(hex: "8A67E8"))
                         .cornerRadius(10)
                 }
              }

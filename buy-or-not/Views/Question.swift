@@ -109,7 +109,7 @@ struct Question: View {
                 
             }.foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
-                .background(.blue)
+                .background(Color(hex: "8A67E8"))
                 .cornerRadius(5)
                 .padding(.vertical, 24.0)
         }.navigationBarTitle("질문하기")

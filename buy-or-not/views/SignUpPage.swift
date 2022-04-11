@@ -40,6 +40,7 @@ struct SignUpPage: View {
                     //이메일 입력 및 중복확인
                     HStack() {
                         TextField("이메일", text: $signUpEmailInput)
+                            .autocapitalization(.none)
                             .keyboardType(.emailAddress) //이메일용 키보드
                             .padding(12.0)
                             .frame(width: 192, height: 48)
@@ -51,7 +52,7 @@ struct SignUpPage: View {
                         }
                         .foregroundColor(.white)
                         .frame(width: 100, height: 48, alignment: .center)
-                        .background(.blue)
+                        .background(Color(hex: "8A67E8"))
                         .cornerRadius(12)
                         
                     }
@@ -120,7 +121,7 @@ struct SignUpPage: View {
                             }
                             .foregroundColor(.white)
                             .frame(width: 100, height: 48, alignment: .center)
-                            .background(.blue)
+                            .background(Color(hex: "8A67E8"))
                             .cornerRadius(12)
                             
                         }
@@ -157,7 +158,7 @@ struct SignUpPage: View {
                     }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 42, alignment: .center)
-                    .background(.blue)
+                    .background(Color(hex: "8A67E8"))
                     .cornerRadius(5)
                     .padding(.vertical, 24.0)
                 }
