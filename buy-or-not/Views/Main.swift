@@ -7,19 +7,16 @@
 // 메인페이지입니다.
 import SwiftUI
 
-struct Main: View {
+struct Main: View {  // 아울렛 변수
+    @State private var choose = "모두보기"
     
     @State var data = QuestionItemManager()
-    
     var body: some View {
         NavigationView  {
             ZStack {
                 VStack {
                     Spacer()
-
-                    MainCategorys()
-                    
-                    //
+                    MainCategory(choose: $choose)
                     // 피드 영역
                     ScrollView {
                         PullToRefresh(coordinateSpaceName: "pullToRefresh") {
@@ -67,6 +64,9 @@ struct Main: View {
                 }
             }
         }
+//            .onReceive(screenCapturePublisher) { _ in
+//            viewStore.send(.setDetectScreenCaptureAlert)
+//          }
     }
 }
 
