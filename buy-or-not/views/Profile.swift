@@ -34,10 +34,10 @@ struct Profile: View {
                         Label {
                             Text("수정하기")
                                 .fontWeight(.regular)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                         } icon:{
                             Image(systemName: "square.and.pencil")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 15.0, height: 15.0)
                         }
                     }
@@ -58,10 +58,10 @@ struct Profile: View {
                         VStack{
                             Image(systemName:"questionmark.circle.fill")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 40.0, height: 40.0)
                             Text("나의질문")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                             
                         }
                     }
@@ -70,10 +70,10 @@ struct Profile: View {
                         VStack{
                             Image(systemName:"exclamationmark.bubble.fill")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 40.0, height: 40.0)
                             Text("나의답변")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                             
                         }
                     }
@@ -125,7 +125,7 @@ struct Profile: View {
                 // 서브뷰라서 네비게이션링크 달기어려움
                 .foregroundColor(.white)
                 .frame(width: 250, height: 42, alignment: .center)
-                .background(.blue)
+                .background(Color(hex: "8A67E8"))
                 .cornerRadius(10)
                 .padding(.vertical, 24.0)
                 Spacer()
@@ -166,7 +166,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "tshirt")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -189,7 +189,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "tshirt")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                     }
                     Spacer().frame(width:35)
@@ -197,7 +197,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "desktopcomputer")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -220,7 +220,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "desktopcomputer")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                     }
                     Spacer().frame(width:35)
@@ -228,7 +228,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "airtag")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -251,7 +251,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "airtag")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                         
                     }

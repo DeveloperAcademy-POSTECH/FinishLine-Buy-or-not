@@ -29,7 +29,7 @@ struct MainCategorys: View{
                                     choiced = c
                                 }.foregroundColor(.white)
                                     .frame( height: 30, alignment: .center)
-                                    .background(self.choiced == c ? Color.blue : Color.gray)
+                                    .background(self.choiced == c ? Color(hex: "8A67E8") : Color.gray)
                                     .cornerRadius(20)
                                     .padding(.vertical, 24.0)
                                     .padding(.leading, c == "모두보기" ? 10 : 0)
@@ -73,7 +73,7 @@ struct MainCategorys: View{
                             choiced = c
                         }.foregroundColor(.white)
                                 .frame(width:100, height: 30, alignment: .center)
-                                .background(self.choiced == c ? Color.blue : Color.gray)
+                                .background(self.choiced == c ? Color(hex: "8A67E8") : Color.gray)
                                 .cornerRadius(20)
                         }
                     }
@@ -86,6 +86,9 @@ struct MainCategorys: View{
                     index = (index + 1) % 2
                     print(index)
                 }
+                    .foregroundColor(Color(hex: "8A67E8"))
+                    .font(.system(size: 24, weight: .regular))
+
             }
         }
     }
