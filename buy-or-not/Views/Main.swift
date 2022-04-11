@@ -154,14 +154,35 @@ struct QuestionItem: View {
         VStack {
             if (mode==0) {
                 HStack {
-                    AsyncImage(url: URL(string: imageURL))
+                    ZStack {
+                        // 보더적용
+                        RoundedRectangle(cornerRadius: 20)
+                            .strokeBorder(lineWidth: 1)
+                            .foregroundColor(.gray)
+                            .frame(width: 116, height: 116)
+                        
+                        // 이미지 크기 보정 적용
+                        AsyncImage(url: URL(string: imageURL)) { phase in
+                                switch phase {
+                                case .empty:
+                                    Text("이미지 없음")
+                                case .success(let image):
+                                    image.resizable()
+                                         .aspectRatio(contentMode: .fit)
+                                         .frame(maxWidth: 116, maxHeight: 116)
+                                case .failure:
+                                    Image(systemName: "photo")
+                                @unknown default:
+                                    Text("이미지 없음")
+                            }
+                        }
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
-                        .padding(.leading, 10)
                         .onTapGesture {
                             previewImg = imageURL
                             previewState.toggle()
                         }
+                    }
                     Spacer()
                     
                     VStack {
@@ -189,16 +210,36 @@ struct QuestionItem: View {
                     }
                 }
             } else{
-                
                 HStack {
-                    AsyncImage(url: URL(string: imageURL))
+                    ZStack {
+                        // 보더적용
+                        RoundedRectangle(cornerRadius: 20)
+                            .strokeBorder(lineWidth: 1)
+                            .foregroundColor(.gray)
+                            .frame(width: 116, height: 116)
+                        
+                        // 이미지 크기 보정 적용
+                        AsyncImage(url: URL(string: imageURL)) { phase in
+                                switch phase {
+                                case .empty:
+                                    Text("이미지 없음")
+                                case .success(let image):
+                                    image.resizable()
+                                         .aspectRatio(contentMode: .fit)
+                                         .frame(maxWidth: 116, maxHeight: 116)
+                                case .failure:
+                                    Image(systemName: "photo")
+                                @unknown default:
+                                    Text("이미지 없음")
+                            }
+                        }
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
-                        .padding(.leading, 10)
                         .onTapGesture {
                             previewImg = imageURL
                             previewState.toggle()
                         }
+                    }
                     Spacer()
                     
                     VStack {
