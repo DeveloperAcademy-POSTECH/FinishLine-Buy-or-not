@@ -178,20 +178,6 @@ struct selectionItem: View {
 
 
 
-struct LinkURL: View {
-    @Environment(\.openURL) private var openURL
-
-    let url: String
-
-    var body: some View {
-        Image(systemName: "link")
-            .onTapGesture {
-            if let url = URL(string: url) {
-                openURL(url)
-            }
-        }
-    }
-}
 
 
 struct PostPage_Previews: PreviewProvider {

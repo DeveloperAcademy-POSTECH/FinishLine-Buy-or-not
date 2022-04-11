@@ -150,41 +150,35 @@ struct QuestionItem: View {
     @State private var mode: Int = 0
     
     var body: some View {
-        VStack {
+        VStack(alignment:.leading) {
             if (mode==0) {
                 HStack {
                     AsyncImage(url: URL(string: imageURL))
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
-                        .padding(.leading, 10)
+                        .aspectRatio(contentMode: .fit)
                         .onTapGesture {
                             previewImg = imageURL
                             previewState.toggle()
                         }
                     Spacer()
                     
-                    VStack {
-                        HStack {
-                            Text("질문작성 부분입니다.")
-                                .font(.title3)
-                            Spacer()
-                        }
-                        
+                    VStack(alignment:.leading) {
+                        Text("질문작성 부분입니다.")
+                            .font(.system(size: 18, weight: .regular))
                         Spacer()
-                        
                         HStack {
                             Text(author)
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
+                                .lineLimit(1)
                             Spacer()
-                            
                             Text (
-                                "\(Image(systemName: "checkmark.square"))\(votes)"
+                                "12분 전   \(Image(systemName: "checkmark.square"))\(votes)"
                             )
-                            .font(.caption)
-                            .foregroundColor(.gray)
                         }
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.gray)
+
+
                     }
                 }
             } else{
@@ -193,14 +187,13 @@ struct QuestionItem: View {
                     AsyncImage(url: URL(string: imageURL))
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
-                        .padding(.leading, 10)
                         .onTapGesture {
-                            previewImg = imageURL
+                            previewImg = imageURL //이부분을 수정해야함.
                             previewState.toggle()
                         }
                     Spacer()
                     
-                    VStack {
+                    VStack(alignment:.leading) {
                         HStack {
                             Text(options[mode-1].name)
                                 .font(.system(size: 18, weight: .regular))
@@ -227,24 +220,25 @@ struct QuestionItem: View {
                             
                             Spacer()
                             
-                            Text (
-                                "\(Image(systemName: "link"))"
-                            )
-                            .foregroundColor(.gray)
+                            if(Float.random(in: 0...1) < 0.5){ LinkURL( url: "https://www.naver.com") } else{ LinkURL( url: "options[mode-1]")
+                            }
                         }
                         .font(.system(size: 18, weight: .bold))
-                        
                     }
                 }
             }
             ZStack {
-                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 40)
+                    .foregroundColor(Color.init(hex: "F2F2F7"))
                 VoteButtonView(data: options,mode_:self.$mode)
             }.frame(height: 40)
             Spacer()
+                .frame(height: 17.0)
         }
         .frame(height: 177.5)
         Divider()
+            .padding(.bottom, 17.0)
     }
 }
 
@@ -262,8 +256,8 @@ struct VoteButtonView: View {
         
         //MARK: - 문제없음
         if buttonState[index] == true  {
-            self.voteDone = true
             mode_ = 0
+            self.voteDone = true
         } else {
             // 토글
             for i in 0..<dataCount {
@@ -290,18 +284,33 @@ struct VoteButtonView: View {
                 ForEach (0..<data.count, id: \.self) { idx in
                     Button {
                         withAnimation {
-                            buttonTab(index: idx, dataCount: data.count)
                             mode_ = idx + 1
+                            buttonTab(index: idx, dataCount: data.count)
                         }
                     } label: {
                         ZStack {
                             Rectangle().foregroundColor(buttonState[idx] ? .blue : .clear).cornerRadius(10)
                             Text(buttonState[idx] ? "투표하기" : data[idx].name)
-                                .foregroundColor(.black)
+                                .foregroundColor(buttonState[idx] ? Color.white :Color.black)
                                 .font(.body)
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+struct LinkURL: View {
+    @Environment(\.openURL) private var openURL
+
+    let url: String
+
+    var body: some View {
+        Image(systemName: "link")
+            .onTapGesture {
+            if let url = URL(string: url) {
+                openURL(url)
             }
         }
     }
