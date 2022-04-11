@@ -7,15 +7,15 @@
 
 import Foundation
 
-class QuestionItemManager: ObservableObject {
-    @Published var json = [QuestionItemData]()
+struct QuestionItemManager {
+    var json = [QuestionItemData]()
     
     init() {
         load()
     }
     
     // Read the sample JSON file 
-    func load() {
+    mutating func load() {
         guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
         else {
             print("JSON file not found")
@@ -25,9 +25,12 @@ class QuestionItemManager: ObservableObject {
         let data = try? Data(contentsOf: url)
         let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
         
+//        if let localResults = results {
+//            self.json = localResults
+//        }
         self.json = results!
     }
-    func reLoad() {
+    mutating func reLoad() {
         guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
         else {
             print("JSON file not found")
@@ -37,7 +40,7 @@ class QuestionItemManager: ObservableObject {
         let data = try? Data(contentsOf: url)
         let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
         
-        self.json.append(contentsOf: results!)
+        self.json += results!
     }
 }
 

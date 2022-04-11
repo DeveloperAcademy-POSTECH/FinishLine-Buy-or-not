@@ -17,7 +17,6 @@ struct Main: View {
         if previewState {
             ZStack {
                 Rectangle().fill(Color.black)
-                    .frame(width: .infinity, height: .infinity)
                 AsyncImage(url: URL(string: previewImg)) { phase in
                                 switch phase {
                                 case .empty:
@@ -51,13 +50,18 @@ struct Main: View {
                         // 피드 영역
                         ScrollView {
                             PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                                // 리프레쉬 코드 입력 공간 (서버 재연결)
+                                data.load() // 새로고침
                             }
                             // 피드 컨텐츠 영역
                             LazyVStack {
-                                ForEach(data.json) { feed in
+                                ForEach(0..<data.json.count, id: \.self) { num in
+                                    let feed = data.json[num]
                                     QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
-                                        .onAppear()//여기서 리로딩 콜백
+                                        .onAppear{
+                                            if feed.votes == 50 {
+                                                data.reLoad() // 데이터 추가 로드
+                                            }
+                                        }
                                 }
                             }
                         }
