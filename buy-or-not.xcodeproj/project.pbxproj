@@ -28,6 +28,8 @@
 		7A4284B327FD82C800E9B88E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4284B227FD82C800E9B88E /* Assets.xcassets */; };
 		7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A4284B527FD82C800E9B88E /* Preview Assets.xcassets */; };
 		7A8B98BB2803C7370001E73D /* CategorySelectorInMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B98BA2803C7370001E73D /* CategorySelectorInMain.swift */; };
+		7A8B98C328041B840001E73D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B98C228041B840001E73D /* Post.swift */; };
+		7A8B98C528041CF10001E73D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B98C428041CF10001E73D /* User.swift */; };
 		7AEC19E928025E7600C48428 /* PostJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 7AEC19E828025E7600C48428 /* PostJSON.json */; };
 		7AEC19EB28025FA500C48428 /* PostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EA28025FA500C48428 /* PostPage.swift */; };
 		7AEC19ED280262E400C48428 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EC280262E400C48428 /* Search.swift */; };
@@ -69,6 +71,8 @@
 		7A4284B227FD82C800E9B88E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A4284B527FD82C800E9B88E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7A8B98BA2803C7370001E73D /* CategorySelectorInMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectorInMain.swift; sourceTree = "<group>"; };
+		7A8B98C228041B840001E73D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7A8B98C428041CF10001E73D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7AEC19E828025E7600C48428 /* PostJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PostJSON.json; sourceTree = "<group>"; };
 		7AEC19EA28025FA500C48428 /* PostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPage.swift; sourceTree = "<group>"; };
 		7AEC19EC280262E400C48428 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 		7A4284C627FD8CC600E9B88E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7A8B98C128041B2B0001E73D /* Database */,
 				7A1DF3012800100300EA542C /* UserSample(Theo) */,
 				A35EB3E127FF23DB007A1054 /* SignUp */,
 				7A15081F27FDE7A60053C092 /* Search */,
@@ -215,6 +220,15 @@
 				7A8B98BA2803C7370001E73D /* CategorySelectorInMain.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7A8B98C128041B2B0001E73D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				7A8B98C228041B840001E73D /* Post.swift */,
+				7A8B98C428041CF10001E73D /* User.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		7AEC19F02802A41F00C48428 /* Recovered References */ = {
@@ -326,6 +340,7 @@
 				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
 				7A8B98BB2803C7370001E73D /* CategorySelectorInMain.swift in Sources */,
+				7A8B98C328041B840001E73D /* Post.swift in Sources */,
 				87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */,
 				7A1DF3052800119400EA542C /* UserManager.swift in Sources */,
 				7A17D5BC27FECDF400FB8D72 /* AllPosts.swift in Sources */,
@@ -347,6 +362,7 @@
 				7A4284AF27FD82C600E9B88E /* (null) in Sources */,
 				87DD32992803FB4F005AC126 /* User.swift in Sources */,
 				2D2500D527FE74E700FB6CA0 /* FeedView.swift in Sources */,
+				7A8B98C528041CF10001E73D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
