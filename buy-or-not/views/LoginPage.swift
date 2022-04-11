@@ -17,7 +17,7 @@ struct LogInPage: View {
     @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
     @State var rememberEmail: String = (UserDefaults.standard.string(forKey: "ID") ?? "")
     @State var rememberPassword: String = (UserDefaults.standard.string(forKey: "PW") ?? "")
-    @State var user = User(name: "Daivid", comment: "hi", nickname: "dd", interested: "ss", img: "ff")
+
     
     var body: some View {
 

@@ -23,7 +23,7 @@ struct Main: View {  // 아울렛 변수
                         VStack {
                             Spacer()
                             
-                            MainCategorys()
+                            MainCategory(choose: $choose)
                             
                             //
                             // 피드 영역
