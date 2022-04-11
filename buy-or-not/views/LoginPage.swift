@@ -13,7 +13,18 @@ struct LogInPage: View {
     @State private var passwordInput: String = ""
     @State var checkboxInput: Bool = false
     
+    @State var isAutoLogin: Bool = false
+    @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
+    @State var rememberEmail: String = (UserDefaults.standard.string(forKey: "ID") ?? "")
+    @State var rememberPassword: String = (UserDefaults.standard.string(forKey: "PW") ?? "")
+    @State var user = User(name: "Daivid", comment: "hi", nickname: "dd", interested: "ss", img: "ff")
+    
     var body: some View {
+
+       
+        let email = rememberEmail == "" ? $emailInput : $rememberEmail
+        let password = rememberPassword == "" ? $passwordInput : $rememberPassword
+        
         NavigationView {
             VStack() {
                 Image("BuyOrNotLogo")
@@ -22,7 +33,8 @@ struct LogInPage: View {
                     .padding(.top, 48)
                     .padding(.bottom, 6)
                 
-                TextField("이메일", text: $emailInput)
+                
+                TextField("이메일", text: email)
                     .keyboardType(.emailAddress) //이메일용 키보드
                     .padding(.horizontal, 12.0)
                     .frame(width: 300, height: 48)
@@ -32,8 +44,9 @@ struct LogInPage: View {
                     )
                     .padding(.vertical, 6.0)
                 
+                
                 ZStack() {
-                    SecureInputView("비밀번호", text: $passwordInput)
+                    SecureInputView("비밀번호", text: password)
                         .padding(.horizontal, 12.0)
                         .frame(width: 300, height: 48)
                         .overlay(
@@ -43,19 +56,44 @@ struct LogInPage: View {
                         .padding(.vertical, 6.0)
                 }
                 
-                //아이디 기억하기
-                HStack() {
-                    Toggle(isOn: $checkboxInput) {
+                
+                HStack{
+                    //아이디 기억하기
+                    HStack() {
+                        Toggle(isOn: $checkboxInput) {
+                        }
+                        .toggleStyle(CheckBoxView())
+                        Text("아이디 기억하기")
+                            .foregroundColor(.gray)
                     }
-                    .toggleStyle(CheckBoxView())
-                    Text(" 아이디 기억하기")
-                        .foregroundColor(.gray)
+                    
+                    .padding(.vertical, 12.0)
+                    .padding(.trailing, 30)
+                    
+                    // 자동로그인
+                    HStack() {
+                        Toggle(isOn: $isAutoLogin) {
+                            
+                        }
+                        .toggleStyle(CheckBoxView())
+                        Text("자동 로그인")
+                            .foregroundColor(.gray)
+                        //.font(.system(size: 18))
+                    }
+                    
+                    
+                    
                 }
-                .padding(.vertical, 12.0)
+                
                 
                 
                 Button("로그인") {
-                    
+                    if isAutoLogin{
+                        UserDefaults.standard.set(emailInput, forKey: "ID")
+                        UserDefaults.standard.set(passwordInput, forKey: "PW")
+                        UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
+                        //print("saved value: \(emailInput), \(passwordInput)")
+                    }
                 }
                 .foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
@@ -87,7 +125,10 @@ struct LogInPage: View {
                 }
             }
         }
+        
     }
+    
+    
     
     struct LogInPage_Previews: PreviewProvider {
         static var previews: some View {

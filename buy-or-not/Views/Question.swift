@@ -53,7 +53,7 @@ struct Question: View {
     @State private var categoryExpand: Bool = false
     @State private var Bools: [Bool] = [true, false]
     @State private var addItem: [Bool] = [true, false, false, false]
-    
+    @State var user = User(name: "Daivid", comment: "hi", nickname: "dd", interested: "ss", img: "ff")
     var body: some View {
         VStack{
             Form{
@@ -104,6 +104,9 @@ struct Question: View {
             
             Button("등록하기") {
                 // action
+                let _ = print("hi")
+                print(user.name)
+                
             }.foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
                 .background(.blue)
