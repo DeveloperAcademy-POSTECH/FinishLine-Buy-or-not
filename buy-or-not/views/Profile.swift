@@ -52,7 +52,9 @@ struct Profile: View {
                         .frame(width: 50
                                
                         )
-                    NavigationLink(destination: Text("나의질문화면")){
+                    NavigationLink(destination:
+                                    Text("나의질문화면").navigationBarHidden(true)
+                    ){
                         VStack{
                             Image(systemName:"questionmark.circle.fill")
                                 .resizable(resizingMode: .stretch)

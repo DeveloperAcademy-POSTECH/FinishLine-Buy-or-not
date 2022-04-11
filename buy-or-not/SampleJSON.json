@@ -8,11 +8,16 @@
     "options": [
       {
         "name": "맥북",
-        "pressed": false
+        "pressed": false, 
+        "itemURL": "www.naver.com",
+        "cost":13000,
+        "imageURL":"https://static.wikia.nocookie.net/pokemon/images/3/3f/%EC%9D%B4%EB%B8%8C%EC%9D%B4_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/200?cb=20170405085011&path-prefix=ko"
       },
       {
         "name": "맥앤치즈",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       }
     ]
   },
@@ -25,19 +30,27 @@
     "options": [
       {
         "name": "Basketball",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Football",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Baseball",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Fireball",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       }
     ]
   },
@@ -50,15 +63,21 @@
     "options": [
       {
         "name": "Camera",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Canada",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Car",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       }
     ]
   },
@@ -71,15 +90,21 @@
     "options": [
       {
         "name": "Korea",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "USA",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "England",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       }
     ]
   },
@@ -88,19 +113,25 @@
     "title": "Intel맥북 vs M1맥북 (개발용 X)",
     "votes": 50,
     "comments": 50,
-    "imageURL": "https://static.wikia.nocookie.net/pokemon/images/5/57/%EC%9D%B4%EC%83%81%ED%95%B4%EC%94%A8_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/250?cb=20170404232618&path-prefix=ko",
+    "imageURL": "https://static.wikia.nocookie.net/pokemon/images/5/57/%EC%9D%B4%EC%83%81%ED%95%B4%EC%94%A8_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/400?cb=20170404232618&path-prefix=ko",
     "options": [
       {
         "name": "Tree",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Flower",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       },
       {
         "name": "Bugs",
-        "pressed": false
+        "pressed": false,
+        "itemURL": "www.google.com",
+        "cost":1
       }
     ]
   }
