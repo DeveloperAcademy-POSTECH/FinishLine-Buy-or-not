@@ -1,29 +1,48 @@
 [
   {
-    "postId": "1",
     "title": "이거살래는데요..",
-    "name": "John",
-    "explaination": "이제품은 어떤가요?!",
-    "options": [
-      {
-        "op-name": "이거",
-        "op-cost": "23000",
-        "op-imgroot": "./img/id/op1.jpg",
-        "votes": [
-          {
-            "username01": "songcool@apple.com",
-            "isComment": true,
-            "comment": "댓글내용",
-            "commentLike": ["username02", "username02", "username02"]
-          },
-          {
-            "username01": "David@apple.com",
-            "isComment": true,
-            "comment": "댓글내용",
-            "commentLike": ["username02", "username02", "username02"]
-          }
-        ]
-      }
+    "description": "이제품은 어떤가요?!",
+    "votes" : "3",
+    "category": "으l류",
+    "items":[
+    {
+         "name": "String",
+         "link": "String",
+         "price": 3,
+         "ImageURL" : "String"
+    }
+
     ]
-  }
+    }
+    ,
+    {
+      "title": "이거살래는데요..",
+      "description": "이제품은 어떤가요?!",
+      "votes" : "3",
+      "category": "으l류",
+      "items":[
+      {
+           "name": "String",
+           "link": "String",
+           "price": 3,
+           "ImageURL" : "String"
+      }
+
+      ]
+      },
+    {
+      "title": "이거살래는데요..",
+      "description": "이제품은 어떤가요?!",
+      "votes" : "3",
+      "category": "으l류",
+      "items":[
+      {
+           "name": "String",
+           "link": "String",
+           "price": 3,
+           "ImageURL" : "String"
+      }
+
+      ]
+      }
 ]

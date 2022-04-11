@@ -1,80 +1,36 @@
 [
-  {
-    "email": "finishLine@naver.com",
-    "password": "1234",
-    "userName": "Lee",
-    "nickName": "SuperPower",
-    "imageURL": "https://static.wikia.nocookie.net/pokemon/images/3/3f/%EC%9D%B4%EB%B8%8C%EC%9D%B4_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/200?cb=20170405085011&path-prefix=ko",
-    "favorites": [
-      {
-        "category": "tshirt",
-        "checked": false,
-        "awarded": false
-      },
-      {
-        "category": "bed.double",
-        "checked": true,
-        "awarded": false
-      },
-      {
-        "category": "fork.knife",
-        "checked": false,
-        "awarded": false
-      },
-      {
-        "category": "desktopcomputer",
-        "checked": false,
-        "awarded": false
-      },
-      {
-        "category": "gamecontroller",
-        "checked": true,
-        "awarded": false
-      },
-      {
-        "category": "ellipsis.circle",
-        "checked": false,
-        "awarded": false
-      }
-    ]
-  },
-  {
-    "email": "mc1challenge@naver.com",
-    "password": "1234",
-    "userName": "Kim",
-    "nickName": "Doraemon",
-    "imageURL": "https://static.wikia.nocookie.net/pokemon/images/5/52/%ED%94%BC%EC%B9%B4%EC%B8%84_%EA%B3%B5%EC%8B%9D_%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8.png/revision/latest/scale-to-width-down/200?cb=20170405000019&path-prefix=ko",
-    "favorites": [
-      {
-        "category": "tshirt",
-        "checked": true,
-        "awarded": true
-      },
-      {
-        "category": "bed.double",
-        "checked": true,
-        "awarded": false
-      },
-      {
-        "category": "fork.knife",
-        "checked": true,
-        "awarded": true
-      },
-      {
-        "category": "desktopcomputer",
-        "checked": true,
-        "awarded": false
-      },
-      {
-        "category": "gamecontroller",
-        "checked": false,
-        "awarded": false
-      },
-      {
-        "category": "ellipsis.circle",
-        "checked": false,
-        "awarded": false
-      }
-    ]
-  }
+    
+    
+    {
+        "name" : "david",
+        "comment" : "살까",
+        "email" : "@naver.cm",
+        "password": "jkl",
+        "imageURL": "123",
+        "interested": "food"
+        },
+    {
+        "name" : "david2",
+        "comment" : "살까",
+        "email" : "@naver.cm",
+        "password": "jkl",
+        "imageURL": "123",
+        "interested": "food"
+        },
+    {
+        "name" : "david3",
+        "comment" : "살까",
+        "email" : "@naver.cm",
+        "password": "jkl",
+        "imageURL": "123",
+        "interested": "food"
+        }, {
+            "name" : "david4",
+            "comment" : "살까",
+            "email" : "@naver.cm",
+            "password": "jkl",
+            "imageURL": "123",
+            "interested": "food"
+            }
+   
 ]

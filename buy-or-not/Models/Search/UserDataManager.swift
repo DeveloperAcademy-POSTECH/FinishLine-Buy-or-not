@@ -1,29 +1,29 @@
 //
-//  QuestionItemManager.swift
+//  DataManager2.swift
 //  buy-or-not
 //
-//  Created by Noah's Ark on 2022/04/07.
+//  Created by 이지원 on 2022/04/12.
 //
 
 import Foundation
 
-struct QuestionItemManager {
-    var json = [QuestionItemData]()
+struct UserDataManager {
+    var json = [UserData]()
     
     init() {
         load()
     }
     
-    // Read the sample JSON file 
+    // Read the sample JSON file
     mutating func load() {
-        guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "UserJSON", withExtension: "json")
         else {
             print("JSON file not found")
             return
         }
         
         let data = try? Data(contentsOf: url)
-        let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+        let results = try? JSONDecoder().decode([UserData].self, from: data!)
         
 //        if let localResults = results {
 //            self.json = localResults
@@ -32,14 +32,14 @@ struct QuestionItemManager {
     }
     
     mutating func reLoad() {
-        guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "UserJSON", withExtension: "json")
         else {
             print("JSON file not found")
             return
         }
         
         let data = try? Data(contentsOf: url)
-        let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+        let results = try? JSONDecoder().decode([UserData].self, from: data!)
         
         self.json += results!
     }

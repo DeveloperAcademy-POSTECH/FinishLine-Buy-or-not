@@ -24,6 +24,12 @@
 		7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EE28026CEF00C48428 /* DateCalculator.swift */; };
 		7AEC19F22802A48700C48428 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19F12802A48700C48428 /* Main.swift */; };
 		8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786FD3E27FEB0CB0010C4CA /* Question.swift */; };
+		87DD329E28047C2F005AC126 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD329D28047C2F005AC126 /* UserDataManager.swift */; };
+		87DD32A028047C82005AC126 /* SampleJSON2.json in Resources */ = {isa = PBXBuildFile; fileRef = 87DD329F28047C82005AC126 /* SampleJSON2.json */; };
+		87DD32A228047CA0005AC126 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD32A128047CA0005AC126 /* UserData.swift */; };
+		87DD32A428047CAD005AC126 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD32A328047CAD005AC126 /* PostData.swift */; };
+		87DD32A628047E8F005AC126 /* PostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD32A528047E8F005AC126 /* PostDataManager.swift */; };
+		87DD32A828047F74005AC126 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD32A728047F74005AC126 /* Testing.swift */; };
 		87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EFBC4C280018CD006ECFBA /* MainCategory.swift */; };
 		A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */; };
 		A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */; };
@@ -54,6 +60,12 @@
 		7AEC19EE28026CEF00C48428 /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
 		7AEC19F12802A48700C48428 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		8786FD3E27FEB0CB0010C4CA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		87DD329D28047C2F005AC126 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		87DD329F28047C82005AC126 /* SampleJSON2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleJSON2.json; sourceTree = "<group>"; };
+		87DD32A128047CA0005AC126 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		87DD32A328047CAD005AC126 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		87DD32A528047E8F005AC126 /* PostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataManager.swift; sourceTree = "<group>"; };
+		87DD32A728047F74005AC126 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		87EFBC4C280018CD006ECFBA /* MainCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategory.swift; sourceTree = "<group>"; };
 		A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -83,6 +95,10 @@
 			children = (
 				7A17D5B427FEBC7100FB8D72 /* QuestionItemData.swift */,
 				7A17D5B627FEC15400FB8D72 /* QuestionItemManager.swift */,
+				87DD329D28047C2F005AC126 /* UserDataManager.swift */,
+				87DD32A128047CA0005AC126 /* UserData.swift */,
+				87DD32A328047CAD005AC126 /* PostData.swift */,
+				87DD32A528047E8F005AC126 /* PostDataManager.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -126,6 +142,7 @@
 				7AEC19E828025E7600C48428 /* PostJSON.json */,
 				7A17D5C227FF0BB700FB8D72 /* SampleJSON.json */,
 				7A1DF2FF28000FEE00EA542C /* UserJSON.json */,
+				87DD329F28047C82005AC126 /* SampleJSON2.json */,
 				7A4284B227FD82C800E9B88E /* Assets.xcassets */,
 				7A4284B427FD82C800E9B88E /* Preview Content */,
 			);
@@ -154,6 +171,7 @@
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 				87EFBC4C280018CD006ECFBA /* MainCategory.swift */,
 				63EC0FEA27FFCB9200560205 /* Profile.swift */,
+				87DD32A728047F74005AC126 /* Testing.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A17D5C327FF0BB700FB8D72 /* SampleJSON.json in Resources */,
+				87DD32A028047C82005AC126 /* SampleJSON2.json in Resources */,
 				7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */,
 				7A1DF30028000FEE00EA542C /* UserJSON.json in Resources */,
 				A35EB3D727FEBE8A007A1054 /* Localizable.strings in Resources */,
@@ -274,9 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87DD32A428047CAD005AC126 /* PostData.swift in Sources */,
 				A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */,
 				A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */,
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
+				87DD329E28047C2F005AC126 /* UserDataManager.swift in Sources */,
 				7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */,
 				2D4F87272802F216004E2228 /* Color.swift in Sources */,
 				63EC0FEB27FFCB9200560205 /* Profile.swift in Sources */,
@@ -284,12 +305,15 @@
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
 				87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */,
 				7A17D5BC27FECDF400FB8D72 /* AllPosts.swift in Sources */,
+				87DD32A828047F74005AC126 /* Testing.swift in Sources */,
 				7A17D5BA27FECD1E00FB8D72 /* QuestionOnGoing.swift in Sources */,
 				7AEC19ED280262E400C48428 /* Search.swift in Sources */,
 				A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */,
 				A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */,
+				87DD32A628047E8F005AC126 /* PostDataManager.swift in Sources */,
 				7A17D5B527FEBC7100FB8D72 /* QuestionItemData.swift in Sources */,
 				A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */,
+				87DD32A228047CA0005AC126 /* UserData.swift in Sources */,
 				7AEC19F22802A48700C48428 /* Main.swift in Sources */,
 				7A17D5BE27FECE0100FB8D72 /* QuestionClosed.swift in Sources */,
 				7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */,
