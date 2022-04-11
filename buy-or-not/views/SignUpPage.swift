@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
 
 struct SignUpPage: View {
     
@@ -29,7 +30,9 @@ struct SignUpPage: View {
     
     
     var body: some View {
-            ScrollView {
+        
+             
+            ScrollView{
                 VStack() {
                     //회원가입 텍스트
                     Text("회원가입")
@@ -154,7 +157,8 @@ struct SignUpPage: View {
                     
                     //가입완료 버튼
                     Button("가입하기") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                        FirebaseAuth.Auth.auth().createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
+                        
                     }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 42, alignment: .center)
@@ -165,6 +169,7 @@ struct SignUpPage: View {
                 .frame(width: 390, alignment: .center)
                 
             }
+        
     }
     
     struct SignUpPage_Previews: PreviewProvider {
