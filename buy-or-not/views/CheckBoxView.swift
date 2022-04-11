@@ -17,10 +17,10 @@ struct CheckBoxView: ToggleStyle {
 
             Image(systemName: configuration.isOn ? "checkmark.square" : "square")
                 .resizable()
-                .frame(width: 24, height: 24)
-                .foregroundColor(configuration.isOn ? .gray : .gray)
-                .font(.system(size: 20, weight: .light, design: .default))
-                .foregroundColor(.gray)
+                .frame(width: 18, height: 18)
+                .foregroundColor(configuration.isOn ? .black : .black)
+                .font(.system(size: 18, weight: .semibold, design: .default))
+                .foregroundColor(.black)
         }
         .onTapGesture { configuration.isOn.toggle() }
 

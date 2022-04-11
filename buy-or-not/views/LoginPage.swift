@@ -86,23 +86,26 @@ struct LogInPage: View {
 
                 //아이디 기억하기
                 HStack() {
+                    
                     Toggle(isOn: $idRememberCheckboxInput) { }
                 }
                 
                 
                 
-                Button("로그인") {
+                Button() {
                     if isAutoLogin{
                         UserDefaults.standard.set(emailInput, forKey: "ID")
                         UserDefaults.standard.set(passwordInput, forKey: "PW")
                         UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
                         //print("saved value: \(emailInput), \(passwordInput)")
                     }
+                }label: {
+                    Text("로그인")
+                        .frame(width: 180, height: 42, alignment: .center)
                 }
                   .foregroundColor(.white)
-                  .frame(width: 180, height: 42, alignment: .center)
                   .background(Color(hex: "8A67E8"))
-                  .cornerRadius(5)
+                  .cornerRadius(12)
                   .padding(.vertical, 24.0)
                 
                 //애플로 로그인

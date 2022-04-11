@@ -34,7 +34,7 @@ struct SignUpPage: View {
                     //회원가입 텍스트
                     Text("회원가입")
                         .font(.title2)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.black)
                         .padding(.bottom, 24.0)
                     
                     //이메일 입력 및 중복확인
@@ -48,7 +48,7 @@ struct SignUpPage: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.gray, lineWidth: 0.5))
                         Button("중복확인") {
-                            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*///
+                            
                         }
                         .foregroundColor(.white)
                         .frame(width: 100, height: 48, alignment: .center)
@@ -131,7 +131,7 @@ struct SignUpPage: View {
                         //관심분야 텍스트
                         Text("관심분야")
                             .font(.title2)
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color.black)
                             .padding(.vertical, 24.0)
                     }
                     
@@ -153,14 +153,17 @@ struct SignUpPage: View {
                     
                     
                     //가입완료 버튼
-                    Button("가입하기") {
+                    Button {
                         /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                    }label: {
+                        Text("가입하기")
+                            .frame(width: 300, height: 42, alignment: .center)
                     }
                     .foregroundColor(.white)
-                    .frame(width: 300, height: 42, alignment: .center)
                     .background(Color(hex: "8A67E8"))
-                    .cornerRadius(5)
+                    .cornerRadius(12)
                     .padding(.vertical, 24.0)
+//                    .buttonStyle(.bordered) //버튼영역 확장
                 }
                 .frame(width: 390, alignment: .center)
                 
