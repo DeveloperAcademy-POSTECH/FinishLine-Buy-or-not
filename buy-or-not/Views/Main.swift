@@ -48,10 +48,7 @@ struct Main: View {  // 아울렛 변수
                   ZStack {
                       VStack {
                           Spacer()
-                                                     MainCategory(choose: $choose)
-
-
-
+                          MainCategory(choose: $choose)
 
                           //
                           // 피드 영역
@@ -110,7 +107,6 @@ struct Main: View {  // 아울렛 변수
                       , trailing: NavigationLink(
                           destination: Search() // 검색 뷰로 연결
                       ){
-
                           Image(systemName: "magnifyingglass")
                               .font(.system(size: 20.0, weight: .regular))
                               .foregroundColor(Color(hex: "8A67E8"))
