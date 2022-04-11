@@ -13,7 +13,14 @@ struct buy_or_notApp: App {
     
     var body: some Scene {
         WindowGroup {
-           LogInPage()
+            if login {
+//                Main()
+//                    .environmentObject(CategorySelectorInMain())
+                Profile()
+            } else {
+                LogInPage()
+            }
+
         }
     }
 }
