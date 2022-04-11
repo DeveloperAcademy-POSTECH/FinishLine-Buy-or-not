@@ -14,31 +14,7 @@ struct Main: View {
     @State var previewState: Bool = false
     
     var body: some View {
-        if previewState {
-            ZStack {
-                Rectangle().fill(Color.black)
-                AsyncImage(url: URL(string: previewImg)) { phase in
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                case .success(let image):
-                                    image.resizable()
-                                         .aspectRatio(contentMode: .fit)
-                                         .frame(maxWidth: .infinity)
-                                case .failure:
-                                    Image(systemName: "photo")
-                                default:
-                                    Text("오류")
-                                }
-                }.background(Color.white)
-            }
-            .background(Color.white)
-            .cornerRadius(5)
-            .shadow(radius: 5)
-            .onTapGesture {
-                previewState.toggle()
-            }
-        } else {
+        ZStack {
             NavigationView  {
                 ZStack {
                     VStack {
@@ -98,6 +74,27 @@ struct Main: View {
                         Image("mainLogo")
                     }
                 }
+            }
+            if previewState {
+                ZStack {
+                    Rectangle().fill(Color.black).opacity(0.8)
+                    AsyncImage(url: URL(string: previewImg)) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        ProgressView()
+                                    case .success(let image):
+                                        image.resizable()
+                                             .aspectRatio(contentMode: .fit)
+                                             .frame(maxWidth: .infinity)
+                                    case .failure:
+                                        Image(systemName: "photo")
+                                    default:
+                                        Text("오류")
+                                    }
+                    }.background(Color.white)
+                }.onTapGesture {
+                    previewState.toggle()
+                }.edgesIgnoringSafeArea(.all)
             }
         }
     }
