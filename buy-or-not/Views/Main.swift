@@ -71,7 +71,7 @@ struct Main: View {  // 아울렛 변수
                         , trailing: NavigationLink(
                             destination: Search() // 검색 뷰로 연결
                         ){
-                            Image(systemName: "magnifyingglass").font(.title)
+                            Image(systemName: "magnifyingglass").foregroundColor(Color(hex: "8A67E8")).font(.title)
                         }
                     )
                     .navigationBarTitleDisplayMode(.inline)
@@ -340,7 +340,7 @@ struct VoteButtonView: View {
                         }
                     } label: {
                         ZStack {
-                            Rectangle().foregroundColor(buttonState[idx] ? Color(hex: "DCA3FF") : .clear).cornerRadius(10)
+                            Rectangle().foregroundColor(buttonState[idx] ? Color(hex: "8A67E8") : .clear).cornerRadius(10)
                             Text(buttonState[idx] ? "투표하기" : data[idx].name)
                                 .foregroundColor(buttonState[idx] ? Color.white :Color.black)
                                 .font(.body)
