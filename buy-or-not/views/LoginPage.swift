@@ -11,7 +11,7 @@ struct LogInPage: View {
     
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
-    @State var checkboxInput: Bool = false
+    @State var idRememberCheckboxInput: Bool = false
     
     var body: some View {
         NavigationView {
@@ -23,6 +23,7 @@ struct LogInPage: View {
                     .padding(.bottom, 6)
                 
                 TextField("이메일", text: $emailInput)
+                    .autocapitalization(.none)
                     .keyboardType(.emailAddress) //이메일용 키보드
                     .padding(.horizontal, 12.0)
                     .frame(width: 300, height: 48)
@@ -34,6 +35,8 @@ struct LogInPage: View {
                 
                 ZStack() {
                     SecureInputView("비밀번호", text: $passwordInput)
+                        .autocapitalization(.none
+                        )
                         .padding(.horizontal, 12.0)
                         .frame(width: 300, height: 48)
                         .overlay(
@@ -45,7 +48,7 @@ struct LogInPage: View {
                 
                 //아이디 기억하기
                 HStack() {
-                    Toggle(isOn: $checkboxInput) {
+                    Toggle(isOn: $idRememberCheckboxInput) {
                     }
                     .toggleStyle(CheckBoxView())
                     Text(" 아이디 기억하기")
@@ -55,11 +58,12 @@ struct LogInPage: View {
                 
                 
                 Button("로그인") {
+                    //로그인시 액션
                     
                 }
                 .foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
-                .background(.blue)
+                .background(Color(hex: "8A67E8"))
                 .cornerRadius(5)
                 .padding(.vertical, 24.0)
                 
@@ -76,15 +80,17 @@ struct LogInPage: View {
                 .frame(width: 300.0, height: 42.0)
                 .padding(.vertical, 24.0)
                 
-                Button("아이디/비밀번호 찾기") {
-                    
+                NavigationLink(destination: FindMemberInfoPage()) {
+                    Text("아이디/비밀번호 찾기")
                 }
+                .foregroundColor(Color(hex: "8A67E8"))
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
                 NavigationLink(destination: SignUpPage()) {
                     Text("계정이 없으신가요?")
                 }
+                .foregroundColor(Color(hex: "8A67E8"))
             }
         }
     }

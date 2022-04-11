@@ -19,6 +19,7 @@ struct interestSellect: View {
         HStack() {
             Image(systemName: interestIcon)
                 .font(.system(size: 36.0, weight: .regular))
+                .foregroundColor(Color(hex: "7E3CC2"))
                 .frame(width: 60, height: 60)
                 
             
