@@ -21,7 +21,7 @@ struct Main: View {  // 아울렛 변수
                 NavigationView  {
                     ZStack {
                         VStack {
-                            Spacer()
+                            Spacer() 
                             
                             MainCategory(choose: $choose)
                                 .padding(.leading, 7.0)
