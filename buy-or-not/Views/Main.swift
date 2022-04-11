@@ -60,7 +60,7 @@ struct Main: View {
                                         .onAppear()//여기서 리로딩 콜백
                                 }
                             }
-                        }/
+                        }
                     }.coordinateSpace(name: "pullToRefresh")
                     //
                     VStack {
