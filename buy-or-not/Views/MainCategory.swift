@@ -101,7 +101,6 @@ struct MainCategory: View{
             Button() {
                 scrollers.toggle()
                 index = (index + 1) % 2
-                print(index)
             }label: {
                 Image(systemName: moreOrLess[index])                        .font(.system(size:11,weight: .regular))
                 
