@@ -27,5 +27,17 @@ class QuestionItemManager: ObservableObject {
         
         self.json = results!
     }
+    func reLoad() {
+        guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
+        else {
+            print("JSON file not found")
+            return
+        }
+        
+        let data = try? Data(contentsOf: url)
+        let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+        
+        self.json.append(contentsOf: results!)
+    }
 }
 
