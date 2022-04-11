@@ -47,6 +47,10 @@ struct Main: View {
                       VStack {
                           Spacer()
                           MainCategorys()
+                              .padding(.leading, 7.0)
+                              .padding(.trailing, 17.0)
+
+
 
                           //
                           // 피드 영역
@@ -89,6 +93,8 @@ struct Main: View {
                                   }
                               }
                           }
+                          .padding(.horizontal, 17.0)
+
                       }.coordinateSpace(name: "pullToRefresh")
                       //
                       VStack {
@@ -103,22 +109,24 @@ struct Main: View {
                           }
                       }
                       .frame(width: 64.0, height: 64.0)
-                      .position(x: geometryReader.size.width - 0.0, y: geometryReader.size.height - 72.0)
+                      .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
+
+                      //MARK: -네비게이션바 부분
 
                   }
-                  .padding(.horizontal, 17.0)
                   .navigationBarItems(
                       leading: NavigationLink(
                           destination: Profile() // 프로필 뷰로 연결
                       ){
-                          Image("sampleMan").font(.largeTitle)
+                          Image("sampleMan")
+                              .frame(width: 30, height: 30)
                       }
                       , trailing: NavigationLink(
                           destination: Search() // 검색 뷰로 연결
                       ){
 
                           Image(systemName: "magnifyingglass")
-                              .font(.system(size: 24.0, weight: .regular))
+                              .font(.system(size: 20.0, weight: .regular))
                               .foregroundColor(Color(hex: "8A67E8"))
 
                       }
@@ -220,11 +228,11 @@ struct QuestionItem: View {
             } else{
                 
                 HStack {
-                    AsyncImage(url: URL(string: imageURL))
+                    AsyncImage(url: URL(string: "https://picsum.photos/200"))
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .onTapGesture {
-                            previewImg = imageURL //이부분을 수정해야함.
+                            previewImg = "https://picsum.photos/200" //이부분을 수정해야함.
                             previewState.toggle()
                         }
                     Spacer()
