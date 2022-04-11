@@ -7,7 +7,9 @@
 // 메인페이지입니다.
 import SwiftUI
 
-struct Main: View {
+struct Main: View {  // 아울렛 변수
+    // 사용자가 선택한 카테고리 값이 choose에 저장됨.
+    @State private var choose = "모두보기"
     
     @State var data = QuestionItemManager()
     @State var previewImg: String = "defalt"
@@ -46,9 +48,8 @@ struct Main: View {
                   ZStack {
                       VStack {
                           Spacer()
-                          MainCategorys()
-                              .padding(.leading, 7.0)
-                              .padding(.trailing, 17.0)
+                                                     MainCategory(choose: $choose)
+
 
 
 
@@ -56,24 +57,8 @@ struct Main: View {
                           // 피드 영역
                           ScrollView {
                               PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                                  // 리프레쉬 코드 입력 공간 (서버 재연결)
+                                    data.load() // 새로고침
                               }
-
-  // @Bethev, @Songcool, @Halogen
-  // Need to confirm below codes                        
-  // 글쓰기버튼                          
-  //                     NavigationLink(
-  //                         destination: Question() // 질문 남기기 뷰로 연결
-  //                     )
-  //                     {
-  //                         ZStack() {
-  //                             Circle()
-  //                                 .frame(width: 64.0)
-  //                                 .foregroundColor(Color(hex: "8A67E8"))
-
-  //                             Image(systemName: "square.and.pencil")
-  //                                 .foregroundColor(Color.white)
-  //                                 .font(.system(size: 24.0, weight: .regular))
 
 
                               // 피드 컨텐츠 영역
@@ -93,7 +78,6 @@ struct Main: View {
                                   }
                               }
                           }
-                          .padding(.horizontal, 17.0)
 
                       }.coordinateSpace(name: "pullToRefresh")
                       //
@@ -109,11 +93,13 @@ struct Main: View {
                           }
                       }
                       .frame(width: 64.0, height: 64.0)
+                  }
                       .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
 
                       //MARK: -네비게이션바 부분
 
                   }
+                  .padding(.horizontal)
                   .navigationBarItems(
                       leading: NavigationLink(
                           destination: Profile() // 프로필 뷰로 연결
@@ -187,7 +173,7 @@ struct QuestionItem: View {
     var comments: Int
     var imageURL: String
     var options: [Options]
-
+    
     @Binding var previewImg: String
     @Binding var previewState: Bool
     
@@ -197,7 +183,28 @@ struct QuestionItem: View {
         VStack(alignment:.leading) {
             if (mode==0) {
                 HStack {
-                    AsyncImage(url: URL(string: imageURL))
+                    ZStack {
+                        // 보더적용
+                        RoundedRectangle(cornerRadius: 20)
+                            .strokeBorder(lineWidth: 1)
+                            .foregroundColor(.gray)
+                            .frame(width: 116, height: 116)
+                        
+                        // 이미지 크기 보정 적용
+                        AsyncImage(url: URL(string: imageURL)) { phase in
+                            switch phase {
+                            case .empty:
+                                Text("이미지 없음")
+                            case .success(let image):
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 116, maxHeight: 116)
+                            case .failure:
+                                Image(systemName: "photo")
+                            @unknown default:
+                                Text("이미지 없음")
+                            }
+                        }
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .aspectRatio(contentMode: .fit)
@@ -205,6 +212,7 @@ struct QuestionItem: View {
                             previewImg = imageURL
                             previewState.toggle()
                         }
+                    }
                     Spacer()
                     
                     VStack(alignment:.leading) {
@@ -226,15 +234,36 @@ struct QuestionItem: View {
                     }
                 }
             } else{
-                
                 HStack {
-                    AsyncImage(url: URL(string: "https://picsum.photos/200"))
+                    ZStack {
+                        // 보더적용
+                        RoundedRectangle(cornerRadius: 20)
+                            .strokeBorder(lineWidth: 1)
+                            .foregroundColor(.gray)
+                            .frame(width: 116, height: 116)
+                        
+                        // 이미지 크기 보정 적용
+                        AsyncImage(url: URL(string: imageURL)) { phase in
+                            switch phase {
+                            case .empty:
+                                Text("이미지 없음")
+                            case .success(let image):
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 116, maxHeight: 116)
+                            case .failure:
+                                Image(systemName: "photo")
+                            @unknown default:
+                                Text("이미지 없음")
+                            }
+                        }
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .onTapGesture {
                             previewImg = "https://picsum.photos/200" //이부분을 수정해야함.
                             previewState.toggle()
                         }
+                    }
                     Spacer()
                     
                     VStack(alignment:.leading) {

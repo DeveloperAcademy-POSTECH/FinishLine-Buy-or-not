@@ -13,7 +13,18 @@ struct LogInPage: View {
     @State private var passwordInput: String = ""
     @State var idRememberCheckboxInput: Bool = false
     
+    @State var isAutoLogin: Bool = false
+    @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
+    @State var rememberEmail: String = (UserDefaults.standard.string(forKey: "ID") ?? "")
+    @State var rememberPassword: String = (UserDefaults.standard.string(forKey: "PW") ?? "")
+
+    
     var body: some View {
+
+       
+        let email = rememberEmail == "" ? $emailInput : $rememberEmail
+        let password = rememberPassword == "" ? $passwordInput : $rememberPassword
+        
         NavigationView {
             VStack() {
                 Image("BuyOrNotLogo")
@@ -22,6 +33,7 @@ struct LogInPage: View {
                     .padding(.top, 48)
                     .padding(.bottom, 6)
                 
+
                 TextField("이메일", text: $emailInput)
                     .autocapitalization(.none)
                     .keyboardType(.emailAddress) //이메일용 키보드
@@ -33,10 +45,11 @@ struct LogInPage: View {
                     )
                     .padding(.vertical, 6.0)
                 
+                
                 ZStack() {
+
                     SecureInputView("비밀번호", text: $passwordInput)
-                        .autocapitalization(.none
-                        )
+                        .autocapitalization(.none)
                         .padding(.horizontal, 12.0)
                         .frame(width: 300, height: 48)
                         .overlay(
@@ -46,26 +59,51 @@ struct LogInPage: View {
                         .padding(.vertical, 6.0)
                 }
                 
+
+                
+//                 HStack{
+//                     //아이디 기억하기
+//                     HStack() {
+//                         Toggle(isOn: $checkboxInput) {
+//                         }
+//                         .toggleStyle(CheckBoxView())
+//                         Text("아이디 기억하기")
+//                             .foregroundColor(.gray)
+//                     }
+                    
+//                     .padding(.vertical, 12.0)
+//                     .padding(.trailing, 30)
+                    
+//                     // 자동로그인
+//                     HStack() {
+//                         Toggle(isOn: $isAutoLogin) {
+                            
+//                         }
+//                         .toggleStyle(CheckBoxView())
+//                         Text("자동 로그인")
+//                             .foregroundColor(.gray)
+//                             .font(.system(size: 18))
+
                 //아이디 기억하기
                 HStack() {
-                    Toggle(isOn: $idRememberCheckboxInput) {
-                    }
-                    .toggleStyle(CheckBoxView())
-                    Text(" 아이디 기억하기")
-                        .foregroundColor(.gray)
+                    Toggle(isOn: $idRememberCheckboxInput) { }
                 }
-                .padding(.vertical, 12.0)
+                
                 
                 
                 Button("로그인") {
-                    //로그인시 액션
-                    
+                    if isAutoLogin{
+                        UserDefaults.standard.set(emailInput, forKey: "ID")
+                        UserDefaults.standard.set(passwordInput, forKey: "PW")
+                        UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
+                        //print("saved value: \(emailInput), \(passwordInput)")
+                    }
                 }
-                .foregroundColor(.white)
-                .frame(width: 180, height: 42, alignment: .center)
-                .background(Color(hex: "8A67E8"))
-                .cornerRadius(5)
-                .padding(.vertical, 24.0)
+                  .foregroundColor(.white)
+                  .frame(width: 180, height: 42, alignment: .center)
+                  .background(Color(hex: "8A67E8"))
+                  .cornerRadius(5)
+                  .padding(.vertical, 24.0)
                 
                 //애플로 로그인
                 SignInWithAppleButton(
@@ -93,7 +131,10 @@ struct LogInPage: View {
                 .foregroundColor(Color(hex: "8A67E8"))
             }
         }
+        
     }
+    
+    
     
     struct LogInPage_Previews: PreviewProvider {
         static var previews: some View {

@@ -13,13 +13,19 @@ struct MainCategorys: View{
     let mainCategorys: [String] = [
         "모두보기", "관심분야", "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품", "취미/여가", "기타"]
     private var moreOrLess = ["chevron.down", "chevron.up"]
+
     
-    @State private var scrollers: Bool = true
-    @State public var choiced: String = "모두보기"
-    @State private var index = 0
+    // 접기 펼치기 기능 관련 변수
+    var moreOrLess = ["chevron.down", "chevron.up"]
+    @State var scrollers: Bool = true
+    @State var index = 0
     
+    // 사용자가 선택한 카테고리 -> Main에서도 볼 수 있도록 Binding
+    @Binding var choose: String
+   
     
     var body: some View{
+// <<<<<<< newConceptMainPage_songcool
         HStack(alignment: .top){
             if scrollers{
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -31,6 +37,25 @@ struct MainCategorys: View{
                                 Text(c)
                                     .font(.system(size:11,weight: .regular))
                                 
+// =======
+//         ZStack{
+//             HStack{
+//                 // 카테고리를 접지 않은 경우
+//                 if scrollers{
+//                     ScrollView(.horizontal, showsIndicators: false) {
+//                         HStack{
+//                             ForEach(categories, id: \.self){ category in
+//                                 Button(category) {
+//                                     choose = category
+//                                 }.foregroundColor(.white)
+//                                     .frame( height: 30, alignment: .center)
+//                                     .background(self.choose == category ? Color(hex: "8A67E8") : Color.gray)
+//                                     .cornerRadius(20)
+//                                     .padding(.vertical, 24.0)
+//                                     .padding(.leading, category == "모두보기" ? 10 : 0)
+//                                     .padding(.trailing, category == "기타" ? 10 : 0)
+//                                     .buttonStyle(.bordered)
+// >>>>>>> main
                             }
                             .foregroundColor(self.choiced == c ? Color.white: Color(hex: "636366"))
                             .frame( height: 23, alignment: .center)
@@ -41,6 +66,7 @@ struct MainCategorys: View{
                             .buttonStyle(.bordered)
                         }
                     }
+
                 }
                 .mask(
                     HStack(spacing: 0) {
@@ -151,7 +177,8 @@ struct WrappedLayout: View {
         }
     }
     
-    func item(for text: String) -> some View {
+
+  func item(for text: String) -> some View {
         Text(text)
             .padding(.all, 5)
             .font(.body)
@@ -159,4 +186,5 @@ struct WrappedLayout: View {
             .foregroundColor(Color.white)
             .cornerRadius(5)
     }
+
 }
