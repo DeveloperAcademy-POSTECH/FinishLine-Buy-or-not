@@ -15,6 +15,7 @@ struct Main: View {
     @State var previewState: Bool = false
     
     var body: some View {
+<<<<<<< Updated upstream
         if previewState {
             ZStack {
                 Rectangle().fill(Color.black)
@@ -59,22 +60,105 @@ struct Main: View {
                                 ForEach(data.json) { feed in
                                     QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
                                         .onAppear()//여기서 리로딩 콜백
+=======
+        
+        // From Theo to Halogen : 테스트 몇 번 해볼게요
+        GeometryReader { geometryReader in
+            
+            if previewState {
+                ZStack {
+                    Rectangle().fill(Color.black)
+                        .frame(width: .infinity, height: .infinity)
+                    AsyncImage(url: URL(string: previewImg)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: .infinity)
+                        case .failure:
+                            Image(systemName: "photo")
+                        default:
+                            Text("오류")
+                        }
+                    }.background(Color.white)
+                }
+                .background(Color.white)
+                .cornerRadius(5)
+                .shadow(radius: 5)
+                .onTapGesture {
+                    previewState.toggle()
+                }
+            } else {
+                
+                NavigationView  {
+                    ZStack {
+                        VStack {
+                            Spacer()
+                            MainCategorys()
+                            
+                            //
+                            // 피드 영역
+                            ScrollView {
+                                PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+                                    // 리프레쉬 코드 입력 공간 (서버 재연결)
+                                    
+                                }
+                                
+                                // @Bethev, @Songcool, @Halogen
+                                // Need to confirm below codes
+                                // 글쓰기버튼
+                                //                     NavigationLink(
+                                //                         destination: Question() // 질문 남기기 뷰로 연결
+                                //                     )
+                                //                     {
+                                //                         ZStack() {
+                                //                             Circle()
+                                //                                 .frame(width: 64.0)
+                                //                                 .foregroundColor(Color(hex: "8A67E8"))
+                                
+                                //                             Image(systemName: "square.and.pencil")
+                                //                                 .foregroundColor(Color.white)
+                                //                                 .font(.system(size: 24.0, weight: .regular))
+                                
+                                
+                                // 피드 컨텐츠 영역
+                                LazyVStack {
+                                    ForEach(data.json) { feed in
+                                        QuestionItem(
+                                            title: feed.title,
+                                            author: feed.author,
+                                            votes: feed.votes,
+                                            comments: feed.comments,
+                                            imageURL: feed.imageURL,
+                                            options: feed.options,
+                                            previewImg: $previewImg,
+                                            previewState: $previewState
+                                        )
+                                            .onAppear()//여기서 리로딩 콜백
+                                    }
+>>>>>>> Stashed changes
+                                }
+                            }
+                        }.coordinateSpace(name: "pullToRefresh")
+                        //
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                NavigationLink(
+                                    destination: Question() // 질문 남기기 뷰로 연결
+                                ){
+                                    Image("questionButton").font(.largeTitle)
                                 }
                             }
                         }
-                    }.coordinateSpace(name: "pullToRefresh")
-                    //
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            NavigationLink(
-                                destination: Question() // 질문 남기기 뷰로 연결
-                            ){
-                                Image("questionButton").font(.largeTitle)
-                            }
-                        }
+                        .frame(width: 64.0, height: 64.0)
+                        .position(x: geometryReader.size.width - 0.0, y: geometryReader.size.height - 72.0)
+                        
                     }
+<<<<<<< Updated upstream
                 }
                 .padding(.horizontal)
                 .navigationBarItems(
@@ -93,6 +177,30 @@ struct Main: View {
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Image("mainLogo")
+=======
+                    .padding(.horizontal, 17.0)
+                    .navigationBarItems(
+                        leading: NavigationLink(
+                            destination: Profile() // 프로필 뷰로 연결
+                        ){
+                            Image("sampleMan").font(.largeTitle)
+                        }
+                        , trailing: NavigationLink(
+                            destination: Search() // 검색 뷰로 연결
+                        ){
+                            
+                            Image(systemName: "magnifyingglass")
+                                .font(.system(size: 24.0, weight: .regular))
+                                .foregroundColor(Color(hex: "8A67E8"))
+                            
+                        }
+                    )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Image("mainLogo")
+                        }
+>>>>>>> Stashed changes
                     }
                 }
             }
@@ -144,7 +252,7 @@ struct QuestionItem: View {
     var comments: Int
     var imageURL: String
     var options: [Options]
-
+    
     @Binding var previewImg: String
     @Binding var previewState: Bool
     
@@ -186,6 +294,13 @@ struct QuestionItem: View {
                             .font(.caption)
                             .foregroundColor(.gray)
                         }
+<<<<<<< Updated upstream
+=======
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.gray)
+                        
+                        
+>>>>>>> Stashed changes
                     }
                 }
             } else{
@@ -209,9 +324,9 @@ struct QuestionItem: View {
                             Text (
                                 "\(Image(systemName: "xmark"))"
                             )
-                            .onTapGesture {
-                                mode=0
-                            }
+                                .onTapGesture {
+                                    mode=0
+                                }
                         }
                         
                         Spacer()
@@ -300,6 +415,10 @@ struct VoteButtonView: View {
                             Text(buttonState[idx] ? "투표하기" : data[idx].name)
                                 .foregroundColor(.black)
                                 .font(.body)
+<<<<<<< Updated upstream
+=======
+                            
+>>>>>>> Stashed changes
                         }
                     }
                 }
@@ -308,6 +427,24 @@ struct VoteButtonView: View {
     }
 }
 
+<<<<<<< Updated upstream
+=======
+struct LinkURL: View {
+    @Environment(\.openURL) private var openURL
+    
+    let url: String
+    
+    var body: some View {
+        Image(systemName: "link")
+            .onTapGesture {
+                if let url = URL(string: url) {
+                    openURL(url)
+                }
+            }
+    }
+}
+
+>>>>>>> Stashed changes
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
         Main()
