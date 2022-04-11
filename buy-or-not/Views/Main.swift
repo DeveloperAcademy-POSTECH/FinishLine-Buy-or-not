@@ -143,25 +143,15 @@ struct QuestionItem: View {
     var comments: Int
     var imageURL: String
     var options: [Options]
-    
 
     @Binding var previewImg: String
     @Binding var previewState: Bool
     
+    @State private var mode: Int = 0
+    
     var body: some View {
         VStack {
-            Spacer()
-            HStack {
-                AsyncImage(url: URL(string: imageURL))
-                    .frame(width: 116, height: 116)
-                    .cornerRadius(20)
-                    .padding(.leading, 10)
-                    .onTapGesture {
-                        previewImg = imageURL
-                        previewState.toggle()
-                    }
-
-                Spacer()
+            if (mode==0) {
                 HStack {
                     AsyncImage(url: URL(string: imageURL))
                         .frame(width: 116, height: 116)
@@ -172,7 +162,7 @@ struct QuestionItem: View {
                     
                     VStack {
                         HStack {
-                            Text("상세문구 테스트입니다.")
+                            Text("질문작성 부분입니다.")
                                 .font(.title3)
                             Spacer()
                         }
@@ -194,18 +184,8 @@ struct QuestionItem: View {
                         }
                     }
                 }
+            } else{
                 
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-                    VoteButtonView(data: options)
-                }.frame(height: 40)
-                Spacer()
-            }
-            .frame(height: 177.5)
-            
-        } else{
-            VStack {
-                Spacer()
                 HStack {
                     AsyncImage(url: URL(string: imageURL))
                         .frame(width: 116, height: 116)
@@ -217,20 +197,25 @@ struct QuestionItem: View {
                     VStack {
                         HStack {
                             Text(options[mode-1].name)
-                                .font(.title3)
+                                .font(.system(size: 18, weight: .regular))
                             Spacer()
+                            Text (
+                                "\(Image(systemName: "xmark"))"
+                            )
+                            .onTapGesture {
+                                mode=0
+                            }
                         }
                         
                         Spacer()
                         
                         HStack {
                             if( Float.random(in: 0...1) < 0.5 ){
-                            Text("(options[mode-1].cost)")
-                                .font(.caption)
-                                .foregroundColor(.gray)
+                                Text("(opt[mode-1].cost)")
+                                    .foregroundColor(.gray)
+                                
                             } else {
                                 Text("18,000")
-                                    .font(.caption)
                                     .foregroundColor(.gray)
                             }
                             
@@ -239,20 +224,20 @@ struct QuestionItem: View {
                             Text (
                                 "\(Image(systemName: "link"))"
                             )
-                            .font(.caption)
                             .foregroundColor(.gray)
                         }
+                        .font(.system(size: 18, weight: .bold))
+                        
                     }
                 }
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-                    VoteButtonView(data: options)
-                }.frame(height: 40)
-                Spacer()
             }
-            .frame(height: 177.5)
+            ZStack {
+                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
+                VoteButtonView(data: options,mode_:self.$mode)
+            }.frame(height: 40)
+            Spacer()
         }
+        .frame(height: 177.5)
         Divider()
     }
 }
