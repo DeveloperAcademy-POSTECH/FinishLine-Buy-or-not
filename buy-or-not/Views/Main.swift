@@ -57,10 +57,10 @@ struct Main: View {
                             LazyVStack {
                                 ForEach(data.json) { feed in
                                     QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
+                                        .onAppear()//여기서 리로딩 콜백
                                 }
                             }
-                        }// 여기서 리로딩 콜백코드 구현해야함
-                        //
+                        }/
                     }.coordinateSpace(name: "pullToRefresh")
                     //
                     VStack {
