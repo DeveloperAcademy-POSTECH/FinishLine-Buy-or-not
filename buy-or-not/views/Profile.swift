@@ -12,14 +12,16 @@ struct Profile: View {
     @State private var nickName: String = "배고픈20대"
     @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
     @State private var badgeBools: Array = [true,true,false]
-    
+//    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
     var body: some View {
         NavigationView{
             VStack{
                 HStack{
 
                     Spacer()
-
+                    
+//                    user.setUserName(name: "Daivid")
+                   // print(user.getUserName())
                     Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
                     Spacer()
                 }
@@ -34,10 +36,10 @@ struct Profile: View {
                         Label {
                             Text("수정하기")
                                 .fontWeight(.regular)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                         } icon:{
                             Image(systemName: "square.and.pencil")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 15.0, height: 15.0)
                         }
                     }
@@ -58,10 +60,10 @@ struct Profile: View {
                         VStack{
                             Image(systemName:"questionmark.circle.fill")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 40.0, height: 40.0)
                             Text("나의질문")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                             
                         }
                     }
@@ -70,10 +72,10 @@ struct Profile: View {
                         VStack{
                             Image(systemName:"exclamationmark.bubble.fill")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                                 .frame(width: 40.0, height: 40.0)
                             Text("나의답변")
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color(hex: "8A67E8"))
                             
                         }
                     }
@@ -125,7 +127,7 @@ struct Profile: View {
                 // 서브뷰라서 네비게이션링크 달기어려움
                 .foregroundColor(.white)
                 .frame(width: 250, height: 42, alignment: .center)
-                .background(.blue)
+                .background(Color(hex: "8A67E8"))
                 .cornerRadius(10)
                 .padding(.vertical, 24.0)
                 Spacer()
@@ -166,7 +168,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "tshirt")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -189,7 +191,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "tshirt")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                     }
                     Spacer().frame(width:35)
@@ -197,7 +199,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "desktopcomputer")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -220,7 +222,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "desktopcomputer")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                     }
                     Spacer().frame(width:35)
@@ -228,7 +230,7 @@ struct Profile: View {
                         ZStack{
                             Image(systemName: "airtag")
                                 .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color.black).frame(width: 35
+                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                     , height: 35)
                             VStack{
                                 Spacer()
@@ -251,7 +253,7 @@ struct Profile: View {
                     } else{
                         Image(systemName: "airtag")
                             .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color.black).frame(width: 35
+                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
                                                                 , height: 35)
                         
                     }

@@ -25,6 +25,7 @@ struct SecureInputView: View {
                     SecureField(title, text: $text)
                 } else {
                     TextField(title, text: $text)
+                        .autocapitalization(.none)
                 }
             }.padding(.trailing, 30)
 
