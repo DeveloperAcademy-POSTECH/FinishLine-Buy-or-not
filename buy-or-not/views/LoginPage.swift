@@ -6,12 +6,28 @@
 //
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
+
+struct LoginContentView: View{
+    @State var signInSuccess = false
+    
+    var body: some View{
+        if signInSuccess{
+            Main()
+        }
+        else{
+            LogInPage(signInSuccess: $signInSuccess)
+        }
+    }
+}
 
 struct LogInPage: View {
     
+    @Binding var signInSuccess: Bool
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State var idRememberCheckboxInput: Bool = false
+    @State var admitLogin: Bool = false
     
     @State var isAutoLogin: Bool = false
     @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
@@ -90,20 +106,60 @@ struct LogInPage: View {
                 }
                 
                 
+                if !admitLogin {
+                    Button("로그인") {
+                    FirebaseAuth.Auth.auth().signIn(withEmail: emailInput, password: passwordInput, completion: {result, error in
+                        guard error == nil else{
+                            //shwo account creation
+                            return
+                        }
+                        print("You 성공")
+                        signInSuccess = true
+                        isAutoLogin = true
+
                 
-                Button("로그인") {
-                    if isAutoLogin{
-                        UserDefaults.standard.set(emailInput, forKey: "ID")
-                        UserDefaults.standard.set(passwordInput, forKey: "PW")
-                        UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
-                        //print("saved value: \(emailInput), \(passwordInput)")
-                    }
+                        
+                        admitLogin = true
+                        
+                    })
+        
+                    
+//                    if admitLogin {
+//                        UserDefaults.standard.set(emailInput, forKey: "ID")
+//                        UserDefaults.standard.set(passwordInput, forKey: "PW")
+//                        UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
+//                        //print("saved value: \(emailInput), \(passwordInput)")
+//                    }
+                    
+                    
                 }
                   .foregroundColor(.white)
                   .frame(width: 180, height: 42, alignment: .center)
                   .background(Color(hex: "8A67E8"))
                   .cornerRadius(5)
                   .padding(.vertical, 24.0)
+                } else {
+                    NavigationLink(destination: Main()){
+                        Button("로그인하기") {
+                        }
+                    .foregroundColor(.white)
+                    .frame(width: 180, height: 42, alignment: .center)
+                    .background(Color(hex: "8A67E8"))
+                    .cornerRadius(5)
+                    .padding(.vertical, 24.0)
+                      
+                    }
+        
+                    
+//                    if admitLogin {
+//                        UserDefaults.standard.set(emailInput, forKey: "ID")
+//                        UserDefaults.standard.set(passwordInput, forKey: "PW")
+//                        UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
+//                        //print("saved value: \(emailInput), \(passwordInput)")
+//                    }
+                    
+                    
+                }
                 
                 //애플로 로그인
                 SignInWithAppleButton(
@@ -133,12 +189,6 @@ struct LogInPage: View {
         }
         
     }
-    
-    
-    
-    struct LogInPage_Previews: PreviewProvider {
-        static var previews: some View {
-            LogInPage()
-        }
-    }
 }
+    
+    

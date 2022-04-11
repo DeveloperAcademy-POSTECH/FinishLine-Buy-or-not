@@ -15,19 +15,39 @@ struct PostData: Codable, Identifiable {
         case category
         case items
     }
-
+    
+    init(){
+        self.title = ""
+        self.description = ""
+        self.votes = ""
+        self.category = ""
+        self.items = [Item]()
+    }
+    
     var id = UUID()
-    let title: String
+    var title: String
     var description: String
     var votes: String
     var category: String
     var items: [Item]
+    
+   
+    mutating func addData(title: String, description: String, category: String){
+        self.title = title
+        self.description = description
+        self.category = category
+    }
+    
+    mutating func addItem(parameter:[Item]){
+        self.items = parameter
+        
+    }
 }
 
 struct Item: Codable, Hashable {
     var name: String
     var link: String
     var price: Int
-    var ImageURL : String
-    
+    //var ImageURL : String
+
 }
