@@ -24,7 +24,6 @@ struct MainCategory: View{
    
     
     var body: some View{
-// <<<<<<< newConceptMainPage_songcool
         HStack(alignment: .top){
             if scrollers{
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -35,26 +34,8 @@ struct MainCategory: View{
                             }label: {
                                 Text(c)
                                     .font(.system(size:11,weight: .regular))
+         
                                 
-// =======
-//         ZStack{
-//             HStack{
-//                 // 카테고리를 접지 않은 경우
-//                 if scrollers{
-//                     ScrollView(.horizontal, showsIndicators: false) {
-//                         HStack{
-//                             ForEach(categories, id: \.self){ category in
-//                                 Button(category) {
-//                                     choose = category
-//                                 }.foregroundColor(.white)
-//                                     .frame( height: 30, alignment: .center)
-//                                     .background(self.choose == category ? Color(hex: "8A67E8") : Color.gray)
-//                                     .cornerRadius(20)
-//                                     .padding(.vertical, 24.0)
-//                                     .padding(.leading, category == "모두보기" ? 10 : 0)
-//                                     .padding(.trailing, category == "기타" ? 10 : 0)
-//                                     .buttonStyle(.bordered)
-// >>>>>>> main
                             }
                             .foregroundColor(self.choose == c ? Color.white: Color(hex: "636366"))
                             .frame( height: 23, alignment: .center)
@@ -95,7 +76,7 @@ struct MainCategory: View{
                         WrappedLayout(choiced: self.$choose, platforms: mainCategorys, geometry: geometry)
                     }
                 }
-                .frame(height: 56.0)
+                .frame(height: (index==1) ? 46.0 : 13.0)
             }
             Spacer()
             Button() {
