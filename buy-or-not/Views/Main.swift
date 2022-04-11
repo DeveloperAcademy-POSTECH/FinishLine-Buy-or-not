@@ -157,7 +157,10 @@ struct QuestionItem: View {
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .padding(.leading, 10)
-                    
+                        .onTapGesture {
+                            previewImg = imageURL
+                            previewState.toggle()
+                        }
                     Spacer()
                     
                     VStack {
@@ -191,7 +194,10 @@ struct QuestionItem: View {
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .padding(.leading, 10)
-                    
+                        .onTapGesture {
+                            previewImg = imageURL
+                            previewState.toggle()
+                        }
                     Spacer()
                     
                     VStack {
@@ -250,14 +256,14 @@ struct VoteButtonView: View {
     @State var buttonState: [Bool] = [false, false, false, false]
     @State var voteDone: Bool = false
     
+    @Binding var mode_:Int
     
     func buttonTab(index: Int, dataCount: Int) {
         
         //MARK: - 문제없음
         if buttonState[index] == true  {
             self.voteDone = true
-            //데이터 전송
-            //질문화면으로 돌아가기
+            mode_ = 0
         } else {
             // 토글
             for i in 0..<dataCount {
@@ -285,6 +291,7 @@ struct VoteButtonView: View {
                     Button {
                         withAnimation {
                             buttonTab(index: idx, dataCount: data.count)
+                            mode_ = idx + 1
                         }
                     } label: {
                         ZStack {
