@@ -19,14 +19,23 @@ struct Contents: View{
     
     @State private var image = UIImage()
     @State private var showSheet = false
+    @State var saveItems: Bool = false
+    
+//    func getData() -> [String] {
+//        var image_to_String = image.toP
+//        [name, price, link, image, ]
+//    }
     
     
     var body: some View{
+        if $saveItems{
+            
+        }
         DisclosureGroup("고민항목 \(number + 1)", isExpanded: $topExpand[number]) {
             TextField("고민항목 이름", text: $name)
             TextField("(선택) 가격을 입력해주세요", text: $price).keyboardType(.numberPad)
             TextField("(선택) 링크 추가", text: $link)
-            
+            let _ = print(name, price, link)
             Image(uiImage: self.image)
                 .resizable()
                 .frame(width: 100, height: 100)
@@ -53,7 +62,16 @@ struct Question: View {
     @State private var categoryExpand: Bool = false
     @State private var Bools: [Bool] = [true, false]
     @State private var addItem: [Bool] = [true, false, false, false]
+    
+    
+    @State var posts = PostData()
+    
+    @Binding var saveItems: Bool
+    
+    
+    
     var body: some View {
+        
         VStack{
             Form{
                 TextField("글 제목", text: $qTitle)
@@ -63,7 +81,7 @@ struct Question: View {
                         ForEach(categorys, id: \.self){ category in
                             Text(category).onTapGesture {
                                 qCategory = category
-                                categoryExpand = Bools[1]
+                                categoryExpand.toggle()
                             }.listRowBackground(
                                 self.qCategory == category ?
                                 Color.gray : Color(UIColor.white))
@@ -76,7 +94,7 @@ struct Question: View {
                     if addItem[num]{
                         Contents(number: num)
                             .onTapGesture{
-                                addItem[num+1] = Bools[0]
+                                addItem[num+1].toggle()
                             }
                     }
                 }
@@ -102,7 +120,14 @@ struct Question: View {
             
             
             Button("등록하기") {
+                saveItems.toggle()
+                posts.addData(title: qTitle, description: content, category: qCategory)
+                
+                print(posts)
                 // action
+                print(qTitle)
+                print(qCategory)
+                //print(
                
                 
             }.foregroundColor(.white)
