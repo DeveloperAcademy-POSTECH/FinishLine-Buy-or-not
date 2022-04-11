@@ -52,10 +52,10 @@ struct Main: View {
                         }
                     }
                     .frame(width: 64.0, height: 64.0)
-                    .position(x: geometryReader.size.width - 72.0, y: geometryReader.size.height - 72.0)
+                    .position(x: geometryReader.size.width - 0.0, y: geometryReader.size.height - 72.0)
                     
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 17.0)
                 .navigationBarItems(
                     leading: NavigationLink(
                         destination: Profile() // 프로필 뷰로 연결
