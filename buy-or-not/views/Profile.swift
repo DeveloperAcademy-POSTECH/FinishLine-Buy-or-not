@@ -12,14 +12,16 @@ struct Profile: View {
     @State private var nickName: String = "배고픈20대"
     @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
     @State private var badgeBools: Array = [true,true,false]
-    
+//    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
     var body: some View {
         NavigationView{
             VStack{
                 HStack{
 
                     Spacer()
-
+                    
+//                    user.setUserName(name: "Daivid")
+                   // print(user.getUserName())
                     Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
                     Spacer()
                 }

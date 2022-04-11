@@ -34,6 +34,7 @@
 		7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19EE28026CEF00C48428 /* DateCalculator.swift */; };
 		7AEC19F22802A48700C48428 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEC19F12802A48700C48428 /* Main.swift */; };
 		8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786FD3E27FEB0CB0010C4CA /* Question.swift */; };
+		87DD32992803FB4F005AC126 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DD32982803FB4F005AC126 /* User.swift */; };
 		87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EFBC4C280018CD006ECFBA /* MainCategory.swift */; };
 		A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */; };
 		A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */; };
@@ -74,6 +75,7 @@
 		7AEC19EE28026CEF00C48428 /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
 		7AEC19F12802A48700C48428 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		8786FD3E27FEB0CB0010C4CA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		87DD32982803FB4F005AC126 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87EFBC4C280018CD006ECFBA /* MainCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategory.swift; sourceTree = "<group>"; };
 		A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				7A1DF3012800100300EA542C /* UserSample(Theo) */,
 				A35EB3E127FF23DB007A1054 /* SignUp */,
 				7A15081F27FDE7A60053C092 /* Search */,
+				87DD32982803FB4F005AC126 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				7A1DF3032800101F00EA542C /* UserData.swift in Sources */,
 				7A17D5C527FF1B8A00FB8D72 /* VoteButtons.swift in Sources */,
 				7A4284AF27FD82C600E9B88E /* (null) in Sources */,
+				87DD32992803FB4F005AC126 /* User.swift in Sources */,
 				2D2500D527FE74E700FB6CA0 /* FeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

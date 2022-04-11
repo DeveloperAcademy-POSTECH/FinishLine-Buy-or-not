@@ -7,7 +7,9 @@
 // 메인페이지입니다.
 import SwiftUI
 
-struct Main: View {
+struct Main: View {  // 아울렛 변수
+    // 사용자가 선택한 카테고리 값이 choose에 저장됨.
+    @State private var choose = "모두보기"
     
     @State var data = QuestionItemManager()
     @State var previewImg: String = "defalt"
@@ -46,7 +48,7 @@ struct Main: View {
                   ZStack {
                       VStack {
                           Spacer()
-                          MainCategorys()
+                          MainCategory(choose: $choose)
 
                           //
                           // 피드 영역
