@@ -9,14 +9,13 @@
 import SwiftUI
 import Darwin
 
-struct MainCategorys: View{
+struct MainCategory: View{
     let mainCategorys: [String] = [
         "모두보기", "관심분야", "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품", "취미/여가", "기타"]
-    private var moreOrLess = ["chevron.down", "chevron.up"]
+     var moreOrLess = ["chevron.down", "chevron.up"]
 
     
     // 접기 펼치기 기능 관련 변수
-    var moreOrLess = ["chevron.down", "chevron.up"]
     @State var scrollers: Bool = true
     @State var index = 0
     
@@ -32,7 +31,7 @@ struct MainCategorys: View{
                     HStack(alignment:.top ){
                         ForEach(mainCategorys, id: \.self){ c in
                             Button() {
-                                choiced = c
+                                choose = c
                             }label: {
                                 Text(c)
                                     .font(.system(size:11,weight: .regular))
@@ -57,9 +56,9 @@ struct MainCategorys: View{
 //                                     .buttonStyle(.bordered)
 // >>>>>>> main
                             }
-                            .foregroundColor(self.choiced == c ? Color.white: Color(hex: "636366"))
+                            .foregroundColor(self.choose == c ? Color.white: Color(hex: "636366"))
                             .frame( height: 23, alignment: .center)
-                            .background(self.choiced == c ? Color(hex: "8A67E8") : Color(hex: "D8D8D8"))
+                            .background(self.choose == c ? Color(hex: "8A67E8") : Color(hex: "D8D8D8"))
                             .cornerRadius(20)
                             .padding(.leading, c == "모두보기" ? 10 : 0)
                             .padding(.trailing, c == "기타" ? 4 : 0)
@@ -93,7 +92,7 @@ struct MainCategorys: View{
             } else{
                 GeometryReader { geometry in
                     VStack(alignment: .leading) {
-                        WrappedLayout(choiced: self.$choiced, platforms: mainCategorys, geometry: geometry)
+                        WrappedLayout(choiced: self.$choose, platforms: mainCategorys, geometry: geometry)
                     }
                 }
                 .frame(height: 56.0)
