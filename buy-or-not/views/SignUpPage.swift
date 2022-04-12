@@ -167,22 +167,22 @@ struct SignUpPage: View {
                     signUpButtonPressed = true//disabled용 코드
                     
                     if isChecked[0]==true {
-                        checkedCategory.append("Fashion")
+                        checkedCategory.append("tshirt")
                     }
                     if isChecked[1]==true {
-                        checkedCategory.append("Interior")
+                        checkedCategory.append("bed.double")
                     }
                     if isChecked[2]==true {
-                        checkedCategory.append("Food")
+                        checkedCategory.append("fork.knife")
                     }
                     if isChecked[3]==true {
-                        checkedCategory.append("Digital")
+                        checkedCategory.append("desktopcomputer")
                     }
                     if isChecked[4]==true {
-                        checkedCategory.append("Hobby")
+                        checkedCategory.append("gamecontroller")
                     }
                     if isChecked[5]==true {
-                        checkedCategory.append("Etc")
+                        checkedCategory.append("ellipsis.circle")
                     }
 
                     
