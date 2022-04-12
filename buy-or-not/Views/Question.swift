@@ -60,8 +60,7 @@ struct Question: View {
     @State private var qTitle: String = ""
     @State private var content = ""
     
-    // 고민항목
-    // input, check -> input만 넣어야돼
+    // 고민항목 (데이터베이스 저장할 항목들)
     @State private var names = ["", "", ""]
     @State private var prices = ["", "", ""]
     @State private var links = ["", "", ""]

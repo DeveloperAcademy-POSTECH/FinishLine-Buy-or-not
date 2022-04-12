@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Testing: View {
+    
+    
+    //@State var userData = UserData(from: <#Decoder#>)
+    
     @State var data = UserDataManager()
     @State var data2 = PostDataManager()
     //@State user
@@ -23,6 +27,8 @@ struct Testing: View {
             let post = data2.json[num]
             Text(post.title)
         }
+        
+        //userData.fetchData()
         
     }
 }

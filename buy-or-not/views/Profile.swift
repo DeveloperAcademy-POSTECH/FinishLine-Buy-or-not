@@ -6,22 +6,36 @@
 //
 import SwiftUI
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 //ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌 
 struct Profile: View {
     @State private var imageString: String = "profile"
     @State private var nickName: String = "배고픈20대"
     @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
     @State private var badgeBools: Array = [true,true,false]
-//    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
+    //    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
+//
+//    
+//    init () {
+//
+////            { (user, error) in
+////                if error == nil{
+////                    let db = Firestore.firestore()
+////                    var ref: DocumentReference? = nil
+//
+//    }
+//
+    
     var body: some View {
         NavigationView{
             VStack{
                 HStack{
-
+                    
                     Spacer()
                     
-//                    user.setUserName(name: "Daivid")
-                   // print(user.getUserName())
+                    //                    user.setUserName(name: "Daivid")
+                    // print(user.getUserName())
                     Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
                     Spacer()
                 }
@@ -88,8 +102,8 @@ struct Profile: View {
             }
             .padding(.horizontal)
         }
-        }
     }
+}
     struct ProfileBottom: View {
         
         var body: some View {
