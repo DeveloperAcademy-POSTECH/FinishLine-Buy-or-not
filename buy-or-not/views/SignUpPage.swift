@@ -7,8 +7,28 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
+import FirebaseFirestore
+
+// 화면 전환 코드
+struct SignUpContentView: View{
+    @Binding var signUpSuccess:Bool
+    
+    var body: some View{
+        if signUpSuccess{
+            LogInPage(signInSuccess:$signUpSuccess)
+        }
+        else{
+            SignUpPage(signUpSuccess:$signUpSuccess)
+        }
+    }
+}
+
 
 struct SignUpPage: View {
+    
+    // 화면 전환을 위한 값
+    @Binding var signUpSuccess: Bool
     
     //이메일 및 비밀번호 입력
     @State var signUpEmailInput: String = ""
@@ -190,8 +210,6 @@ struct SignUpPage: View {
                     print(nickNameInput)
                     print(checkedCategory)
                     
-                    
-
                 }label: {
                     Text(signUpButtonPressed ?"앱 가입을 진행중이에요" :"가입하기" )
                         .frame(width: 300, height: 42, alignment: .center)
@@ -207,10 +225,11 @@ struct SignUpPage: View {
             
         }
     }
-    
-    struct SignUpPage_Previews: PreviewProvider {
-        static var previews: some View {
-            SignUpPage()
-        }
-    }
 }
+    
+//    struct SignUpPage_Previews: PreviewProvider {
+//        static var previews: some View {
+//            SignUpPage()
+//        }
+//    }
+
