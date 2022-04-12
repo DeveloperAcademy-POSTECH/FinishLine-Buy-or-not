@@ -344,13 +344,14 @@ struct VoteButtonView: View {
         //MARK: - 문제없음
         if buttonState[index] == true  {
             mode_ = 0
-            self.voteDone = true
+            withAnimation(Animation.easeOut(duration: 0.8)) {
+                self.voteDone = true
+            }
         } else {
             // 토글
             for i in 0..<dataCount {
                 if (i == index) {
                     self.buttonState[i] = true
-                    //i가 눌림,
                 } else {
                     self.buttonState[i] = false
                 }
@@ -365,7 +366,8 @@ struct VoteButtonView: View {
                 RoundedRectangle(cornerRadius: 10).frame(width: 300, height: 40).foregroundColor(Color.init(hex: "C7C7CC"))
                 RoundedRectangle(cornerRadius: 10).frame(width: 250, height: 40).foregroundColor(Color.init(hex: "8A67E8"))
                 // 투표 현황 텍스트 추가되어야함
-            }
+            }.transition(AnyTransition.slide)
+      
         } else {
             HStack(spacing : 0) {
                 ForEach (0..<data.count, id: \.self) { idx in
@@ -373,10 +375,8 @@ struct VoteButtonView: View {
 												Divider()
 					                        }
                     Button {
-                        withAnimation {
-                            mode_ = idx + 1
-                            buttonTab(index: idx, dataCount: data.count)
-                        }
+                        mode_ = idx + 1
+                        buttonTab(index: idx, dataCount: data.count)
                     } label: {
                         ZStack {
                             Rectangle()
