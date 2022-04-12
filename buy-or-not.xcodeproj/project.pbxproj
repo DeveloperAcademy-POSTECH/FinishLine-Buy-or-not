@@ -34,6 +34,7 @@
 		A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3DB27FEC003007A1054 /* SignUpPage.swift */; };
 		A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35EB3E227FF247F007A1054 /* interestSellect.swift */; };
 		A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */; };
+		A381424F2804556E0036E65C /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A381424E2804556E0036E65C /* Regex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		A35EB3DB27FEC003007A1054 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpPage.swift; path = "buy-or-not/views/SignUpPage.swift"; sourceTree = SOURCE_ROOT; };
 		A35EB3E227FF247F007A1054 /* interestSellect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = interestSellect.swift; path = "buy-or-not/models/SignUp/interestSellect.swift"; sourceTree = SOURCE_ROOT; };
 		A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindMemberInfoPage.swift; path = "buy-or-not/views/FindMemberInfoPage.swift"; sourceTree = SOURCE_ROOT; };
+		A381424E2804556E0036E65C /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = "buy-or-not/models/SignUp/Regex.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +152,6 @@
 				A35EB3DB27FEC003007A1054 /* SignUpPage.swift */,
 				A3731AFC2800259F002335D7 /* FindMemberInfoPage.swift */,
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
-				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 				87EFBC4C280018CD006ECFBA /* MainCategory.swift */,
 				63EC0FEA27FFCB9200560205 /* Profile.swift */,
@@ -194,7 +195,9 @@
 		A35EB3E127FF23DB007A1054 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				A3571EBD27FEA51C00BCA838 /* CheckBoxView.swift */,
 				A35EB3E227FF247F007A1054 /* interestSellect.swift */,
+				A381424E2804556E0036E65C /* Regex.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */,
 				A3571EC227FEA65C00BCA838 /* LoadingPage.swift in Sources */,
 				7A4284AF27FD82C600E9B88E /* (null) in Sources */,
+				A381424F2804556E0036E65C /* Regex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

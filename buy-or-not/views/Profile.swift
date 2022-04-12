@@ -226,7 +226,7 @@ struct Profile: View {
                                                                 , height: 35)
                     }
                     Spacer().frame(width:35)
-                    if iconArrays[1] {
+                    if iconArrays[2] {
                         ZStack{
                             Image(systemName: "airtag")
                                 .resizable(resizingMode: .stretch)
