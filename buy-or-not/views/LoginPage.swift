@@ -9,10 +9,12 @@ import AuthenticationServices
 
 struct LogInPage: View {
     
+    //정보 입력
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
-    @State var idRememberCheckboxInput: Bool = false
+    @State var localAutoLoginToggle: Bool = false
     
+    //오토로그인
     @State var isAutoLogin: Bool = false
     @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
     @State var rememberEmail: String = (UserDefaults.standard.string(forKey: "ID") ?? "")
@@ -27,13 +29,15 @@ struct LogInPage: View {
         
         NavigationView {
             VStack() {
+                
+                //앱로고
                 Image("BuyOrNotLogo")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .padding(.top, 48)
                     .padding(.bottom, 6)
                 
-
+                //이메일 텍스트필드
                 TextField("이메일", text: $emailInput)
                     .autocapitalization(.none)
                     .keyboardType(.emailAddress) //이메일용 키보드
@@ -45,9 +49,8 @@ struct LogInPage: View {
                     )
                     .padding(.vertical, 6.0)
                 
-                
+                //비밀번호 텍스트필드
                 ZStack() {
-
                     SecureInputView("비밀번호", text: $passwordInput)
                         .autocapitalization(.none)
                         .padding(.horizontal, 12.0)
@@ -58,8 +61,6 @@ struct LogInPage: View {
                         )
                         .padding(.vertical, 6.0)
                 }
-                
-
                 
 //                 HStack{
 //                     //아이디 기억하기
@@ -84,14 +85,23 @@ struct LogInPage: View {
 //                             .foregroundColor(.gray)
 //                             .font(.system(size: 18))
 
-                //아이디 기억하기
-                HStack() {
+                //자동로그인 토글
+                HStack{
+//                    Toggle("text", isOn: $localAutoLoginToggle)
+                    Toggle(isOn: $localAutoLoginToggle) {
+                    }
+                    .toggleStyle(CheckBoxView())
+                    .frame(width: 30, height: 30)
                     
-                    Toggle(isOn: $idRememberCheckboxInput) { }
+                    Text("자동 로그인")
+                        .foregroundColor(Color.gray)
+                        .font(.system(size: 16))
+
                 }
                 
                 
                 
+                //로그인 버튼
                 Button() {
                     if isAutoLogin{
                         UserDefaults.standard.set(emailInput, forKey: "ID")
@@ -108,7 +118,7 @@ struct LogInPage: View {
                   .cornerRadius(12)
                   .padding(.vertical, 24.0)
                 
-                //애플로 로그인
+                //애플로 로그인 버튼
                 SignInWithAppleButton(
                     onRequest: { request in
                         
@@ -121,6 +131,7 @@ struct LogInPage: View {
                 .frame(width: 300.0, height: 42.0)
                 .padding(.vertical, 24.0)
                 
+                //아이디/비밀번호 찾기 네비게이션뷰
                 NavigationLink(destination: FindMemberInfoPage()) {
                     Text("아이디/비밀번호 찾기")
                 }
@@ -128,6 +139,7 @@ struct LogInPage: View {
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
+                //계정이 없으신가요? 네비게이션뷰
                 NavigationLink(destination: SignUpPage()) {
                     Text("계정이 없으신가요?")
                 }
