@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D2500D527FE74E700FB6CA0 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2500D427FE74E700FB6CA0 /* FeedView.swift */; };
+		638E81F6280507BD00402CB6 /* ProfileEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E81F5280507BD00402CB6 /* ProfileEdited.swift */; };
 		63D247E62801A97E00CB7CD8 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D247E52801A97E00CB7CD8 /* Answer.swift */; };
 		63EC0FEB27FFCB9200560205 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EC0FEA27FFCB9200560205 /* Profile.swift */; };
 		7A15082127FDE7BC0053C092 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A15082027FDE7BC0053C092 /* Feed.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		2D2500D427FE74E700FB6CA0 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		638E81F5280507BD00402CB6 /* ProfileEdited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEdited.swift; sourceTree = "<group>"; };
 		63D247E52801A97E00CB7CD8 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "buy-or-not/views/Answer.swift"; sourceTree = SOURCE_ROOT; };
 		63EC0FEA27FFCB9200560205 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "buy-or-not/views/Profile.swift"; sourceTree = SOURCE_ROOT; };
 		7A15082027FDE7BC0053C092 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				87EFBC4C280018CD006ECFBA /* MainCategory.swift */,
 				63EC0FEA27FFCB9200560205 /* Profile.swift */,
 				63D247E52801A97E00CB7CD8 /* Answer.swift */,
+				638E81F5280507BD00402CB6 /* ProfileEdited.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				63EC0FEB27FFCB9200560205 /* Profile.swift in Sources */,
 				7A15082127FDE7BC0053C092 /* Feed.swift in Sources */,
 				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
+				638E81F6280507BD00402CB6 /* ProfileEdited.swift in Sources */,
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
 				87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */,
 				7A15082527FDE8100053C092 /* Color.swift in Sources */,
