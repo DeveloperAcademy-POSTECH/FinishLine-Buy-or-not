@@ -90,7 +90,7 @@ struct LogInPage: View {
 //                    Toggle("text", isOn: $localAutoLoginToggle)
                     Toggle(isOn: $localAutoLoginToggle) {
                     }
-                    .toggleStyle(CheckBoxView())
+                    .toggleStyle(CheckBoxView(toggleColor: .gray))
                     .frame(width: 30, height: 30)
                     
                     Text("자동 로그인")

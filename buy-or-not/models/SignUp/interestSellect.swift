@@ -52,7 +52,7 @@ struct interestSellect: View {
             Toggle(isOn: $isChecked) {
             }
             .padding(.bottom, 24.0)
-            .toggleStyle(CheckBoxView())
+            .toggleStyle(CheckBoxView(toggleColor: .black))
             .frame(width: 30, height: 60)
         }
         .padding(.vertical, 6.0)

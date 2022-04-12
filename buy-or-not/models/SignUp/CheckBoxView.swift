@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct CheckBoxView: ToggleStyle {
+    
+    @State var toggleColor: Color
 
     func makeBody(configuration: Self.Configuration) -> some View {
 
@@ -18,7 +20,7 @@ struct CheckBoxView: ToggleStyle {
             Image(systemName: configuration.isOn ? "checkmark.square" : "square")
                 .resizable()
                 .frame(width: 18, height: 18)
-                .foregroundColor(configuration.isOn ? .black : .black)
+                .foregroundColor(toggleColor)
                 .font(.system(size: 18, weight: .semibold, design: .default))
                 .foregroundColor(.black)
         }
