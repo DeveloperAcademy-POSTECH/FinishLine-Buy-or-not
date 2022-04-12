@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D4F87272802F216004E2228 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4F87262802F216004E2228 /* Color.swift */; };
+		631E811328058B3A00C13664 /* testUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E811228058B3A00C13664 /* testUser.swift */; };
 		63EC0FEB27FFCB9200560205 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EC0FEA27FFCB9200560205 /* Profile.swift */; };
 		7A17D5B527FEBC7100FB8D72 /* QuestionItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17D5B427FEBC7100FB8D72 /* QuestionItemData.swift */; };
 		7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17D5B627FEC15400FB8D72 /* QuestionItemManager.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		2D4F87262802F216004E2228 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		631E811228058B3A00C13664 /* testUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testUser.swift; sourceTree = "<group>"; };
 		63EC0FEA27FFCB9200560205 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "buy-or-not/views/Profile.swift"; sourceTree = SOURCE_ROOT; };
 		7A17D5B427FEBC7100FB8D72 /* QuestionItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionItemData.swift; sourceTree = "<group>"; };
 		7A17D5B627FEC15400FB8D72 /* QuestionItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionItemManager.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				87DD32A128047CA0005AC126 /* User.swift */,
 				87DD32A328047CAD005AC126 /* PostData.swift */,
 				87DD32A528047E8F005AC126 /* PostDataManager.swift */,
+				631E811228058B3A00C13664 /* testUser.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */,
 				7A17D5BC27FECDF400FB8D72 /* AllPosts.swift in Sources */,
 				87DD32A828047F74005AC126 /* Testing.swift in Sources */,
+				631E811328058B3A00C13664 /* testUser.swift in Sources */,
 				7A17D5BA27FECD1E00FB8D72 /* QuestionOnGoing.swift in Sources */,
 				7AEC19ED280262E400C48428 /* Search.swift in Sources */,
 				A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */,

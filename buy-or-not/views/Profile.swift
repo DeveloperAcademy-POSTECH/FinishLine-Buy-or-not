@@ -10,21 +10,51 @@ import FirebaseAuth
 import FirebaseFirestore
 //ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌 
 struct Profile: View {
+    var authInstance = FirebaseAuth.Auth.auth()
     @State private var imageString: String = "profile"
     @State private var nickName: String = "배고픈20대"
     @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
     @State private var badgeBools: Array = [true,true,false]
     //    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
+    func getData() {
+        let docRef = Firestore.firestore().collection("User").whereField("id", isEqualTo: authInstance.currentUser?.uid ?? "")
+        
+        docRef.getDocuments{(querySnapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            } else if querySnapshot!.documents.count != 1 {
+                print("More than one document or none")
+            } else {
+                let document = querySnapshot!.documents.first
+                let dataDescription = document?.data()
+                guard let userName = dataDescription?["name"] else {
+                    return
+                }
+                print(userName)
+            }
+        }
+    }
+//        var currentUser = FirebaseAuth.Auth.auth().currentUser
 //
-//    
-//    init () {
-//
-////            { (user, error) in
-////                if error == nil{
-////                    let db = Firestore.firestore()
-////                    var ref: DocumentReference? = nil
-//
-//    }
+//        Firestore.firestore().collection("User").document(userID!).getDocument { (docSnapshot, error) in
+//                    if let doc = docSnapshot {
+//                        if let name = doc.get("name") as? String {
+//                            completion(name)
+//                            print(name)// success; return name
+//                        } else {
+//                            print("error getting field")
+//                            completion(nil) // error getting field; return nil
+//                        }
+//                    } else {
+//                        if let error = error {
+//                            print(error)
+//                        }
+//                        completion(nil) // error getting document; return nil
+//                    }
+//                }
+    init() {
+        getData()
+    }
 //
     
     var body: some View {
