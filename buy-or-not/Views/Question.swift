@@ -19,11 +19,11 @@ struct Contents: View{
     
     @State private var image = UIImage()
     @State private var showSheet = false
-    @Binding var contentName:String
+    @Binding var contentName: String
     
-    @Binding var contentPrice:String
+    @Binding var contentPrice: String
     
-    @Binding var contentLink:String
+    @Binding var contentLink: String
     
 //    func getData() -> [String] {
 //        var image_to_String = image.toP
@@ -33,10 +33,10 @@ struct Contents: View{
     
     var body: some View{
         DisclosureGroup("고민항목 \(number + 1)", isExpanded: $topExpand[number]) {
-            TextField("고민항목 이름", text: $name)
-            TextField("(선택) 가격을 입력해주세요", text: $price).keyboardType(.numberPad)
-            TextField("(선택) 링크 추가", text: $link)
-            let _ = print(name, price, link)
+            TextField("고민항목 이름", text: $contentName)
+            TextField("(선택) 가격을 입력해주세요", text: $contentPrice).keyboardType(.numberPad)
+            TextField("(선택) 링크 추가", text: $contentLink)
+            //let _ = print(name, price, link)
             Image(uiImage: self.image)
                 .resizable()
                 .frame(width: 100, height: 100)
@@ -59,15 +59,12 @@ struct Question: View {
     @State private var qCategory: String = "카테고리"
     @State private var qTitle: String = ""
     @State private var content = ""
-    @State private var name = ""
-    @State private var price = ""
-    @State private var link = ""
-    @State private var name2 = ""
-    @State private var price2 = ""
-    @State private var link2 = ""
-    @State private var name3 = ""
-    @State private var price3 = ""
-    @State private var link3 = ""
+    
+    // 고민항목
+    // input, check -> input만 넣어야돼
+    @State private var names = ["", "", ""]
+    @State private var prices = ["", "", ""]
+    @State private var links = ["", "", ""]
     
     @State private var categoryExpand: Bool = false
     @State private var Bools: [Bool] = [true, false]
@@ -75,7 +72,7 @@ struct Question: View {
     
     
     @State var posts = PostData()
-    
+    var num = 0
     
     var body: some View {
         
@@ -95,9 +92,12 @@ struct Question: View {
                         }
                     }
                 }
-                Contents(number: 0, contentName: $name, contentPrice: $price, contentLink: $link)
-                Contents(number: 1, contentName: $name2, contentPrice: $price2, contentLink: $link2)
-                Contents(number: 2, contentName: $name3, contentPrice: $price3, contentLink: $link3)
+                Contents(number: 0, contentName: $names[0], contentPrice: $prices[0], contentLink: $links[0])
+                
+                Contents(number: 1, contentName: $names[1], contentPrice: $prices[1], contentLink: $links[1])
+                //self.num = 2
+                Contents(number: 2, contentName: $names[2], contentPrice: $prices[2], contentLink: $links[2])
+                
                 // 고민내용
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -119,9 +119,9 @@ struct Question: View {
             
             
             Button("등록하기") {
-                print(name)
-                print(price2)
-                print(link3)
+                print(names)
+                print(prices)
+                print(links)
                 //print(qTitle)
                 //print(qCategory)
                 //print(
