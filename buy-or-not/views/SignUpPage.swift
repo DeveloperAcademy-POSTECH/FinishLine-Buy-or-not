@@ -47,6 +47,10 @@ struct SignUpPage: View {
     @State var interestCheckHobby: Bool = false
     @State var interestCheckEtc: Bool = false
     
+    //체크박스 배열
+    @State var isChecked: [Bool] = [false,false,false,false,false,false]
+    @State var checkedCategory: [String] = []
+    
     //가입하기 버튼 비활성화
     @State private var signUpButtonPressed = false
     
@@ -161,17 +165,17 @@ struct SignUpPage: View {
                 
                 //관심분야
                 Group {
-                    interestSellect(interestIcon: "tshirt", interestTitle: "패션/뷰티", interestSubTitle: "#신발 #티셔츠 #화장품 #가을코디", checkboxInput: interestCheckFashion)
+                    interestSellect(isChecked: $isChecked[0], interestIcon: "tshirt", interestTitle: "패션/뷰티", interestSubTitle: "#신발 #티셔츠 #화장품 #가을코디", checkboxInput: interestCheckFashion)
                     
-                    interestSellect(interestIcon: "bed.double", interestTitle: "가구/인테리어", interestSubTitle: "#소파 #매트리스 #스탠드 #그릇", checkboxInput: interestCheckInterior)
+                    interestSellect(isChecked: $isChecked[1], interestIcon: "bed.double", interestTitle: "가구/인테리어", interestSubTitle: "#소파 #매트리스 #스탠드 #그릇", checkboxInput: interestCheckInterior)
                     
-                    interestSellect(interestIcon: "fork.knife", interestTitle: "식품/외식", interestSubTitle: "#자취요리 #맛집 #가성비 #JMT", checkboxInput: interestCheckFood)
+                    interestSellect(isChecked: $isChecked[2],interestIcon: "fork.knife", interestTitle: "식품/외식", interestSubTitle: "#자취요리 #맛집 #가성비 #JMT", checkboxInput: interestCheckFood)
                     
-                    interestSellect(interestIcon: "desktopcomputer", interestTitle: "전자제품/디지털 가전", interestSubTitle: "#컴퓨터 #세탁기 #맥북 #모니터", checkboxInput: interestCheckDigital)
+                    interestSellect(isChecked: $isChecked[3],interestIcon: "desktopcomputer", interestTitle: "전자제품/디지털 가전", interestSubTitle: "#컴퓨터 #세탁기 #맥북 #모니터", checkboxInput: interestCheckDigital)
                     
-                    interestSellect(interestIcon: "gamecontroller", interestTitle: "취미/여가", interestSubTitle: "#여행 #게임 #스포츠 #힐링 #음악", checkboxInput: interestCheckHobby)
+                    interestSellect(isChecked: $isChecked[4],interestIcon: "gamecontroller", interestTitle: "취미/여가", interestSubTitle: "#여행 #게임 #스포츠 #힐링 #음악", checkboxInput: interestCheckHobby)
                     
-                    interestSellect(interestIcon: "ellipsis.circle", interestTitle: "기타", interestSubTitle: "#자동차 #결혼기념일 #생일선물", checkboxInput: interestCheckEtc)
+                    interestSellect(isChecked: $isChecked[5],interestIcon: "ellipsis.circle", interestTitle: "기타", interestSubTitle: "#자동차 #결혼기념일 #생일선물", checkboxInput: interestCheckEtc)
                 }
                 
                 
@@ -182,24 +186,30 @@ struct SignUpPage: View {
                     //action
                     signUpButtonPressed = true//disabled용 코드
                     
-                    // firebase에 회원 정보 등록
-                    var authInstance = FirebaseAuth.Auth.auth()
-                    authInstance.createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
-                    { (user, error) in
-                        if error == nil{
-                            let db = Firestore.firestore()
-                            var ref: DocumentReference? = nil
-                            ref = db.collection("Users").addDocument(data: [ // 새로 만든 Users 구조로 바꿀 예쩡
-                                // 수정이 필요한 부분!
-                                //"id": user.user.uid?,
-                                "comment": "안녕하세요",
-                                "email": signUpEmailInput,
-                                "imageUrl": "imageURL", // image URL 기본 사진 넣어야함.
-                                "interest": ["운동", "food"], // 추후 할로겐 정보로 업데이트 해야함.
-                                "name": nickNameInput])
-                            signUpSuccess.toggle()
-                        }
+                    if isChecked[0]==true {
+                        checkedCategory.append("tshirt")
                     }
+                    if isChecked[1]==true {
+                        checkedCategory.append("bed.double")
+                    }
+                    if isChecked[2]==true {
+                        checkedCategory.append("fork.knife")
+                    }
+                    if isChecked[3]==true {
+                        checkedCategory.append("desktopcomputer")
+                    }
+                    if isChecked[4]==true {
+                        checkedCategory.append("gamecontroller")
+                    }
+                    if isChecked[5]==true {
+                        checkedCategory.append("ellipsis.circle")
+                    }
+
+                    
+                    print(signUpEmailInput)
+                    print(nickNameInput)
+                    print(checkedCategory)
+                    
                 }label: {
                     Text(signUpButtonPressed ?"앱 가입을 진행중이에요" :"가입하기" )
                         .frame(width: 300, height: 42, alignment: .center)
