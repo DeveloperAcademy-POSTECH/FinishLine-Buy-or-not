@@ -13,6 +13,14 @@ import FirebaseAuth
 import SwiftUI
 
 struct TestUser: Codable, Identifiable {
+    @DocumentID var id: String? = UUID().uuidString
+    var name: String
+    var comment: String
+    var email: String
+    var password: String
+    var imageURL: String
+    var interested: String
+    
     enum CodingKeys: CodingKey {
         case name
         case comment
@@ -21,13 +29,7 @@ struct TestUser: Codable, Identifiable {
         case imageURL
         case interested
     }
-    @DocumentID var id: String? = UUID().uuidString
-    var name: String
-    var comment: String
-    var email: String
-    var password: String
-    var imageURL: String
-    var interested: String
+    
 }
 let testUserData = [
     TestUser(name:"홍길동",comment:"반갑습니다 홍길동입니다",email:"gilldong@naver.com",password: "rlfehd1234",imageURL:
@@ -111,32 +113,54 @@ class TestUsersViewModel: ObservableObject {
                 let password = data["password"] as? String ?? ""
                 let imageURL = data["imageURL"] as? String ?? ""
                 let interested = data["interested"] as? String ?? ""
-                return TestUser(id: .init(), name:name, comment:comment, email:email, password:password, imageURL: imageURL, interested: interested)
+                return TestUser(name:name, comment:comment, email:email, password: password,imageURL: imageURL,interested: interested)
                 }
     }
     }
-    func addData() {
-//        func getData() {
-////            let docRef = Firestore.firestore().collection("User").whereField("id", isEqualTo: authInstance.currentUser?.uid ?? "")
-////
-////            docRef.getDocuments{(querySnapshot, err) in
-////                if let err = err {
-////                    print(err.localizedDescription)
-////                } else if querySnapshot!.documents.count != 1 {
-////                    print("More than one document or none")
-////                } else {
-////                    let document = querySnapshot!.documents.first
-////                    let dataDescription = document?.data()
-////                    guard let userName = dataDescription?["name"] else {
-////                        return
-////                    }
-////                    print(userName)
-////                }
-////            }
-//        }
-//        let docRef = Firestore.firestore().collection("User").whereField("id", isEqualTo: authInstance)
+    func addData(name:String, comment:String, email:String, password:String, imageURL:String, interested:String) {
+        var authInstance = FirebaseAuth.Auth.auth()
+        authInstance.createUser(withEmail: email, password: password)
+        { (user, error) in
+            if error == nil{
+                print("1")
+                guard let userID = Auth.auth().currentUser?.uid else {
+                    print("2")
+                    return }
+                let db = Firestore.firestore()
+                var ref: DocumentReference? = nil
+                ref = db.collection("User").addDocument(data: [
+                    "id":userID,
+                    "name":name,
+                    "comment":comment,
+                    "email":email,
+                    "password":password,
+                    "imageURL:":imageURL,
+                    "interestd":interested
+                    ]
+                )}
+}
     }
     func deleteData() {
         
     }
+    
 }
+//
+//            func getData() {
+//            ////            let docRef = Firestore.firestore().collection("User").whereField("id", isEqualTo: authInstance.currentUser?.uid ?? "")
+//            ////
+//            ////            docRef.getDocuments{(querySnapshot, err) in
+//            ////                if let err = err {
+//            ////                    print(err.localizedDescription)
+//            ////                } else if querySnapshot!.documents.count != 1 {
+//            ////                    print("More than one document or none")
+//            ////                } else {
+//            ////                    let document = querySnapshot!.documents.first
+//            ////                    let dataDescription = document?.data()
+//            ////                    guard let userName = dataDescription?["name"] else {
+//            ////                        return
+//            ////                    }
+//            ////                    print(userName)
+//            ////                }
+//            ////            }
+//            //        }
