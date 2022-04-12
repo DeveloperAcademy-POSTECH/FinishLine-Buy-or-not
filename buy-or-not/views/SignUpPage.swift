@@ -8,27 +8,28 @@
 import SwiftUI
 import AuthenticationServices
 import FirebaseAuth
-import FirebaseFirestore
+ import FirebaseFirestore
 
-// 화면 전환 코드
-struct SignUpContentView: View{
-    @Binding var signUpSuccess:Bool
-    
-    var body: some View{
-        if signUpSuccess{
-            LogInPage(signInSuccess:$signUpSuccess)
-        }
-        else{
-            SignUpPage(signUpSuccess:$signUpSuccess)
-        }
-    }
-}
+ // 화면 전환 코드
+ struct SignUpContentView: View{
+     @State var signUpButton = false
+     @State var logInButton = false
+     
+     var body: some View{
+         if signUpButton {
+             LogInPage(logInButton: $logInButton)
+         } else {
+             SignUpPage(signUpButton: $signUpButton)
+         }
+     }
+ }
+
 
 
 struct SignUpPage: View {
     
     // 화면 전환을 위한 값
-    @Binding var signUpSuccess: Bool
+    @Binding var signUpButton: Bool
     
     //이메일 및 비밀번호 입력
     @State var signUpEmailInput: String = ""
@@ -189,7 +190,7 @@ struct SignUpPage: View {
                         if error == nil{
                             let db = Firestore.firestore()
                             var ref: DocumentReference? = nil
-                            ref = db.collection("Users").addDocument(data: [ // 새로 만든 Users 구조로 바꿀 예쩡
+                            ref = db.collection("User").addDocument(data: [ // User -> Users로 방
                                 // 수정이 필요한 부분!
                                 //"id": user.user.uid?,
                                 "comment": "안녕하세요",
@@ -197,7 +198,7 @@ struct SignUpPage: View {
                                 "imageUrl": "imageURL", // image URL 기본 사진 넣어야함.
                                 "interest": ["운동", "food"], // 추후 할로겐 정보로 업데이트 해야함.
                                 "name": nickNameInput])
-                            signUpSuccess.toggle()
+                            signUpButton.toggle()
                         }
                     }
                 }label: {

@@ -9,20 +9,20 @@ import AuthenticationServices
 import FirebaseAuth
 
 struct LoginContentView: View{
-    @State var signInSuccess = false
+    @State var logInButton = false
     var body: some View{
-        if signInSuccess {
+        if logInButton {
             Main()
         }
         else{
-            LogInPage(signInSuccess: $signInSuccess)
+            LogInPage(logInButton: $logInButton)
         }
     }
 }
 
 struct LogInPage: View {
     
-    @Binding var signInSuccess: Bool // 버튼 이동
+    @Binding var logInButton: Bool // 버튼 이동
     
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
@@ -121,7 +121,7 @@ struct LogInPage: View {
                             return
                         }
                         print("You 성공")
-                        signInSuccess.toggle() // 화면 전환
+                        logInButton.toggle() // 화면 전환
                     })
                     
                 }label: {
@@ -153,12 +153,11 @@ struct LogInPage: View {
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
-                NavigationLink(destination: SignUpPage(signUpSuccess: $signInSuccess)) {
+                NavigationLink(destination:SignUpContentView()) {
                     Text("계정이 없으신가요?")
                 }
                 .foregroundColor(Color(hex: "8A67E8"))
             }
         }
-        
     }
 }
