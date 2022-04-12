@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct interestSellect: View {
-    
+    @Binding var isChecked: Bool
     @State var interestIcon: String = ""
     @State var interestTitle: String = ""
     @State var interestSubTitle: String = ""
     
     @State var checkboxInput: Bool = false
+    
+    
     
     var body: some View {
         HStack() {
@@ -47,7 +49,7 @@ struct interestSellect: View {
             }
             .frame(width: 210, height: 60, alignment: .center)
             
-            Toggle(isOn: $checkboxInput) {
+            Toggle(isOn: $isChecked) {
             }
             .padding(.bottom, 24.0)
             .toggleStyle(CheckBoxView())
@@ -56,11 +58,11 @@ struct interestSellect: View {
         .padding(.vertical, 6.0)
     }
 }
-
-struct interestSellect_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        interestSellect()
-    }
-}
-
+//
+//struct interestSellect_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        interestSellect()
+//    }
+//}
+//
