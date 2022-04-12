@@ -153,7 +153,7 @@ struct LogInPage: View {
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
-                NavigationLink(destination: SignUpPage()) {
+                NavigationLink(destination: SignUpPage(signUpSuccess: $signInSuccess)) {
                     Text("계정이 없으신가요?")
                 }
                 .foregroundColor(Color(hex: "8A67E8"))

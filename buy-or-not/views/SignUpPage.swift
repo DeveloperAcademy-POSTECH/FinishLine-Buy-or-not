@@ -7,8 +7,28 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
+import FirebaseFirestore
+
+// 화면 전환 코드
+struct SignUpContentView: View{
+    @Binding var signUpSuccess:Bool
+    
+    var body: some View{
+        if signUpSuccess{
+            LogInPage(signInSuccess:$signUpSuccess)
+        }
+        else{
+            SignUpPage(signUpSuccess:$signUpSuccess)
+        }
+    }
+}
+
 
 struct SignUpPage: View {
+    
+    // 화면 전환을 위한 값
+    @Binding var signUpSuccess: Bool
     
     //이메일 및 비밀번호 입력
     @State var signUpEmailInput: String = ""
@@ -161,6 +181,25 @@ struct SignUpPage: View {
                 Button {
                     //action
                     signUpButtonPressed = true//disabled용 코드
+                    
+                    // firebase에 회원 정보 등록
+                    var authInstance = FirebaseAuth.Auth.auth()
+                    authInstance.createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
+                    { (user, error) in
+                        if error == nil{
+                            let db = Firestore.firestore()
+                            var ref: DocumentReference? = nil
+                            ref = db.collection("Users").addDocument(data: [ // 새로 만든 Users 구조로 바꿀 예쩡
+                                // 수정이 필요한 부분!
+                                //"id": user.user.uid?,
+                                "comment": "안녕하세요",
+                                "email": signUpEmailInput,
+                                "imageUrl": "imageURL", // image URL 기본 사진 넣어야함.
+                                "interest": ["운동", "food"], // 추후 할로겐 정보로 업데이트 해야함.
+                                "name": nickNameInput])
+                            signUpSuccess.toggle()
+                        }
+                    }
                 }label: {
                     Text(signUpButtonPressed ?"앱 가입을 진행중이에요" :"가입하기" )
                         .frame(width: 300, height: 42, alignment: .center)
@@ -176,10 +215,11 @@ struct SignUpPage: View {
             
         }
     }
-    
-    struct SignUpPage_Previews: PreviewProvider {
-        static var previews: some View {
-            SignUpPage()
-        }
-    }
 }
+    
+//    struct SignUpPage_Previews: PreviewProvider {
+//        static var previews: some View {
+//            SignUpPage()
+//        }
+//    }
+
