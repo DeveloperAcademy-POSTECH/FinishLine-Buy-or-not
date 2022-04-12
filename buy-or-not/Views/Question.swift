@@ -13,12 +13,14 @@ private let categorys: [String] = [
 struct Contents: View{
     let number: Int
     @State private var topExpand: [Bool] = [true, false, false]
-    @State private var name: String = ""
-    @State private var price: String = ""
-    @State private var link: String = ""
-    
     @State private var image = UIImage()
     @State private var showSheet = false
+    
+    // firebase를 위해 필요한 binding
+    @Binding var name: String
+    @Binding var price: String
+    @Binding var link: String
+
     
     
     var body: some View{
@@ -53,6 +55,12 @@ struct Question: View {
     @State private var categoryExpand: Bool = false
     @State private var Bools: [Bool] = [true, false]
     @State private var addItem: [Bool] = [true, false, false, false]
+    
+    // firebase를 위해 필요한 state(binding) (고민항목값들)
+    @State private var names = ["", "", ""]
+    @State private var prices = ["", "", ""]
+    @State private var links = ["", "", ""]
+    
     var body: some View {
         VStack{
             Form{
@@ -71,15 +79,13 @@ struct Question: View {
                     }
                 }
                 
-                // 고민항목
-                ForEach(0..<3){num in
-                    if addItem[num]{
-                        Contents(number: num)
-                            .onTapGesture{
-                                addItem[num+1] = Bools[0]
-                            }
-                    }
-                }
+                // 고민항목들
+                Contents(number: 0, name: $names[0], price: $prices[0], link: $links[0])
+                
+                Contents(number: 1, name: $names[1], price: $prices[1], link: $links[1])
+                //self.num = 2
+                Contents(number: 2, name: $names[2], price: $prices[2], link: $links[2])
+                
                 
                 // 고민내용
                 ZStack(alignment: .topLeading) {
@@ -102,8 +108,14 @@ struct Question: View {
             
             
             Button("등록하기") {
-                // action
-               
+                // DB에 값 넘길거예요!
+                print(qCategory) // post의 카테고리
+                print(qTitle) // post의 글 제목
+                // 고민 항목들이 배열로 들어가있음
+                print(names)
+                print(prices)
+                print(links)
+                print(content) // 고민 내용
                 
             }.foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
