@@ -14,6 +14,7 @@ struct QuestionItemData: Codable, Identifiable {
         case votes
         case comments
         case imageURL
+        case originatedDate
         case options
     }
 
@@ -23,12 +24,15 @@ struct QuestionItemData: Codable, Identifiable {
     var votes: Int
     var comments: Int
     var imageURL: String
+    var originatedDate: String
     var options: [Options]
 }
 
 struct Options: Codable, Hashable {
     var name: String
     var pressed: Bool
+    var itemURL: String
+    var cost: Int
     
     func pressedToggle(pressed: inout Bool) {
         pressed = !pressed
