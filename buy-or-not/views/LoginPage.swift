@@ -6,8 +6,23 @@
 //
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
+
+struct LoginContentView: View{
+    @State var signInSuccess = false
+    var body: some View{
+        if signInSuccess {
+            Main()
+        }
+        else{
+            LogInPage(signInSuccess: $signInSuccess)
+        }
+    }
+}
 
 struct LogInPage: View {
+    
+    @Binding var signInSuccess: Bool // 버튼 이동
     
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
@@ -99,6 +114,16 @@ struct LogInPage: View {
                         UserDefaults.standard.set(isAutoLogin, forKey: "CHECK")
                         //print("saved value: \(emailInput), \(passwordInput)")
                     }
+                    // 로그인 성공하면
+                    FirebaseAuth.Auth.auth().signIn(withEmail: emailInput, password: passwordInput, completion: {result, error in
+                        guard error == nil else{
+                            //shwo account creation
+                            return
+                        }
+                        print("You 성공")
+                        signInSuccess.toggle() // 화면 전환
+                    })
+                    
                 }label: {
                     Text("로그인")
                         .frame(width: 180, height: 42, alignment: .center)
@@ -107,7 +132,7 @@ struct LogInPage: View {
                   .background(Color(hex: "8A67E8"))
                   .cornerRadius(12)
                   .padding(.vertical, 24.0)
-                
+                  
                 //애플로 로그인
                 SignInWithAppleButton(
                     onRequest: { request in
@@ -135,13 +160,5 @@ struct LogInPage: View {
             }
         }
         
-    }
-    
-    
-    
-    struct LogInPage_Previews: PreviewProvider {
-        static var previews: some View {
-            LogInPage()
-        }
     }
 }
