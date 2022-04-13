@@ -21,7 +21,10 @@ struct LoginContentView: View{
 }
 
 struct LogInPage: View {
-    
+    // 해결
+    @Binding var signInSuccess: Bool
+    //error 해결
+     @State var signUpSuccess = false
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State var localAutoLoginToggle: Bool = false
@@ -35,7 +38,7 @@ struct LogInPage: View {
     
     var body: some View {
 
-       
+      
         let email = rememberEmail == "" ? $emailInput : $rememberEmail
         let password = rememberPassword == "" ? $passwordInput : $rememberPassword
         
@@ -162,7 +165,7 @@ struct LogInPage: View {
                 .padding(.bottom, 12.0)
                 
                 //계정이 없으신가요? 네비게이션뷰
-                NavigationLink(destination: SignUpPage()) {
+                NavigationLink(destination: SignUpPage(signUpSuccess: $signUpSuccess)) {
 
                     Text("계정이 없으신가요?")
                 }
