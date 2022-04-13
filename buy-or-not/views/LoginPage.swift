@@ -22,8 +22,12 @@ struct LoginContentView: View{
 
 struct LogInPage: View {
     
+<<<<<<< Updated upstream
     @Binding var logInButton: Bool // 버튼 이동
     
+=======
+    @Binding var signInSuccess: Bool
+>>>>>>> Stashed changes
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State var idRememberCheckboxInput: Bool = false
@@ -153,7 +157,13 @@ struct LogInPage: View {
                 .padding(.top, 24.0)
                 .padding(.bottom, 12.0)
                 
+<<<<<<< Updated upstream
                 NavigationLink(destination:SignUpContentView()) {
+=======
+                //계정이 없으신가요? 네비게이션뷰
+                NavigationLink(destination: SignUpPage(signUpSuccess: $signInSuccess)) {
+
+>>>>>>> Stashed changes
                     Text("계정이 없으신가요?")
                 }
                 .foregroundColor(Color(hex: "8A67E8"))
