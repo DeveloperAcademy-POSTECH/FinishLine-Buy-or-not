@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2D4F87272802F216004E2228 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4F87262802F216004E2228 /* Color.swift */; };
+		370CBE582806F7180038C86E /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE572806F7180038C86E /* PullToRefresh.swift */; };
+		370CBE5A2806F7370038C86E /* QuestionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE592806F7370038C86E /* QuestionItem.swift */; };
+		370CBE5C2806F74D0038C86E /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE5B2806F74D0038C86E /* VoteButtonView.swift */; };
+		370CBE5E2806F75E0038C86E /* LinkURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE5D2806F75E0038C86E /* LinkURL.swift */; };
+		37A745982806E0A10052A483 /* songcool_PostJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 37A745972806E0A10052A483 /* songcool_PostJSON.json */; };
 		37E64C062805AC92007F1E24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37E64C052805AC92007F1E24 /* GoogleService-Info.plist */; };
 		37E64C092805ACD9007F1E24 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 37E64C082805ACD9007F1E24 /* FirebaseFirestore */; };
 		37E64C0B2805ACF8007F1E24 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E64C0A2805ACF8007F1E24 /* Posts.swift */; };
@@ -44,6 +49,11 @@
 
 /* Begin PBXFileReference section */
 		2D4F87262802F216004E2228 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		370CBE572806F7180038C86E /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		370CBE592806F7370038C86E /* QuestionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionItem.swift; sourceTree = "<group>"; };
+		370CBE5B2806F74D0038C86E /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
+		370CBE5D2806F75E0038C86E /* LinkURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkURL.swift; sourceTree = "<group>"; };
+		37A745972806E0A10052A483 /* songcool_PostJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = songcool_PostJSON.json; path = ../../../Downloads/songcool_PostJSON.json; sourceTree = "<group>"; };
 		37E64C052805AC92007F1E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37E64C0A2805ACF8007F1E24 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		37E64C0C2805AD2E007F1E24 /* FirebaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTest.swift; sourceTree = "<group>"; };
@@ -90,6 +100,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		370CBE562806F5F00038C86E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7AEC19F12802A48700C48428 /* Main.swift */,
+				370CBE572806F7180038C86E /* PullToRefresh.swift */,
+				370CBE592806F7370038C86E /* QuestionItem.swift */,
+				370CBE5B2806F74D0038C86E /* VoteButtonView.swift */,
+				370CBE5D2806F75E0038C86E /* LinkURL.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		7A15081F27FDE7A60053C092 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +152,7 @@
 		7A4284AD27FD82C600E9B88E /* buy-or-not */ = {
 			isa = PBXGroup;
 			children = (
+				37A745972806E0A10052A483 /* songcool_PostJSON.json */,
 				37E64C052805AC92007F1E24 /* GoogleService-Info.plist */,
 				A35EB3D427FEBE39007A1054 /* Strings */,
 				7A4284C727FD8CCB00E9B88E /* Controllers */,
@@ -156,8 +179,8 @@
 		7A4284C527FD8CBF00E9B88E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				370CBE562806F5F00038C86E /* Main */,
 				7A17D5B827FECCEB00FB8D72 /* Search */,
-				7AEC19F12802A48700C48428 /* Main.swift */,
 				A3571EC127FEA65C00BCA838 /* LoadingPage.swift */,
 				A3571EBB27FE8F8E00BCA838 /* LoginPage.swift */,
 				A35EB3DB27FEC003007A1054 /* SignUpPage.swift */,
@@ -283,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A17D5C327FF0BB700FB8D72 /* BethevSampleJSON.json in Resources */,
+				37A745982806E0A10052A483 /* songcool_PostJSON.json in Resources */,
 				7A4284B627FD82C800E9B88E /* Preview Assets.xcassets in Resources */,
 				7A1DF30028000FEE00EA542C /* BethevJSON.json in Resources */,
 				A35EB3D727FEBE8A007A1054 /* Localizable.strings in Resources */,
@@ -304,7 +328,9 @@
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
 				7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */,
 				2D4F87272802F216004E2228 /* Color.swift in Sources */,
+				370CBE5C2806F74D0038C86E /* VoteButtonView.swift in Sources */,
 				37E64C0B2805ACF8007F1E24 /* Posts.swift in Sources */,
+				370CBE5A2806F7370038C86E /* QuestionItem.swift in Sources */,
 				63EC0FEB27FFCB9200560205 /* Profile.swift in Sources */,
 				8786FD3F27FEB0CB0010C4CA /* Question.swift in Sources */,
 				A3571EBE27FEA51C00BCA838 /* CheckBoxView.swift in Sources */,
@@ -317,6 +343,8 @@
 				A3571EC027FEA55100BCA838 /* SecureInputView.swift in Sources */,
 				7A17D5B527FEBC7100FB8D72 /* QuestionItemData.swift in Sources */,
 				A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */,
+				370CBE582806F7180038C86E /* PullToRefresh.swift in Sources */,
+				370CBE5E2806F75E0038C86E /* LinkURL.swift in Sources */,
 				7AEC19F22802A48700C48428 /* Main.swift in Sources */,
 				7A17D5BE27FECE0100FB8D72 /* QuestionClosed.swift in Sources */,
 				7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */,

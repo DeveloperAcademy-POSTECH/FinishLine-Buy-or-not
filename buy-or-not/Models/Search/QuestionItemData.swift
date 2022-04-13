@@ -11,26 +11,23 @@ struct QuestionItemData: Codable, Identifiable {
     enum CodingKeys: CodingKey {
         case author
         case title
-        case votes
-        case comments
-        case imageURL
-        case options
+        case timeStamp
+        case category
+        case items
     }
 
     var id = UUID()
     let author: String
     var title: String
-    var votes: Int
-    var comments: Int
-    var imageURL: String
-    var options: [Options]
+    var category: String
+    var items: [Options]
+    var timeStamp: String
 }
 
 struct Options: Codable, Hashable {
     var name: String
-    var pressed: Bool
-    
-    func pressedToggle(pressed: inout Bool) {
-        pressed = !pressed
-    }
+    var itemURL: String
+    var cost: String
+    var imageURL: String
+    var votes: [String]
 }
