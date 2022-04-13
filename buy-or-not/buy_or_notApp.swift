@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+
 @main
 struct buy_or_notApp: App {
     
     var login: Bool = true
+    
+    init () {
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {

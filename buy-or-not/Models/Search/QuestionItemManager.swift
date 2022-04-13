@@ -16,7 +16,7 @@ struct QuestionItemManager {
     
     // Read the sample JSON file 
     mutating func load() {
-        guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "BethevSampleJSON", withExtension: "json")
         else {
             print("JSON file not found")
             return
@@ -31,7 +31,7 @@ struct QuestionItemManager {
         self.json = results!
     }
     mutating func reLoad() {
-        guard let url = Bundle.main.url(forResource: "SampleJSON", withExtension: "json")
+        guard let url = Bundle.main.url(forResource: "BethevSampleJSON", withExtension: "json")
         else {
             print("JSON file not found")
             return
