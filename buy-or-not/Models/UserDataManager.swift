@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct QuestionItemManager {
+struct UserDataManager {
 
-    var json = [QuestionItemData]()
+    var json = [UserData]()
     
     init() {
-        load(jsonName: "BethevSampleJSON")
+        load(jsonName: "BethevJSON")
     }
     
-    // Read the sample JSON file 
+    // Read the sample JSON file
     mutating func load(jsonName:String) {
         guard let url = Bundle.main.url(forResource: jsonName, withExtension: "json")
         else {
@@ -24,7 +24,7 @@ struct QuestionItemManager {
         }
         
         let data = try? Data(contentsOf: url)
-        let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+        let results = try? JSONDecoder().decode([UserData].self, from: data!)
         
 //        if let localResults = results {
 //            self.json = localResults
@@ -39,7 +39,7 @@ struct QuestionItemManager {
         }
         
         let data = try? Data(contentsOf: url)
-        let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+        let results = try? JSONDecoder().decode([UserData].self, from: data!)
         
         self.json += results!
     }

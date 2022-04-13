@@ -14,8 +14,35 @@ struct Main: View {  // 아울렛 변수
     @State private var choose = "모두보기"
     
     @State var data = QuestionItemManager()
+    @State var user = UserDataManager()
     @State var previewImg: String = "default"
     @State var previewState: Bool = false
+    
+    func CategorizedData() -> [QuestionItemData] {
+        let info = ["패션/뷰티": "tshirt", "가구/인테리어": "bed.double", "식품/외식": "fork.knife", "전자제품": "desktopcomputer", "취미/여가": "gamecontroller", "기타": "ellipsis.circle"]
+        
+        var categorizedData: [QuestionItemData] = []
+        
+        if choose == "모두보기" {
+            categorizedData = self.data.json
+        } else if choose == "관심분야" {
+            // 유저 한면 샘플
+            for userFavorite in self.user.json[0].favorites {
+                for feed in self.data.json {
+                    if feed.category == userFavorite {
+                        categorizedData.append(feed)
+                    }
+                }
+            }
+        } else {
+            for feed in self.data.json {
+                if feed.category == info[choose] {
+                    categorizedData.append(feed)
+                }
+            }
+        }
+        return categorizedData
+    }
     
     var body: some View {
         GeometryReader () {geometryReader in
@@ -32,12 +59,13 @@ struct Main: View {  // 아울렛 변수
                             // 피드 영역
                             ScrollView {
                                 PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                                    data.load() // 새로고침
+                                    data.load(jsonName: "BethevSampleJSON") // 새로고침
                                 }
                                 // 피드 컨텐츠 영역
                                 LazyVStack {
-                                    ForEach(0..<data.json.count, id: \.self) { num in
-                                        let feed = data.json[num]
+                                    let fixedData = CategorizedData()
+                                    ForEach(0..<fixedData.count, id: \.self) { num in
+                                        let feed = fixedData[num]
                                         let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
 
 //                                      var timeStemp = "default"
@@ -46,8 +74,8 @@ struct Main: View {  // 아울렛 변수
                                         //여기까지 송쿨꺼 입력
                                         .onAppear{
                                             // 임시
-                                            if feed.title == "레이싱 휠 살까요 말까요" {
-                                                data.reLoad() // 데이터 추가 로드
+                                            if feed.title == "레이싱 휠 살까요 말까요" && choose == "모두보기" {
+                                                data.reLoad(jsonName: "BethevSampleJSON") // 데이터 추가 로드
                                             }
                                         }
                                     }

@@ -12,6 +12,8 @@
 		370CBE5A2806F7370038C86E /* QuestionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE592806F7370038C86E /* QuestionItem.swift */; };
 		370CBE5C2806F74D0038C86E /* VoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE5B2806F74D0038C86E /* VoteButtonView.swift */; };
 		370CBE5E2806F75E0038C86E /* LinkURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE5D2806F75E0038C86E /* LinkURL.swift */; };
+		370CBE62280701330038C86E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE61280701330038C86E /* UserData.swift */; };
+		370CBE64280701480038C86E /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE63280701480038C86E /* UserDataManager.swift */; };
 		37A745982806E0A10052A483 /* songcool_PostJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 37A745972806E0A10052A483 /* songcool_PostJSON.json */; };
 		37E64C062805AC92007F1E24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37E64C052805AC92007F1E24 /* GoogleService-Info.plist */; };
 		37E64C092805ACD9007F1E24 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 37E64C082805ACD9007F1E24 /* FirebaseFirestore */; };
@@ -53,6 +55,8 @@
 		370CBE592806F7370038C86E /* QuestionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionItem.swift; sourceTree = "<group>"; };
 		370CBE5B2806F74D0038C86E /* VoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtonView.swift; sourceTree = "<group>"; };
 		370CBE5D2806F75E0038C86E /* LinkURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkURL.swift; sourceTree = "<group>"; };
+		370CBE61280701330038C86E /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		370CBE63280701480038C86E /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		37A745972806E0A10052A483 /* songcool_PostJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = songcool_PostJSON.json; path = ../../../Downloads/songcool_PostJSON.json; sourceTree = "<group>"; };
 		37E64C052805AC92007F1E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37E64C0A2805ACF8007F1E24 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				A35EB3E127FF23DB007A1054 /* SignUp */,
 				7A15081F27FDE7A60053C092 /* Search */,
 				37E64C0A2805ACF8007F1E24 /* Posts.swift */,
+				370CBE61280701330038C86E /* UserData.swift */,
+				370CBE63280701480038C86E /* UserDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 			files = (
 				A35EB3E327FF247F007A1054 /* interestSellect.swift in Sources */,
 				A35EB3DC27FEC003007A1054 /* SignUpPage.swift in Sources */,
+				370CBE64280701480038C86E /* UserDataManager.swift in Sources */,
 				A35EB3D127FEB64E007A1054 /* buy_or_notApp.swift in Sources */,
 				7AEC19EF28026CF000C48428 /* DateCalculator.swift in Sources */,
 				2D4F87272802F216004E2228 /* Color.swift in Sources */,
@@ -345,6 +352,7 @@
 				A3571EBC27FE8F8E00BCA838 /* LoginPage.swift in Sources */,
 				370CBE582806F7180038C86E /* PullToRefresh.swift in Sources */,
 				370CBE5E2806F75E0038C86E /* LinkURL.swift in Sources */,
+				370CBE62280701330038C86E /* UserData.swift in Sources */,
 				7AEC19F22802A48700C48428 /* Main.swift in Sources */,
 				7A17D5BE27FECE0100FB8D72 /* QuestionClosed.swift in Sources */,
 				7A17D5B727FEC15500FB8D72 /* QuestionItemManager.swift in Sources */,
