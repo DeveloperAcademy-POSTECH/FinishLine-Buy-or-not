@@ -13,10 +13,10 @@ import FirebaseFirestore
 // 화면 전환 코드
 struct SignUpContentView: View{
     @Binding var signUpSuccess:Bool
-    
+    @State var signInSuccess:Bool = false
     var body: some View{
         if signUpSuccess{
-            LogInPage(signInSuccess:$signUpSuccess)
+            LogInPage(signInSuccess: $signInSuccess)
         }
         else{
             SignUpPage(signUpSuccess:$signUpSuccess)
