@@ -12,11 +12,13 @@ import FirebaseFirestore
 
 // 화면 전환 코드
 struct SignUpContentView: View{
-    @Binding var signUpSuccess:Bool
+    @Binding var signInSuccess: Bool
+    @State var signUpSuccess: Bool = false
     
     var body: some View{
         if signUpSuccess{
-            LogInPage(signInSuccess:$signUpSuccess)
+            //LogInPage(signInSuccess:$signUpSuccess)
+            Main()
         }
         else{
             SignUpPage(signUpSuccess:$signUpSuccess)
@@ -26,7 +28,9 @@ struct SignUpContentView: View{
 
 
 struct SignUpPage: View {
-    
+    // 네비게이션 바 없애기
+    @Environment(\.presentationMode) var presentation// 네비게이션 바 없애기 위함
+    var authInstance = FirebaseAuth.Auth.auth()
     // 화면 전환을 위한 값
     @Binding var signUpSuccess: Bool
     
@@ -183,9 +187,11 @@ struct SignUpPage: View {
                 
                 
                 Button {
+                    signUpSuccess.toggle() // 화면 전환 -soi
                     //action
                     signUpButtonPressed = true//disabled용 코드
-                    
+                    authInstance.createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
+                    self.presentation.wrappedValue.dismiss() // 네비게이션 없애기 위함
                     if isChecked[0]==true {
                         checkedCategory.append("tshirt")
                     }
@@ -209,6 +215,7 @@ struct SignUpPage: View {
                     print(signUpEmailInput)
                     print(nickNameInput)
                     print(checkedCategory)
+                    
                     
                 }label: {
                     Text(signUpButtonPressed ?"앱 가입을 진행중이에요" :"가입하기" )

@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+// 화면 전환 코드
+struct QuestionContentView: View{
+    @State var questionButton: Bool = false
+    
+    var body: some View{
+        if questionButton{
+            //Main2화면 넣기
+            Main()
+        }
+        else{
+            Question(questionButton: $questionButton)
+        }
+    }
+}
+
+
 private let categorys: [String] = [
     "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품/디지털가전", "취미/여가", "기타"]
 
@@ -47,6 +63,9 @@ struct Contents: View{
 }
 
 struct Question: View {
+    @Environment(\.presentationMode) var presentation // 네비게이션 바 없애기 위함
+    //화면 변경
+    @Binding var questionButton: Bool
     
     @State private var qCategory: String = "카테고리"
     @State private var qTitle: String = ""
@@ -108,6 +127,7 @@ struct Question: View {
             
             
             Button("등록하기") {
+                questionButton.toggle()
                 // DB에 값 넘길거예요!
                 print(qCategory) // post의 카테고리
                 print(qTitle) // post의 글 제목
@@ -116,7 +136,7 @@ struct Question: View {
                 print(prices)
                 print(links)
                 print(content) // 고민 내용
-                
+                //self.presentation.wrappedValue.dismiss() // 네비게이션 없애기 위함
             }.foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
                 .background(Color(hex: "8A67E8"))
@@ -169,9 +189,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         
     }
 }
-
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question()
-    }
-}
+//
+//struct Question_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Question()
+//    }
+//}

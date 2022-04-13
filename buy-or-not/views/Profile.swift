@@ -6,8 +6,24 @@
 //
 import SwiftUI
 import UIKit
-//ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌 
+import FirebaseAuth
+//ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌
+
+struct signOutContentView: View{
+    @State var signOutSuccess = false
+    @State var signInSuccess = true
+    var body: some View{
+        if signOutSuccess {
+            LogInPage(signInSuccess: $signInSuccess).navigationBarBackButtonHidden(true)
+        }
+        else{
+            Profile(signOutSuccess: $signOutSuccess)
+        }
+    }
+}
+
 struct Profile: View {
+    @Binding var signOutSuccess: Bool
     @State private var imageString: String = "profile"
     @State private var nickName: String = "배고픈20대"
     @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
@@ -83,7 +99,7 @@ struct Profile: View {
                         .frame(width: 50.0)
                 }
                 Divider().frame(width: 330.0, height: 10.0)
-                ProfileBottom()
+                ProfileBottom(signOutSuccess: $signOutSuccess)
                 
             }
             .padding(.horizontal)
@@ -91,7 +107,8 @@ struct Profile: View {
         }
     }
     struct ProfileBottom: View {
-        
+        @Binding var signOutSuccess: Bool
+        var authInstance = FirebaseAuth.Auth.auth()
         var body: some View {
             VStack{
                 HStack{
@@ -122,7 +139,10 @@ struct Profile: View {
                 Spacer()
                     .frame(height: 150)
                 Button("로그아웃") {
-                    
+                    do { try authInstance.signOut()
+                        signOutSuccess.toggle()
+                    }
+                       catch { print("already logged out") }
                 }
                 // 서브뷰라서 네비게이션링크 달기어려움
                 .foregroundColor(.white)
@@ -262,9 +282,9 @@ struct Profile: View {
             }
         }
     }
-
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
-        Profile()
-    }
-}
+//
+//struct Profile_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Profile()
+//    }
+//}
