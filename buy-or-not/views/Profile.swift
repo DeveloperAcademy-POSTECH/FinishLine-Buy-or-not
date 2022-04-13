@@ -1,270 +1,242 @@
-//
 //  Profile.swift
 //  buy-or-not
 //
 //  Created by Apple_Academy on 2022/04/08.
-//
+// Geometry 적용하기
+// User 자기가 투표한 포스트의 ID를 가진다
 import SwiftUI
 import UIKit
-//ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌 
-struct Profile: View {
-    @State private var imageString: String = "profile"
-    @State private var nickName: String = "배고픈20대"
-    @State private var introduceComment: String = "전자기기에 관심이 많은 20대 입니다."
-    @State private var badgeBools: Array = [true,true,false]
-//    @State var user = User(name: <#T##String#>, comment: <#T##String#>, nickname: <#T##String#>, interested: <#T##String#>, img: <#T##String#>)
-    var body: some View {
-        NavigationView{
-            VStack{
-                HStack{
+import FirebaseAuth
+//ToDO 네비게이션 버튼이 뒤로가기팝, 수정하기 작동이 갑자기안됌
 
-                    Spacer()
-                    
-//                    user.setUserName(name: "Daivid")
-                   // print(user.getUserName())
-                    Text("프로필").font(.title).fontWeight(.bold).foregroundColor(Color.gray).padding(.top).frame(height:60)
-                    Spacer()
-                }
-                Spacer().frame(height:20)
-                HStack{
-                    Text("나의 프로필")
-                        .font(.title2)
-                        .foregroundColor(Color.gray)
-                    
-                    Spacer()
-                    NavigationLink(destination: Text("수정하기 화면")){
-                        Label {
-                            Text("수정하기")
-                                .fontWeight(.regular)
-                                .foregroundColor(Color(hex: "8A67E8"))
-                        } icon:{
-                            Image(systemName: "square.and.pencil")
-                                .foregroundColor(Color(hex: "8A67E8"))
-                                .frame(width: 15.0, height: 15.0)
-                        }
-                    }
-                }
-                Divider().frame(width: 330.0,height: 3)
-                Spacer()
-                    .frame(height: 15.0)
-                ProfileDetail(profileImage:imageString,nickName:nickName,introduceComment:introduceComment,iconArrays:badgeBools)
-                Spacer().frame(height:40)
-                HStack{
-                    Spacer()
-                        .frame(width: 50
-                               
-                        )
-                    NavigationLink(destination:
-                                    Text("나의질문화면").navigationBarHidden(true)
-                    ){
-                        VStack{
-                            Image(systemName:"questionmark.circle.fill")
-                                .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color(hex: "8A67E8"))
-                                .frame(width: 40.0, height: 40.0)
-                            Text("나의질문")
-                                .foregroundColor(Color(hex: "8A67E8"))
-                            
-                        }
-                    }
-                    Spacer()
-                    NavigationLink(destination: Text("나의답변화면")){
-                        VStack{
-                            Image(systemName:"exclamationmark.bubble.fill")
-                                .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color(hex: "8A67E8"))
-                                .frame(width: 40.0, height: 40.0)
-                            Text("나의답변")
-                                .foregroundColor(Color(hex: "8A67E8"))
-                            
-                        }
-                    }
-                    Spacer()
-                        .frame(width: 50.0)
-                }
-                Divider().frame(width: 330.0, height: 10.0)
-                ProfileBottom()
-                
-            }
-            .padding(.horizontal)
+struct signOutContentView: View{
+    @State var signOutSuccess = false
+    @State var signInSuccess = true
+    
+    @Binding var data: QuestionItemManager
+    @Binding var user: UserDataManager
+    var body: some View{
+        if signOutSuccess {
+            LogInPage()
         }
+        else{
+            Profile(signOutSuccess: $signOutSuccess, data: $data, user: $user)
         }
     }
-    struct ProfileBottom: View {
-        
-        var body: some View {
-            VStack{
-                HStack{
-                    Label {
-                        Text("공지사항")
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.gray)
-                    } icon:{
-                        Image(systemName: "mic.fill")
-                            .foregroundColor(Color.gray)
-                            .frame(width: 15.0, height: 15.0)
+}
+
+struct VoteResults: View {
+    @Binding var data: QuestionItemManager
+    @Binding var user: UserDataManager
+    
+    @State private var feedState = false
+    @State var fromWhere = 1
+    
+    @State var previewImg: String = "default"
+    @State var previewState: Bool = false
+    
+    @State var voteDone: Bool = true
+    
+    func getMyAskData() -> [QuestionItemData] {
+        var box: [QuestionItemData] = []
+        for feed in data.json {
+            if feed.author == user.json[0].nickName {
+                box.append(feed)
+            }
+        }
+        return box
+    }
+    
+    func getMyAnsData() -> [QuestionItemData] {
+        var box: [QuestionItemData] = []
+        for feed in data.json {
+            for i in feed.items {
+                for j in i.votes {
+                    if j == user.json[0].nickName {
+                        box.append(feed)
                     }
                 }
-                .padding(/*@START_MENU_TOKEN@*/.trailing, 230.0/*@END_MENU_TOKEN@*/)
-                Spacer().frame(height:15)
-                HStack{
-                    Label {
-                        Text("자주 묻는 질문")
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.gray)
-                    } icon:{
-                        Image(systemName: "phone.fill")
-                            .foregroundColor(Color.gray)
-                            .frame(width: 15.0, height: 15.0)
-                    }
-                }
-                .padding(.trailing, 195.0)
+            }
+        }
+        return box
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading){
+            
+            HStack {
                 Spacer()
-                    .frame(height: 150)
-                Button("로그아웃") {
-                    
+                Text("나의 질문").font(.system(size: 21, weight: .regular)).onTapGesture {
+                    feedState = false
                 }
-                // 서브뷰라서 네비게이션링크 달기어려움
+                Spacer()
+                Text("나의 답변").font(.system(size: 21, weight: .regular)).onTapGesture {
+                    feedState = true
+                }
+                Spacer()
+            }
+            Divider()
+                .foregroundColor(Color(hex: "979797"))
+            Spacer().frame(height:15)
+            //투표와 관련된 뷰들을 넣어줘야한다. 그 사용자가 투표한 결과값들을 가져와야한다.
+            if !feedState {
+                ScrollView {
+                    // 피드 컨텐츠 영역
+                    LazyVStack {
+                        let fixedData = getMyAskData()
+                        ForEach(0..<fixedData.count, id: \.self) { num in
+                            let feed = fixedData[num]
+                            let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
+
+//                                      var timeStemp = "default"
+                            
+                            QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
+                        }
+                    }
+                }
+            } else {
+                ScrollView {
+                    // 피드 컨텐츠 영역
+                    LazyVStack {
+                        let fixedData = getMyAnsData()
+                        ForEach(0..<fixedData.count, id: \.self) { num in
+                            let feed = fixedData[num]
+                            let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
+
+//                                      var timeStemp = "default"
+                            
+                            QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
+                        }
+                    }
+                }
+            }
+            
+            
+        }.frame(minHeight:280)
+    }
+}
+
+
+struct Profile: View {
+    @Binding var signOutSuccess: Bool
+    @State var imageUrl: String = "https://pngset.com/images/apple-unveils-new-emoji-face-mask-memoji-characters-hypebeast-apple-memoji-head-clothing-apparel-toy-transparent-png-2663192.png"
+    @State var nickName: String = "Halohalo"
+    @State var comment: String = "전자기기에 관심이 많은 20대 입니다."
+    @State var interests: Array = ["tshirt", "gamecontroller"]
+    
+    @Binding var data: QuestionItemManager
+    @Binding var user: UserDataManager
+    
+    //@Binding var signOutSuccess: Bool
+    
+    var authInstance = FirebaseAuth.Auth.auth()
+    
+    var body: some View {
+            VStack{
+                Spacer()
+                    .frame(height:20)
+                ProfileDetail(letImageUrl: imageUrl, letNickName: nickName, letComment: comment, letInterests: interests)
+                
+                Spacer()
+                    .frame(height:54)
+                VoteResults(data: $data, user: $user)
+                Button("로그아웃") {
+                    // 서브뷰라서 네비게이션링크 달기어려움
+                    do { try authInstance.signOut()
+                        signOutSuccess.toggle()
+                    }
+                       catch { print("already logged out") }
+                }
                 .foregroundColor(.white)
                 .frame(width: 250, height: 42, alignment: .center)
-                .background(Color(hex: "8A67E8"))
+                .background(.blue)
                 .cornerRadius(10)
                 .padding(.vertical, 24.0)
-                Spacer()
-                    .frame(height: 130.0)
+                .frame(height: 130.0)
+            }
+            .padding(.horizontal,17)
+        .navigationTitle("프로필")
+        .navigationBarItems(
+            trailing: NavigationLink(
+                destination: EditProfile(placeHolderName: nickName, placeHoldertComment: comment) // 검색 뷰로 연결
+            ){
+                Text("수정하기")
+
+            }
+        )
+    }
+}
+
+
+
+
+struct ProfileDetail: View {
+    let letImageUrl: String
+    let letNickName: String
+    let letComment: String
+    let letInterests: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading){
+            HStack(alignment: .top, spacing: 17){
+                Image(letImageUrl)
+                    .resizable()
+                    .frame(width:90.0,height:90)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
+                //
+                
+                VStack(alignment:.leading){
+                    Text(letNickName)
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(Color.black)
+                        .multilineTextAlignment(.leading)
+                    Spacer().frame(height:5.0)
+                    Text(letComment)
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(Color(hex: "AAAAAA"))
+                        .multilineTextAlignment(.leading)
+                    
+                }
+                .padding(.top, 16.0)
+            }
+            Spacer()
+                .frame(height:36)
+            Text("관심목록")
+                .font(.system(size: 21, weight: .regular))
+            Divider()
+                .background(Color(hex: "979797"))
+            //                .padding(.horizontal:)
+            
+            Spacer().frame(height:15)
+            HStack{
+                interestedCategory(letInterests:letInterests[0])
+                interestedCategory(letInterests:letInterests[1])
             }
             
         }
+//        .background(Color.red)
+        
     }
-    
-    
-    
-    
-    struct ProfileDetail: View {
-        let profileImage : String
-        let nickName : String
-        let introduceComment:String
-        let iconArrays:Array<Bool>
-        var body: some View {
-            VStack{
-                HStack{
-                    Image(profileImage).frame(width:120.0,height:120).clipShape(Circle()).shadow(radius: 10).overlay(Circle().stroke(Color.gray,lineWidth: 5))
-                    VStack(alignment:.leading){
-                        Text(nickName).font(.headline).fontWeight(.heavy).foregroundColor(Color.black).multilineTextAlignment(.leading).padding(.trailing, 75.0).frame(width:200.0)
-                        Spacer().frame(height:5.0)
-                        Text(introduceComment)
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.gray)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: 200.0,height: 50)
-                        
-                    }
-                }
-                Spacer().frame(height:15)
-                HStack{
-                    Spacer().frame(width:100)
-                    if iconArrays[0] {
-                        ZStack{
-                            Image(systemName: "tshirt")
-                                .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                    , height: 35)
-                            VStack{
-                                Spacer()
-                                    .frame(height: 20.0)
-                                HStack{
-                                    Image(systemName: "crown.fill").resizable(resizingMode: .stretch)
-                                        .foregroundColor(Color.yellow)
-                                        .padding(.all, 0.0)
-                                        .frame(width: 20
-                                               , height: 20).clipShape(Circle()).shadow(radius: 5).overlay(Circle().stroke(Color.gray,lineWidth: 3))
-                                }
-                                .padding(.leading)
-                                .frame(width: 35.0, height: 35.0)
-                                
-                            }
-                            .frame(width: 40.0)
-                            
-                        }
-                        
-                    } else{
-                        Image(systemName: "tshirt")
-                            .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                , height: 35)
-                    }
-                    Spacer().frame(width:35)
-                    if iconArrays[1] {
-                        ZStack{
-                            Image(systemName: "desktopcomputer")
-                                .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                    , height: 35)
-                            VStack{
-                                Spacer()
-                                    .frame(height: 20.0)
-                                HStack{
-                                    Image(systemName: "crown.fill").resizable(resizingMode: .stretch)
-                                        .foregroundColor(Color.yellow)
-                                        .padding(.all, 0.0)
-                                        .frame(width: 20
-                                               , height: 20).clipShape(Circle()).shadow(radius: 5).overlay(Circle().stroke(Color.gray,lineWidth: 3))
-                                }
-                                .padding(.leading)
-                                .frame(width: 35.0, height: 35.0)
-                                
-                            }
-                            .frame(width: 40.0)
-                            
-                        }
-                        
-                    } else{
-                        Image(systemName: "desktopcomputer")
-                            .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                , height: 35)
-                    }
-                    Spacer().frame(width:35)
-                    if iconArrays[2] {
-                        ZStack{
-                            Image(systemName: "airtag")
-                                .resizable(resizingMode: .stretch)
-                                .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                    , height: 35)
-                            VStack{
-                                Spacer()
-                                    .frame(height: 20.0)
-                                HStack{
-                                    Image(systemName: "crown.fill").resizable(resizingMode: .stretch)
-                                        .foregroundColor(Color.yellow)
-                                        .padding(.all, 0.0)
-                                        .frame(width: 20
-                                               , height: 20).clipShape(Circle()).shadow(radius: 5).overlay(Circle().stroke(Color.gray,lineWidth: 3))
-                                }
-                                .padding(.leading)
-                                .frame(width: 35.0, height: 35.0)
-                                
-                            }
-                            .frame(width: 40.0)
-                            
-                        }
-                        
-                    } else{
-                        Image(systemName: "airtag")
-                            .resizable(resizingMode: .stretch)
-                            .foregroundColor(Color(hex: "7E3CC2")).frame(width: 35
-                                                                , height: 35)
-                        
-                    }
-                    Spacer().frame(width:100)
-                }
-            }
-        }
-    }
+}
 
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
-        Profile()
+
+struct interestedCategory: View {
+    var letInterests : String
+    
+    var body: some View {
+        ZStack{
+            Text (
+                "\(Image(systemName: letInterests))"
+            )
+            .font(.system(size: 24, weight: .medium))
+            
+            Circle()
+                .strokeBorder(lineWidth: 1)
+                .foregroundColor(Color(hex: "979797"))
+                .frame(width: 60, height: 60)
+        }
+        Spacer().frame(width:12)
     }
 }

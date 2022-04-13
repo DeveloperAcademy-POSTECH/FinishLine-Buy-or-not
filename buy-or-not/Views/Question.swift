@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct QuestionContentView: View{
+    @State var questionButton: Bool = false
+    
+    var body: some View{
+        if questionButton{
+            //Main2화면 넣기
+            Main()
+        }
+        else{
+            Question(questionButton: $questionButton)
+        }
+    }
+}
+
 private let categorys: [String] = [
     "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품/디지털가전", "취미/여가", "기타"]
 
@@ -45,6 +59,9 @@ struct Contents: View{
 }
 
 struct Question: View {
+    @Environment(\.presentationMode) var presentation // 네비게이션 바 없애기 위함
+        //화면 변경
+    @Binding var questionButton: Bool
     
     @State private var qCategory: String = "카테고리"
     @State private var qTitle: String = ""
@@ -102,7 +119,8 @@ struct Question: View {
             
             
             Button("등록하기") {
-                // action
+                questionButton.toggle()
+                self.presentation.wrappedValue.dismiss()
                
                 
             }.foregroundColor(.white)
@@ -155,11 +173,5 @@ struct ImagePicker: UIViewControllerRepresentable {
             parent.presentationMode.wrappedValue.dismiss()
         }
         
-    }
-}
-
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question()
     }
 }

@@ -14,6 +14,7 @@
 		370CBE5E2806F75E0038C86E /* LinkURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE5D2806F75E0038C86E /* LinkURL.swift */; };
 		370CBE62280701330038C86E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE61280701330038C86E /* UserData.swift */; };
 		370CBE64280701480038C86E /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE63280701480038C86E /* UserDataManager.swift */; };
+		370CBE6628070EEF0038C86E /* profileEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370CBE6528070EEF0038C86E /* profileEdited.swift */; };
 		37A745982806E0A10052A483 /* songcool_PostJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 37A745972806E0A10052A483 /* songcool_PostJSON.json */; };
 		37E64C062805AC92007F1E24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37E64C052805AC92007F1E24 /* GoogleService-Info.plist */; };
 		37E64C092805ACD9007F1E24 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 37E64C082805ACD9007F1E24 /* FirebaseFirestore */; };
@@ -57,6 +58,7 @@
 		370CBE5D2806F75E0038C86E /* LinkURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkURL.swift; sourceTree = "<group>"; };
 		370CBE61280701330038C86E /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		370CBE63280701480038C86E /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
+		370CBE6528070EEF0038C86E /* profileEdited.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = profileEdited.swift; path = ../../../../Downloads/profileEdited.swift; sourceTree = "<group>"; };
 		37A745972806E0A10052A483 /* songcool_PostJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = songcool_PostJSON.json; path = ../../../Downloads/songcool_PostJSON.json; sourceTree = "<group>"; };
 		37E64C052805AC92007F1E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37E64C0A2805ACF8007F1E24 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				A3571EBF27FEA55100BCA838 /* SecureInputView.swift */,
 				8786FD3E27FEB0CB0010C4CA /* Question.swift */,
 				87EFBC4C280018CD006ECFBA /* MainCategory.swift */,
+				370CBE6528070EEF0038C86E /* profileEdited.swift */,
 				63EC0FEA27FFCB9200560205 /* Profile.swift */,
 				37E64C0C2805AD2E007F1E24 /* FirebaseTest.swift */,
 			);
@@ -344,6 +347,7 @@
 				87EFBC4D280018CD006ECFBA /* MainCategory.swift in Sources */,
 				7A17D5BC27FECDF400FB8D72 /* AllPosts.swift in Sources */,
 				7A17D5BA27FECD1E00FB8D72 /* QuestionOnGoing.swift in Sources */,
+				370CBE6628070EEF0038C86E /* profileEdited.swift in Sources */,
 				7AEC19ED280262E400C48428 /* Search.swift in Sources */,
 				A3731AFD2800259F002335D7 /* FindMemberInfoPage.swift in Sources */,
 				37E64C0D2805AD2E007F1E24 /* FirebaseTest.swift in Sources */,

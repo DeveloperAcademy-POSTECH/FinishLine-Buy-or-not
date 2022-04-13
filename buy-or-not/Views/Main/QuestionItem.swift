@@ -18,6 +18,7 @@ struct QuestionItem: View {
     
     @Binding var previewImg: String
     @Binding var previewState: Bool
+    @Binding var fromWhere: Int
     
     @State private var mode: Int = -1
     
@@ -164,7 +165,11 @@ struct QuestionItem: View {
                     .strokeBorder(lineWidth: 1)
                     .frame(height: 40)
                     .foregroundColor(Color.init(hex: "E5E5EA"))
-                VoteButtonView(data: items,mode_:self.$mode)
+                if fromWhere == 0 {
+                    VoteButtonView(data: items, fromWhere: false, mode_:self.$mode)
+                } else {
+                    VoteButtonView(data: items, fromWhere: true, mode_:self.$mode)
+                }
             }.frame(height: 40)
             Spacer()
                 .frame(height: 17.0)

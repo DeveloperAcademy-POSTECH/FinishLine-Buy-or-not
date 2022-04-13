@@ -18,6 +18,10 @@ struct Main: View {  // 아울렛 변수
     @State var previewImg: String = "default"
     @State var previewState: Bool = false
     
+    @State var fromWhere: Int = 0
+    
+    @State var voteDone: Bool = false
+    
     func CategorizedData() -> [QuestionItemData] {
         let info = ["패션/뷰티": "tshirt", "가구/인테리어": "bed.double", "식품/외식": "fork.knife", "전자제품": "desktopcomputer", "취미/여가": "gamecontroller", "기타": "ellipsis.circle"]
         
@@ -70,7 +74,7 @@ struct Main: View {  // 아울렛 변수
 
 //                                      var timeStemp = "default"
                                         
-                                        QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState)
+                                        QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
                                         //여기까지 송쿨꺼 입력
                                         .onAppear{
                                             // 임시
@@ -83,7 +87,7 @@ struct Main: View {  // 아울렛 변수
                             }.padding(.horizontal, 17.0)
                         }.coordinateSpace(name: "pullToRefresh")
                         //
-                        NavigationLink(destination: Question() // 질문 남기기 뷰로 연결
+                        NavigationLink(destination: QuestionContentView() // 질문 남기기 뷰로 연결
                         ) {
                             ZStack {
                                 Circle()
@@ -100,7 +104,7 @@ struct Main: View {  // 아울렛 변수
                     }
                     .navigationBarItems(
                         leading: NavigationLink(
-                            destination: Profile() // 프로필 뷰로 연결
+                            destination: signOutContentView(data: $data, user: $user)  // 프로필 뷰로 연결
                         ){
                             Image("sampleMan").frame(width: 30, height: 30)
                         }
