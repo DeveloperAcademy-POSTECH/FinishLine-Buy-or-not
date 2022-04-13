@@ -136,7 +136,7 @@ struct Question: View {
                 print(prices)
                 print(links)
                 print(content) // 고민 내용
-                //self.presentation.wrappedValue.dismiss() // 네비게이션 없애기 위함
+                self.presentation.wrappedValue.dismiss() // 네비게이션 없애기 위함
             }.foregroundColor(.white)
                 .frame(width: 180, height: 42, alignment: .center)
                 .background(Color(hex: "8A67E8"))
