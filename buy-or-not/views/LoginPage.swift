@@ -24,24 +24,23 @@ struct LogInPage: View {
     // 해결
     @Binding var signInSuccess: Bool
     //error 해결
-     @State var signUpSuccess = false
+    @State var signUpSuccess = false
     @State var emailInput: String = ""
     @State private var passwordInput: String = ""
     @State var localAutoLoginToggle: Bool = false
-    
+
     //오토로그인
     @State var isAutoLogin: Bool = false
     @State var isAutoLogins: Bool = (UserDefaults.standard.string(forKey: "CHECK") != nil)
     @State var rememberEmail: String = (UserDefaults.standard.string(forKey: "ID") ?? "")
     @State var rememberPassword: String = (UserDefaults.standard.string(forKey: "PW") ?? "")
-
     
+   // @State var alertError: Bool = true
     var body: some View {
 
       
         let email = rememberEmail == "" ? $emailInput : $rememberEmail
         let password = rememberPassword == "" ? $passwordInput : $rememberPassword
-        
         NavigationView {
             VStack() {
                 
@@ -125,16 +124,18 @@ struct LogInPage: View {
                         //print("saved value: \(emailInput), \(passwordInput)")
                     }
                     // 로그인 성공하면
-                    FirebaseAuth.Auth.auth().signIn(withEmail: emailInput, password: passwordInput, completion: {result, error in
-                        guard error == nil else{
-                            //shwo account creation
-                            return
-                        }
+                    FirebaseAuth.Auth.auth().signIn(
+                        withEmail: emailInput,
+                        password: passwordInput) {result, error in
+                            guard error == nil
+                            else {
+                                return
+                            }
                         print("You 성공")
                         signInSuccess.toggle() // 화면 전환
-                    })
+                    }
                     
-                }label: {
+                } label: {
                     Text("로그인")
                         .frame(width: 180, height: 42, alignment: .center)
                 }
@@ -142,6 +143,7 @@ struct LogInPage: View {
                   .background(Color(hex: "8A67E8"))
                   .cornerRadius(12)
                   .padding(.vertical, 24.0)
+                 
                   
                 //애플로 로그인
                 SignInWithAppleButton(

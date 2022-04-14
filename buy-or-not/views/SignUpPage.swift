@@ -17,11 +17,12 @@ struct SignUpContentView: View{
     
     var body: some View{
         if signUpSuccess{
-            //LogInPage(signInSuccess:$signUpSuccess)
+            //LogInPage(signInSuccess:$signInSuccess).navigationBarHidden(true)
             Main()
         }
-        else{
-            SignUpPage(signUpSuccess:$signUpSuccess)
+        else {
+            SignUpPage(signUpSuccess: $signUpSuccess)
+            
         }
     }
 }
@@ -30,7 +31,7 @@ struct SignUpContentView: View{
 struct SignUpPage: View {
     // 네비게이션 바 없애기
     @Environment(\.presentationMode) var presentation// 네비게이션 바 없애기 위함
-    var authInstance = FirebaseAuth.Auth.auth()
+    
     // 화면 전환을 위한 값
     @Binding var signUpSuccess: Bool
     
@@ -56,7 +57,10 @@ struct SignUpPage: View {
     @State var checkedCategory: [String] = []
     
     //가입하기 버튼 비활성화
-    @State private var signUpButtonPressed = false
+    @State var signUpButtonPressed = [false, false]
+    @State var successSignUp: Int = 0
+    @State var IDAlert = false
+    @State var NickNameAlert = false
     
     
     var body: some View {
@@ -79,13 +83,22 @@ struct SignUpPage: View {
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.gray, lineWidth: 0.5))
                     Button("중복확인") {
+                        IDAlert.toggle()
+                        signUpButtonPressed[0] = true
                         //action
+                       
                     }
                     .foregroundColor(.white)
                     .frame(width: 100, height: 48, alignment: .center)
-                    .background(Color(hex: "8A67E8"))
+                    //.background(Color(hex: "8A67E8"))
                     .cornerRadius(12)
-                    
+                    .alert(isPresented: $IDAlert) {
+                        Alert(title: Text("확인완료"),
+                              message: Text("사용할 수 있습니다.")
+                        )
+                    }
+                    .disabled(signUpButtonPressed[0])
+                    .background(signUpButtonPressed[0] ? .gray : Color(hex: "8A67E8") )
                 }
                 .padding(.vertical, 6.0)
                 
@@ -148,16 +161,22 @@ struct SignUpPage: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.gray, lineWidth: 0.5))
                         Button("중복확인") {
-                            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                            NickNameAlert.toggle()
+                            signUpButtonPressed[1] = true
+                        }.alert(isPresented: $NickNameAlert) {
+                            Alert(title: Text("확인완료"),
+                                  message: Text("사용할 수 있습니다.")
+                            )
                         }
                         .foregroundColor(.white)
                         .frame(width: 100, height: 48, alignment: .center)
-                        .background(Color(hex: "8A67E8"))
+                        //.background(Color(hex: "8A67E8"))
                         .cornerRadius(12)
+                        .disabled(signUpButtonPressed[1])
+                        .background(signUpButtonPressed[1] ? .gray : Color(hex: "8A67E8") )
                         
                     }
                     .padding(.vertical, 6.0)
-                    
                     
                     //관심분야 텍스트
                     Text("관심분야")
@@ -185,12 +204,18 @@ struct SignUpPage: View {
                 
                 //가입완료 버튼
                 
-                
                 Button {
-                    signUpSuccess.toggle() // 화면 전환 -soi
-                    //action
-                    signUpButtonPressed = true//disabled용 코드
-                    authInstance.createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
+                        FirebaseAuth.Auth.auth().createUser(withEmail: signUpEmailInput,
+                                                            password: signUpPasswordInput){
+                            result, error in
+                            guard error == nil
+                             else {
+                                return
+                            }
+                            print("you 성공")
+                    }
+                    signUpSuccess.toggle()
+                    //signUpButtonPressed = true//disabled용 코드
                     self.presentation.wrappedValue.dismiss() // 네비게이션 없애기 위함
                     if isChecked[0]==true {
                         checkedCategory.append("tshirt")
@@ -217,19 +242,18 @@ struct SignUpPage: View {
                     print(checkedCategory)
                     
                     
+                    
                 }label: {
-                    Text(signUpButtonPressed ?"앱 가입을 진행중이에요" :"가입하기" )
+                    Text(signUpButtonPressed[0] && signUpButtonPressed[1] ?"가입하기" :"가입 양식을 준수해주세요" )
                         .frame(width: 300, height: 42, alignment: .center)
                 }
                 .foregroundColor(.white)
-                .background(signUpButtonPressed ?.gray :Color(hex: "8A67E8") )
+                .background(signUpButtonPressed[0] && signUpButtonPressed[1] ? Color(hex: "8A67E8") : .gray )
                 .cornerRadius(12)
                 .padding(.vertical, 24.0)
-                .disabled(signUpButtonPressed == true)
+                .disabled(!(signUpButtonPressed[0] && signUpButtonPressed[1]))
             }
             .frame(width: 390, alignment: .center)
-            
-            
         }
     }
 }
