@@ -90,8 +90,6 @@ struct SignUpPage: View {
                     }
                     .foregroundColor(.white)
                     .frame(width: 100, height: 48, alignment: .center)
-                    //.background(Color(hex: "8A67E8"))
-                    .cornerRadius(12)
                     .alert(isPresented: $IDAlert) {
                         Alert(title: Text("확인완료"),
                               message: Text("사용할 수 있습니다.")
@@ -99,6 +97,8 @@ struct SignUpPage: View {
                     }
                     .disabled(signUpButtonPressed[0])
                     .background(signUpButtonPressed[0] ? .gray : Color(hex: "8A67E8") )
+                    .cornerRadius(12)
+
                 }
                 .padding(.vertical, 6.0)
                 
@@ -170,10 +170,10 @@ struct SignUpPage: View {
                         }
                         .foregroundColor(.white)
                         .frame(width: 100, height: 48, alignment: .center)
-                        //.background(Color(hex: "8A67E8"))
-                        .cornerRadius(12)
                         .disabled(signUpButtonPressed[1])
                         .background(signUpButtonPressed[1] ? .gray : Color(hex: "8A67E8") )
+                        .cornerRadius(12)
+
                         
                     }
                     .padding(.vertical, 6.0)
