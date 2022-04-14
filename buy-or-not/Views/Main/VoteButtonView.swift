@@ -11,6 +11,7 @@ struct VoteButtonView: View {
     
     var data: [Options]
     var fromWhere: Bool
+    private let voteDoneColor = ["C7C7CC", "8A67E8"]
     // 옵션 최대 갯수 4개
     @State var buttonState: [Bool] = [false, false, false, false]
     
@@ -36,20 +37,33 @@ struct VoteButtonView: View {
         }
     }
     
+    func voteCountMaker() -> [Dictionary<String, Int>.Element] {
+        var voteCountBox: [String: Int] = [:]
+        
+        for item in self.data {
+            voteCountBox[item.name] = item.votes.count
+        }
+        
+        return voteCountBox.sorted { $0.1 > $1.1 }
+    }
+    
     var body: some View {
         if voteDone || fromWhere {
-            RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.white)
-            ZStack (alignment:.leading) {
-                RoundedRectangle(cornerRadius: 10).frame(height: 40).foregroundColor(Color.init(hex: "F2F2F7"))
-                RoundedRectangle(cornerRadius: 10).frame(width: 380, height: 40).foregroundColor(Color.init(hex: "C7C7CC"))
-                RoundedRectangle(cornerRadius: 10).frame(width: 380, height: 40).foregroundColor(Color.init(hex: "8A67E8"))
-            }.transition(.slide)
+            let sortedVoteCount: [Dictionary<String, Int>.Element] = voteCountMaker()
+            let totalVotes: Int = sortedVoteCount.compactMap { $0.1 }.reduce(0, +)
+            
+            VStack (alignment: .center) {
+                ForEach (0..<sortedVoteCount.count, id: \.self) { idx in
+                    Text("\(idx+1)위 \(sortedVoteCount[idx].key) : \(sortedVoteCount[idx].value%totalVotes)표")
+                }
+            }
+            
         } else {
             HStack(spacing : 0) {
                 ForEach (0..<data.count, id: \.self) { idx in
-                                            if (idx != 0){
-                                                Divider()
-                                            }
+                    if (idx != 0){
+                        Divider()
+                    }
                     Button {
                         mode_ = idx + 1
                         buttonTab(index: idx, dataCount: data.count)
@@ -63,7 +77,7 @@ struct VoteButtonView: View {
                                 .foregroundColor(buttonState[idx] ? Color.white :Color.black)
                                 .font(.body)
                         }
-
+                        
                     }
                 }
             }

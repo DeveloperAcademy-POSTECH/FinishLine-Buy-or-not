@@ -156,14 +156,14 @@ struct Profile: View {
             }
             .padding(.horizontal,17)
         .navigationTitle("프로필")
-        .navigationBarItems(
-            trailing: NavigationLink(
-                destination: EditProfile(placeHolderName: nickName, placeHoldertComment: comment) // 검색 뷰로 연결
-            ){
-                Text("수정하기")
-
-            }
-        )
+//        .navigationBarItems(
+//            trailing: NavigationLink(
+//                //destination: EditProfile(placeHolderName: nickName, placeHoldertComment: comment, data: $data, user: $user) // 검색 뷰로 연결
+//            ){
+//                Text("수정하기")
+//
+//            }
+//        )
     }
 }
 

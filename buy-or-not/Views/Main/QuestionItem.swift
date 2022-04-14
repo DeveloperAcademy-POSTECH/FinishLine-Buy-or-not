@@ -32,7 +32,7 @@ struct QuestionItem: View {
     
     var body: some View {
         
-        VStack(alignment:.leading) {
+        VStack(alignment:.center) {
             
             if (mode == -1) {
                 HStack {
@@ -145,8 +145,6 @@ struct QuestionItem: View {
                             }
                         }
                         
-                        Spacer()
-                        
                         HStack {
                             Text(items[mode].cost)
                                 .foregroundColor(.gray)
@@ -160,17 +158,14 @@ struct QuestionItem: View {
                 }
                 .animation(.easeIn, value: 1)
             }
+            Spacer()
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(lineWidth: 1)
-                    .frame(height: 40)
-                    .foregroundColor(Color.init(hex: "E5E5EA"))
                 if fromWhere == 0 {
                     VoteButtonView(data: items, fromWhere: false, mode_:self.$mode)
                 } else {
                     VoteButtonView(data: items, fromWhere: true, mode_:self.$mode)
                 }
-            }.frame(height: 40)
+            }
             Spacer()
                 .frame(height: 17.0)
         }
