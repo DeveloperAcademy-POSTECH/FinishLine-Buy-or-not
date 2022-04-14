@@ -7,42 +7,58 @@
 // 메인페이지입니다.
 import SwiftUI
 
+
+
 struct Main: View {  // 아울렛 변수
-    // 사용자가 선택한 카테고리 값이 choose에 저장됨.
-    @State private var choose = "모두보기"
-    
-    @State var data = QuestionItemManager()
-    @State var previewImg: String = "defalt"
-    @State var previewState: Bool = false
-    
-    var body: some View {
-        GeometryReader () {geometryReader in
-            ZStack {
-                NavigationView  {
-                    ZStack {
-                        VStack {
-                            Spacer() 
-                            
-                            MainCategory(choose: $choose)
-                                .padding(.leading, 7.0)
-                                .padding(.trailing, 17.0)
-                            //
-                            // 피드 영역
-                            ScrollView {
-                                PullToRefresh(coordinateSpaceName: "pullToRefresh") {
-                                    data.load() // 새로고침
-                                }
-                                // 피드 컨텐츠 영역
+	// 사용자가 선택한 카테고리 값이 choose에 저장됨.
+	@State private var choose = "모두보기"
+	
+	@State var data = QuestionItemManager()
+	@State var previewImg: String = "default"
+	@State var previewState: Bool = false
+	
+	var body: some View {
+		GeometryReader () {geometryReader in
+			ZStack {
+				NavigationView  {
+					ZStack {
+						VStack {
+							Spacer()
+							
+							MainCategory(choose: $choose)
+								.padding(.leading, 7.0)
+								.padding(.trailing, 17.0)
+							//
+							// 피드 영역
+							ScrollView {
+								PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+									data.load() // 새로고침
+								}
+								// 피드 컨텐츠 영역
                                 LazyVStack {
-                                    ForEach(0..<data.json.count, id: \.self) { num in
-                                        let feed = data.json[num]
-                                        QuestionItem(title: feed.title, author: feed.author, votes: feed.votes, comments: feed.comments, imageURL: feed.imageURL, options: feed.options, previewImg: $previewImg, previewState: $previewState)
-                                            .onAppear{
-                                                if feed.votes == 50 {
-                                                    data.reLoad() // 데이터 추가 로드
-                                                }
-                                            }
-                                    }
+									ForEach(0..<data.json.count, id: \.self) { num in
+										let feed = data.json[num]
+										let passedTime = (DateCalculator(originatedDate:feed.originatedDate).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.originatedDate).dateDiff.day! : DateCalculator(originatedDate:feed.originatedDate).dateDiff.minute!
+
+//										var timeStemp = "default"
+										
+										QuestionItem(
+											timeStemp: passedTime,
+											title: feed.title,
+											author: feed.author,
+											votes: feed.votes,
+											comments: feed.comments,
+											imageURL: feed.imageURL,
+											options: feed.options,
+											previewImg: $previewImg,
+											previewState: $previewState)
+										//여기까지 송쿨꺼 입력
+										.onAppear{
+											if feed.votes == 50 {
+												data.reLoad() // 데이터 추가 로드
+											}
+										}
+									}
                                 }
                             }.padding(.horizontal, 17.0)
                         }.coordinateSpace(name: "pullToRefresh")
@@ -146,27 +162,31 @@ struct PullToRefresh: View {
 
 struct QuestionItem: View {
     
+	var timeStemp: Int
     var title: String
     var author: String
     var votes: Int
     var comments: Int
     var imageURL: String
     var options: [Options]
+	
     
     @Binding var previewImg: String
     @Binding var previewState: Bool
     
     @State private var mode: Int = 0
-    
+	
     var body: some View {
+		
         VStack(alignment:.leading) {
+			
             if (mode==0) {
                 HStack {
                     ZStack {
                         // 보더적용
                         RoundedRectangle(cornerRadius: 20)
                             .strokeBorder(lineWidth: 1)
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hex: "E5E5EA"))
                             .frame(width: 116, height: 116)
                         
                         // 이미지 크기 보정 적용
@@ -192,7 +212,8 @@ struct QuestionItem: View {
                             previewState.toggle()
                         }
                     }
-                    Spacer()
+					Spacer()
+						.frame(width: 12)
                     
                     VStack(alignment:.leading) {
                         Text("질문작성 부분입니다.")
@@ -202,8 +223,18 @@ struct QuestionItem: View {
                             Text(author)
                                 .lineLimit(1)
                             Spacer()
-                            Text (
-                                "12분 전   \(Image(systemName: "checkmark.square"))\(votes)"
+							if(timeStemp > 364){
+								Text("\(timeStemp/365)년 전")
+							} else if( timeStemp>0){
+								Text("\(timeStemp)일 전")
+							} else if(timeStemp > -59){
+								Text("\(-timeStemp)분 전")
+							} else {
+								Text("\(-timeStemp/60)시간 전")
+							}
+	
+                            Text (//
+								"\(Image(systemName: "checkmark.square"))\(votes)"
                             )
                         }
                         .font(.system(size: 14, weight: .medium))
@@ -212,13 +243,14 @@ struct QuestionItem: View {
                         
                     }
                 }
-            } else{
+				.animation(.easeIn, value: 1)
+			} else{
                 HStack {
                     ZStack {
                         // 보더적용
                         RoundedRectangle(cornerRadius: 20)
                             .strokeBorder(lineWidth: 1)
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hex: "E5E5EA"))
                             .frame(width: 116, height: 116)
                         
                         // 이미지 크기 보정 적용
@@ -279,11 +311,13 @@ struct QuestionItem: View {
                         .font(.system(size: 18, weight: .bold))
                     }
                 }
+				.animation(.easeIn, value: 1)
             }
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(lineWidth: 1)
                     .frame(height: 40)
-                    .foregroundColor(Color.init(hex: "F2F2F7"))
+                    .foregroundColor(Color.init(hex: "E5E5EA"))
                 VoteButtonView(data: options,mode_:self.$mode)
             }.frame(height: 40)
             Spacer()
@@ -335,19 +369,25 @@ struct VoteButtonView: View {
             }.transition(AnyTransition.slide)
       
         } else {
-            HStack {
+            HStack(spacing : 0) {
                 ForEach (0..<data.count, id: \.self) { idx in
+					                        if (idx != 0){
+												Divider()
+					                        }
                     Button {
                         mode_ = idx + 1
                         buttonTab(index: idx, dataCount: data.count)
                     } label: {
                         ZStack {
-                            Rectangle().foregroundColor(buttonState[idx] ? Color(hex: "8A67E8") : .clear).cornerRadius(10)
+                            Rectangle()
+								.foregroundColor(buttonState[idx] ? Color(hex: "8A67E8") : .clear)
+                                .cornerRadius(10)
+                            
                             Text(buttonState[idx] ? "투표하기" : data[idx].name)
                                 .foregroundColor(buttonState[idx] ? Color.white :Color.black)
                                 .font(.body)
-                            
                         }
+
                     }
                 }
             }
