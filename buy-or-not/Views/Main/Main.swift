@@ -48,6 +48,15 @@ struct Main: View {  // 아울렛 변수
         return categorizedData
     }
     
+    func getTs(timeStamp:String) -> Int {
+        if timeStamp == "1000" {
+            return 1000
+        } else {
+            let passedTime = (DateCalculator(originatedDate:timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:timeStamp).dateDiff.day! : DateCalculator(originatedDate:timeStamp).dateDiff.hour!
+            return passedTime
+        }
+    }
+    
     var body: some View {
         GeometryReader () {geometryReader in
             ZStack {
@@ -71,9 +80,7 @@ struct Main: View {  // 아울렛 변수
                                     let fixedData = CategorizedData()
                                     ForEach(0..<fixedData.count, id: \.self) { num in
                                         let feed = fixedData[num]
-                                        let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
-
-//                                      var timeStemp = "default"
+                                        let passedTime: Int = getTs(timeStamp: feed.timeStamp)
                                         
                                         QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
                                         //여기까지 송쿨꺼 입력

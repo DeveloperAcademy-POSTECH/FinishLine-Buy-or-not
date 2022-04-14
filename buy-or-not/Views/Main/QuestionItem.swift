@@ -79,7 +79,9 @@ struct QuestionItem: View {
                             Text(author)
                                 .lineLimit(1)
                             Spacer()
-                            if(timestamp > 364){
+                            if (timestamp == 1000) {
+                                Text("방금 전")
+                            } else if(timestamp > 364){
                                 Text("\(timestamp/365)년 전")
                             } else if( timestamp>0){
                                 Text("\(timestamp)일 전")
