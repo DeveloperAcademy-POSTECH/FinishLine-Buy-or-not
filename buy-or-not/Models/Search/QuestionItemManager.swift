@@ -43,5 +43,22 @@ struct QuestionItemManager {
         
         self.json += results!
     }
+    
+    mutating func addJsonData(jsonName:String, needAddData:QuestionItemData){
+            guard let url = Bundle.main.url(forResource: jsonName, withExtension: "json")
+            else {
+                print("JSON file not found")
+                return
+            }
+            
+            let data = try? Data(contentsOf: url)
+            let results = try? JSONDecoder().decode([QuestionItemData].self, from: data!)
+            
+        //        if let localResults = results {
+        //            self.json = localResults
+        //        }
+            self.json = results!
+            self.json.insert(needAddData, at: 0)
+        }
 }
 

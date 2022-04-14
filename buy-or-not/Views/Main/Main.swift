@@ -87,7 +87,7 @@ struct Main: View {  // 아울렛 변수
                             }.padding(.horizontal, 17.0)
                         }.coordinateSpace(name: "pullToRefresh")
                         //
-                        NavigationLink(destination: QuestionContentView() // 질문 남기기 뷰로 연결
+                        NavigationLink(destination: QuestionContentView(jsonData: $data) // 질문 남기기 뷰로 연결
                         ) {
                             ZStack {
                                 Circle()
