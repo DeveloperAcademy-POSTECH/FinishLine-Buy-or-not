@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct QuestionContentView: View{
+    @State var questionButton = false
+    
+    var body: some View{
+        if questionButton {
+            Main()
+        } else {
+            Question(questionButton: $questionButton)
+        }
+    }
+}
+
 private let categorys: [String] = [
     "패션/뷰티", "가구/인테리어", "식품/외식", "전자제품/디지털가전", "취미/여가", "기타"]
 
@@ -61,6 +73,9 @@ struct Question: View {
     @State private var prices = ["", "", ""]
     @State private var links = ["", "", ""]
     
+    // 화면 전환 코드
+    @Binding var questionButton: Bool
+    
     var body: some View {
         VStack{
             Form{
@@ -108,6 +123,7 @@ struct Question: View {
             
             
             Button("등록하기") {
+                questionButton.toggle()
                 // DB에 값 넘길거예요!
                 print(qCategory) // post의 카테고리
                 print(qTitle) // post의 글 제목
@@ -170,8 +186,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question()
-    }
-}
+//struct Question_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        Question()
+//    }
+//}

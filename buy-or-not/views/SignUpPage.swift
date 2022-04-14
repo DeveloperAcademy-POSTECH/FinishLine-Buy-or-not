@@ -8,27 +8,26 @@
 import SwiftUI
 import AuthenticationServices
 import FirebaseAuth
-import FirebaseFirestore
+ import FirebaseFirestore
 
-// 화면 전환 코드
-struct SignUpContentView: View{
-    @Binding var signUpSuccess:Bool
-    
-    var body: some View{
-        if signUpSuccess{
-            LogInPage(signInSuccess:$signUpSuccess)
-        }
-        else{
-            SignUpPage(signUpSuccess:$signUpSuccess)
-        }
-    }
-}
-
+ // 화면 전환 코드
+ struct SignUpContentView: View{
+     @State var signUpButton = false
+     @State var logInButton = false
+     
+     var body: some View{
+         if signUpButton {
+             LogInPage(logInButton: $logInButton)
+         } else {
+             SignUpPage(signUpButton: $signUpButton)
+         }
+     }
+ }
 
 struct SignUpPage: View {
     
     // 화면 전환을 위한 값
-    @Binding var signUpSuccess: Bool
+    @Binding var signUpButton: Bool
     
     //이메일 및 비밀번호 입력
     @State var signUpEmailInput: String = ""
@@ -186,6 +185,24 @@ struct SignUpPage: View {
                     //action
                     signUpButtonPressed = true//disabled용 코드
                     
+                    // firebase에 회원 정보 등록
+                    var authInstance = FirebaseAuth.Auth.auth()
+                    authInstance.createUser(withEmail: signUpEmailInput, password: signUpPasswordInput)
+                    { (user, error) in
+                        if error == nil{
+                            let db = Firestore.firestore()
+                            var ref: DocumentReference? = nil
+                            ref = db.collection("User").addDocument(data: [ // User -> Users로 방
+                                // 수정이 필요한 부분!
+                                //"id": user.user.uid?,
+                                "comment": "안녕하세요",
+                                "email": signUpEmailInput,
+                                "imageUrl": "imageURL", // image URL 기본 사진 넣어야함.
+                                "interest": ["운동", "food"], // 추후 할로겐 정보로 업데이트 해야함.
+                                "name": nickNameInput])
+                            signUpButton.toggle()
+                        }
+                     
                     if isChecked[0]==true {
                         checkedCategory.append("tshirt")
                     }
@@ -205,7 +222,6 @@ struct SignUpPage: View {
                         checkedCategory.append("ellipsis.circle")
                     }
 
-                    
                     print(signUpEmailInput)
                     print(nickNameInput)
                     print(checkedCategory)
