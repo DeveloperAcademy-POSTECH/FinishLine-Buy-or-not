@@ -15,7 +15,7 @@ struct VoteButtonView: View {
     // 옵션 최대 갯수 4개
     @State var buttonState: [Bool] = [false, false, false, false]
     
-    @State var voteDone: Bool = false
+    @Binding var voteDone: Bool
     @Binding var mode_:Int
     
     func buttonTab(index: Int, dataCount: Int) {

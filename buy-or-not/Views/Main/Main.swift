@@ -18,7 +18,7 @@ struct Main: View {  // 아울렛 변수
     @State var previewImg: String = "default"
     @State var previewState: Bool = false
     
-    @State var fromWhere: Int = 0
+    @State var fromWhere: Bool = false
     
     @State var voteDone: Bool = false
     

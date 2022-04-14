@@ -30,7 +30,7 @@ struct VoteResults: View {
     @Binding var user: UserDataManager
     
     @State private var feedState = false
-    @State var fromWhere = 1
+    @State var fromWhere: Bool = true
     
     @State var previewImg: String = "default"
     @State var previewState: Bool = false
@@ -87,8 +87,8 @@ struct VoteResults: View {
                         ForEach(0..<fixedData.count, id: \.self) { num in
                             let feed = fixedData[num]
                             let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
-
-//                                      var timeStemp = "default"
+                            
+                            //                                      var timeStemp = "default"
                             
                             QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
                         }
@@ -102,8 +102,8 @@ struct VoteResults: View {
                         ForEach(0..<fixedData.count, id: \.self) { num in
                             let feed = fixedData[num]
                             let passedTime = (DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! > 1) ? DateCalculator(originatedDate:feed.timeStamp).dateDiff.day! : DateCalculator(originatedDate:feed.timeStamp).dateDiff.hour!
-
-//                                      var timeStemp = "default"
+                            
+                            //                                      var timeStemp = "default"
                             
                             QuestionItem(author: feed.author, title: feed.title, category: feed.category, items: feed.items, timestamp: passedTime, previewImg: $previewImg, previewState: $previewState, fromWhere: $fromWhere)
                         }
@@ -127,43 +127,43 @@ struct Profile: View {
     @Binding var data: QuestionItemManager
     @Binding var user: UserDataManager
     
+    @State var imageState: Bool = false
     //@Binding var signOutSuccess: Bool
     
     var authInstance = FirebaseAuth.Auth.auth()
     
     var body: some View {
-            VStack{
-                Spacer()
-                    .frame(height:20)
-                ProfileDetail(letImageUrl: imageUrl, letNickName: nickName, letComment: comment, letInterests: interests)
-                
-                Spacer()
-                    .frame(height:54)
-                VoteResults(data: $data, user: $user)
-                Button("로그아웃") {
-                    // 서브뷰라서 네비게이션링크 달기어려움
-                    do { try authInstance.signOut()
-                        signOutSuccess.toggle()
-                    }
-                       catch { print("already logged out") }
+        VStack{
+            Spacer()
+                .frame(height:20)
+            ProfileDetail(letImageUrl: imageUrl, letNickName: nickName, letComment: comment, letInterests: interests, imageState: $imageState)
+            
+            Spacer()
+                .frame(height:54)
+            VoteResults(data: $data, user: $user)
+            Button("로그아웃") {
+                // 서브뷰라서 네비게이션링크 달기어려움
+                do { try authInstance.signOut()
+                    signOutSuccess.toggle()
                 }
-                .foregroundColor(.white)
-                .frame(width: 250, height: 42, alignment: .center)
-                .background(.blue)
-                .cornerRadius(10)
-                .padding(.vertical, 24.0)
-                .frame(height: 130.0)
+                catch { print("already logged out") }
             }
-            .padding(.horizontal,17)
+            .foregroundColor(.white)
+            .frame(width: 250, height: 42, alignment: .center)
+            .background(.blue)
+            .cornerRadius(10)
+            .padding(.vertical, 24.0)
+            .frame(height: 130.0)
+        }
+        .padding(.horizontal,17)
         .navigationTitle("프로필")
-//        .navigationBarItems(
-//            trailing: NavigationLink(
-//                //destination: EditProfile(placeHolderName: nickName, placeHoldertComment: comment, data: $data, user: $user) // 검색 뷰로 연결
-//            ){
-//                Text("수정하기")
-//
-//            }
-//        )
+        .navigationBarItems(
+            trailing: NavigationLink(
+                destination: EditProfile(placeHolderName: $nickName, placeHoldertComment: $comment, data: $data, user: $user, imageState: $imageState) // 검색 뷰로 연결
+            ){
+                Text("편집")
+            }
+        )
     }
 }
 
@@ -176,15 +176,27 @@ struct ProfileDetail: View {
     let letComment: String
     let letInterests: [String]
     
+    @Binding var imageState: Bool
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack(alignment: .top, spacing: 17){
-                Image(letImageUrl)
-                    .resizable()
-                    .frame(width:90.0,height:90)
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
+                if imageState {
+                    Image(letImageUrl)
+                        .resizable()
+                        .frame(width:90.0,height:90)
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
+                } else {
+                    Image("profile")
+                        .resizable()
+                        .frame(width:90.0,height:90)
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
+                }
+                
                 //
                 
                 VStack(alignment:.leading){
@@ -216,7 +228,7 @@ struct ProfileDetail: View {
             }
             
         }
-//        .background(Color.red)
+        //        .background(Color.red)
         
     }
 }

@@ -18,9 +18,10 @@ struct QuestionItem: View {
     
     @Binding var previewImg: String
     @Binding var previewState: Bool
-    @Binding var fromWhere: Int
+    @Binding var fromWhere: Bool
     
     @State private var mode: Int = -1
+    @State var voteDone: Bool = false
     
     func voteCount() -> Int {
         var c = 0
@@ -88,7 +89,7 @@ struct QuestionItem: View {
                             }
     
                             Text (//
-                                "\(Image(systemName: "checkmark.square"))\(voteCount())"
+                                "\(Image(systemName: "checkmark.square"))\(voteDone || fromWhere ? voteCount() : voteCount()-1)"
                             )
                         }
                         .font(.system(size: 14, weight: .medium))
@@ -144,7 +145,7 @@ struct QuestionItem: View {
                                 mode=0
                             }
                         }
-                        
+                        Spacer()
                         HStack {
                             Text(items[mode].cost)
                                 .foregroundColor(.gray)
@@ -160,10 +161,10 @@ struct QuestionItem: View {
             }
             Spacer()
             ZStack {
-                if fromWhere == 0 {
-                    VoteButtonView(data: items, fromWhere: false, mode_:self.$mode)
+                if !fromWhere {
+                    VoteButtonView(data: items, fromWhere: false, voteDone: $voteDone, mode_:self.$mode)
                 } else {
-                    VoteButtonView(data: items, fromWhere: true, mode_:self.$mode)
+                    VoteButtonView(data: items, fromWhere: true, voteDone: $voteDone, mode_:self.$mode)
                 }
             }
             Spacer()
