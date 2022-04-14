@@ -13,7 +13,7 @@ struct VoteButtonView: View {
     var fromWhere: Bool
     private let voteDoneColor = ["C7C7CC", "8A67E8"]
     // 옵션 최대 갯수 4개
-    @State var buttonState: [Bool] = [false, false, false, false]
+    @Binding var buttonState: [Bool]
     
     @Binding var voteDone: Bool
     @Binding var mode_:Int

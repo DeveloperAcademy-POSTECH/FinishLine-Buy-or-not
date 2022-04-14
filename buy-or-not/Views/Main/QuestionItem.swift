@@ -22,6 +22,7 @@ struct QuestionItem: View {
     
     @State private var mode: Int = -1
     @State var voteDone: Bool = false
+    @State var buttonState: [Bool] = [false, false, false, false]
     
     func voteCount() -> Int {
         var c = 0
@@ -127,7 +128,7 @@ struct QuestionItem: View {
                         .frame(width: 116, height: 116)
                         .cornerRadius(20)
                         .onTapGesture {
-                            previewImg = items[mode].imageURL //이부분을 수정해야함.
+                            previewImg = items[mode].imageURL
                             previewState.toggle()
                         }
                     }
@@ -142,7 +143,8 @@ struct QuestionItem: View {
                                 "\(Image(systemName: "xmark"))"
                             )
                             .onTapGesture {
-                                mode=0
+                                mode = -1
+                                buttonState = [false, false, false, false]
                             }
                         }
                         Spacer()
@@ -162,9 +164,9 @@ struct QuestionItem: View {
             Spacer()
             ZStack {
                 if !fromWhere {
-                    VoteButtonView(data: items, fromWhere: false, voteDone: $voteDone, mode_:self.$mode)
+                    VoteButtonView(data: items, fromWhere: false, buttonState: $buttonState, voteDone: $voteDone, mode_:self.$mode)
                 } else {
-                    VoteButtonView(data: items, fromWhere: true, voteDone: $voteDone, mode_:self.$mode)
+                    VoteButtonView(data: items, fromWhere: true, buttonState: $buttonState, voteDone: $voteDone, mode_:self.$mode)
                 }
             }
             Spacer()
