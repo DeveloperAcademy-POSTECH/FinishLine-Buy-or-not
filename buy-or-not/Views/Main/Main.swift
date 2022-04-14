@@ -59,6 +59,7 @@ struct Main: View {  // 아울렛 변수
                             MainCategory(choose: $choose)
                                 .padding(.leading, 7.0)
                                 .padding(.trailing, 17.0)
+                                .padding(.bottom, 0)
                             //
                             // 피드 영역
                             ScrollView {
@@ -106,7 +107,12 @@ struct Main: View {  // 아울렛 변수
                         leading: NavigationLink(
                             destination: signOutContentView(data: $data, user: $user)  // 프로필 뷰로 연결
                         ){
-                            Image("sampleMan").frame(width: 30, height: 30)
+                            Image("profile")
+                                .resizable()
+                                .frame(width:38,height:38)
+                                .aspectRatio(contentMode: .fit)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
                         }
                         , trailing: NavigationLink(
                             destination: Search() // 검색 뷰로 연결

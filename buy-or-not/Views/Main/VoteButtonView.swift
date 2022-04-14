@@ -52,32 +52,49 @@ struct VoteButtonView: View {
             let sortedVoteCount: [Dictionary<String, Int>.Element] = voteCountMaker()
             let totalVotes: Int = sortedVoteCount.compactMap { $0.1 }.reduce(0, +)
             
-            VStack (alignment: .center) {
-                ForEach (0..<sortedVoteCount.count, id: \.self) { idx in
-                    Text("\(idx+1)위 \(sortedVoteCount[idx].key) : \(sortedVoteCount[idx].value%totalVotes)표")
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.init(hex: "DCD1F7"), Color.init(hex: "EFEAFB")]),
+                                         startPoint: .top, endPoint: .bottom))
+                    .frame(height: 84)
+                VStack (alignment: .center) {
+                    ForEach (0..<sortedVoteCount.count, id: \.self) { idx in
+                        HStack {
+                            Text("\(idx + 1)위").padding(.leading, 12).font(.system(size: 15, weight: .bold))
+                            Text("\(sortedVoteCount[idx].key)").font(.system(size: 15, weight: .regular))
+                            Spacer()
+                            Text("\(Int(round(Double(sortedVoteCount[idx].value) / Double(totalVotes) * 100)))%(\(sortedVoteCount[idx].value)표)").padding(.trailing, 12).font(.system(size: 15, weight: .regular))
+                        }
+                    }
                 }
             }
             
         } else {
-            HStack(spacing : 0) {
-                ForEach (0..<data.count, id: \.self) { idx in
-                    if (idx != 0){
-                        Divider()
-                    }
-                    Button {
-                        mode_ = idx + 1
-                        buttonTab(index: idx, dataCount: data.count)
-                    } label: {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(buttonState[idx] ? Color(hex: "8A67E8") : .clear)
-                                .cornerRadius(10)
-                            
-                            Text(buttonState[idx] ? "투표하기" : data[idx].name)
-                                .foregroundColor(buttonState[idx] ? Color.white :Color.black)
-                                .font(.body)
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.init(hex: "D8D8D8"), lineWidth: 1)
+                    
+                
+                HStack(spacing : 0) {
+                    ForEach (0..<data.count, id: \.self) { idx in
+                        if (idx != 0){
+                            Divider()
                         }
-                        
+                        Button {
+                            mode_ = idx + 1
+                            buttonTab(index: idx, dataCount: data.count)
+                        } label: {
+                            ZStack {
+                                Rectangle()
+                                    .foregroundColor(buttonState[idx] ? Color(hex: "8A67E8") : .clear)
+                                    .cornerRadius(10)
+                                
+                                Text(buttonState[idx] ? "투표하기" : data[idx].name)
+                                    .foregroundColor(buttonState[idx] ? Color.white :Color.black)
+                                    .font(.subheadline)
+                            }
+                            
+                        }
                     }
                 }
             }

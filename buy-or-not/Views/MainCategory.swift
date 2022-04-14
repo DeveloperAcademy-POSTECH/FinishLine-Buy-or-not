@@ -93,8 +93,8 @@ struct MainCategory: View{
             .cornerRadius(20)
             
         }
-        .padding(.top, 12.0)
-        .padding(.bottom, 20.0)
+        .padding(.top, 8.0)
+        .padding(.bottom, 6.0)
     }
 }
 

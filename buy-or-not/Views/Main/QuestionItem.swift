@@ -35,7 +35,7 @@ struct QuestionItem: View {
     var body: some View {
         
         VStack(alignment:.center) {
-            
+    
             if (mode == -1) {
                 HStack {
                     ZStack {
@@ -161,18 +161,18 @@ struct QuestionItem: View {
                 }
                 .animation(.easeIn, value: 1)
             }
-            Spacer()
+            Spacer().frame(height: 8)
             ZStack {
                 if !fromWhere {
                     VoteButtonView(data: items, fromWhere: false, buttonState: $buttonState, voteDone: $voteDone, mode_:self.$mode)
                 } else {
                     VoteButtonView(data: items, fromWhere: true, buttonState: $buttonState, voteDone: $voteDone, mode_:self.$mode)
                 }
-            }
+            }.frame(height: voteDone || fromWhere ? 84 : 42)
             Spacer()
-                .frame(height: 17.0)
+                .frame(height: 8)
         }
-        .frame(height: 177.5)
+        .frame(height: voteDone || fromWhere ? 219.5 : 177.5)
         Divider()
             .padding(.bottom, 17.0)
     }
