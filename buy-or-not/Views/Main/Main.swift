@@ -109,13 +109,14 @@ struct Main: View {  // 아울렛 변수
                         ){
                             Image("profile")
                                 .resizable()
-                                .frame(width:38,height:38)
+                                .frame(width:40,height:40)
                                 .aspectRatio(contentMode: .fit)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color(hex: "979797"),lineWidth: 1))
+                                .padding(.top, 4)
                         }
                         , trailing: NavigationLink(
-                            destination: Search() // 검색 뷰로 연결
+                            destination: Search(data: $data) // 검색 뷰로 연결
                         ){
                             Image(systemName: "magnifyingglass")
                                 .font(.system(size: 24.0, weight: .regular))

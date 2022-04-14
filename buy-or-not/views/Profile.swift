@@ -17,7 +17,7 @@ struct signOutContentView: View{
     @Binding var user: UserDataManager
     var body: some View{
         if signOutSuccess {
-            LogInPage()
+            LogInPage(signInSuccess: $signInSuccess).navigationBarBackButtonHidden(true)
         }
         else{
             Profile(signOutSuccess: $signOutSuccess, data: $data, user: $user)
@@ -68,10 +68,12 @@ struct VoteResults: View {
                 Spacer()
                 Text("나의 질문").font(.system(size: 21, weight: .regular)).onTapGesture {
                     feedState = false
+                    data.load(jsonName: "BethevSampleJSON")
                 }
                 Spacer()
                 Text("나의 답변").font(.system(size: 21, weight: .regular)).onTapGesture {
                     feedState = true
+                    data.load(jsonName: "BethevSampleJSON")
                 }
                 Spacer()
             }
@@ -119,7 +121,7 @@ struct VoteResults: View {
 
 struct Profile: View {
     @Binding var signOutSuccess: Bool
-    @State var imageUrl: String = "https://pngset.com/images/apple-unveils-new-emoji-face-mask-memoji-characters-hypebeast-apple-memoji-head-clothing-apparel-toy-transparent-png-2663192.png"
+    @State var imageUrl: String = "Profile"
     @State var nickName: String = "Halohalo"
     @State var comment: String = "전자기기에 관심이 많은 20대 입니다."
     @State var interests: Array = ["tshirt", "gamecontroller"]
@@ -127,7 +129,7 @@ struct Profile: View {
     @Binding var data: QuestionItemManager
     @Binding var user: UserDataManager
     
-    @State var imageState: Bool = false
+    @State var profileState: Bool = false
     //@Binding var signOutSuccess: Bool
     
     var authInstance = FirebaseAuth.Auth.auth()
@@ -136,7 +138,7 @@ struct Profile: View {
         VStack{
             Spacer()
                 .frame(height:20)
-            ProfileDetail(letImageUrl: imageUrl, letNickName: nickName, letComment: comment, letInterests: interests, imageState: $imageState)
+            ProfileDetail(profileState: $profileState)
             
             Spacer()
                 .frame(height:54)
@@ -159,7 +161,7 @@ struct Profile: View {
         .navigationTitle("프로필")
         .navigationBarItems(
             trailing: NavigationLink(
-                destination: EditProfile(placeHolderName: $nickName, placeHoldertComment: $comment, data: $data, user: $user, imageState: $imageState) // 검색 뷰로 연결
+                destination: EditProfile(placeHolderName: $nickName, placeHoldertComment: $comment, data: $data, user: $user, profileState: $profileState)
             ){
                 Text("편집")
             }
@@ -171,18 +173,14 @@ struct Profile: View {
 
 
 struct ProfileDetail: View {
-    let letImageUrl: String
-    let letNickName: String
-    let letComment: String
-    let letInterests: [String]
-    
-    @Binding var imageState: Bool
+    var letInterests: Array = ["tshirt", "gamecontroller"]
+    @Binding var profileState: Bool
     
     var body: some View {
         VStack(alignment: .leading){
             HStack(alignment: .top, spacing: 17){
-                if imageState {
-                    Image(letImageUrl)
+                if profileState {
+                    Image("newProfileImage")
                         .resizable()
                         .frame(width:90.0,height:90)
                         .aspectRatio(contentMode: .fit)
@@ -200,15 +198,28 @@ struct ProfileDetail: View {
                 //
                 
                 VStack(alignment:.leading){
-                    Text(letNickName)
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(Color.black)
-                        .multilineTextAlignment(.leading)
-                    Spacer().frame(height:5.0)
-                    Text(letComment)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(Color(hex: "AAAAAA"))
-                        .multilineTextAlignment(.leading)
+                    if profileState {
+                        Text("NewNickname")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                        Spacer().frame(height:5.0)
+                        Text("새로운 자기소개 입니다")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(Color(hex: "AAAAAA"))
+                            .multilineTextAlignment(.leading)
+                    } else {
+                        Text("닉네임을 설정해주세요.")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                        Spacer().frame(height:5.0)
+                        Text("자기소개를 입력해주세요.")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(Color(hex: "AAAAAA"))
+                            .multilineTextAlignment(.leading)
+                    }
+                    
                     
                 }
                 .padding(.top, 16.0)
