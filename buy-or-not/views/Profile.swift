@@ -199,17 +199,17 @@ struct ProfileDetail: View {
                 
                 VStack(alignment:.leading){
                     if profileState {
-                        Text("NewNickname")
+                        Text("Soi")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
                         Spacer().frame(height:5.0)
-                        Text("새로운 자기소개 입니다")
+                        Text("안녕하세요!")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundColor(Color(hex: "AAAAAA"))
                             .multilineTextAlignment(.leading)
                     } else {
-                        Text("닉네임을 설정해주세요.")
+                        Text("Soi")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
