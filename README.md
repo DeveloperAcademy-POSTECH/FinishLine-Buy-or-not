@@ -7,7 +7,11 @@ A voting app helping people purchase the best item between many options.
 
 
 ## :pushpin: Features
-
+- Sign In / Sign Out / Sign Up
+- Infinite Scroll
+- Edit Profile
+- Search
+- Vote
 
 ## :people_hugging: Authors
 
